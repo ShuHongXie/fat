@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
 /dist
+/build
+/vant
+/dist
 
 
 # local env files

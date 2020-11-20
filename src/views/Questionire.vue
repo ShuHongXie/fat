@@ -1,16 +1,21 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png" @click="increment" />
-    Count is: {{ state.count }}, double is: {{ state.double }} init is:
-    {{ state.init }} -->
+  <div class="questionire">
+    <van-checkbox-group v-model="result.value" direction="horizontal">
+      <van-checkbox name="a">复选框 a</van-checkbox>
+      <van-checkbox name="b">复选框 b</van-checkbox>
+    </van-checkbox-group>
+    <van-icon name="chat-o" dot />
+    <van-radio-group v-model="state.radio">
+      <van-radio name="1">单选框 1</van-radio>
+      <van-radio name="2">单选框 2</van-radio>
+    </van-radio-group>
+    {{ state.count }}
   </div>
 </template>
 
 <script lang="ts">
-  import bem from '@/utils/init/bem'
-  import { defineComponent, reactive, computed, watchEffect, onMounted } from 'vue'
-  import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
-
+  // import { test } from '../../test.js'
+  import { defineComponent, reactive, computed, watchEffect, ref } from 'vue'
   export interface State {
     count: number
     double?: number
@@ -19,27 +24,17 @@
 
   export default defineComponent({
     name: 'Home',
-    components: {
-      HelloWorld
-    },
     setup() {
-      onMounted(() => {
-        // eslint-disable-next-line vue/no-parsing-error
-        console.log(bem('button')())
-      })
-
       const state: State = reactive({
         count: 0,
         init: 0,
+        radio: '1',
         double: computed(() => state.count * 2),
-        arr: ['dajiao', 'teacher', 28]
+        arr: ['dajiao', 'teacher', 28],
+        result: []
       })
 
-      // const s: State = reactive({
-      //   count: 123,
-      //   init: 444
-      // })
-
+      const result = ref(['a'])
       // watchEffect(onInvalidate => {
       //   console.log(`count的值为${state.count}`)
       //   console.log(`init${state.init}`)
@@ -51,14 +46,19 @@
       // })
 
       function increment(): void {
-        const res = [1, 2, 3]
         state.count++
       }
 
       return {
         state,
-        increment
+        increment,
+        result
       }
     }
   })
 </script>
+
+<style lang="scss" scoped>
+  .questionire {
+  }
+</style>
