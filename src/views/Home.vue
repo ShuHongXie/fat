@@ -1,22 +1,20 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png" @click="increment" />
-    Count is: {{ state.count }}, double is: {{ state.double }} init is:
-    {{ state.init }} -->
     234
-    <fat-mask></fat-mask>
+    <fat-popup v-model:visible="state.show" />
   </div>
 </template>
 
 <script lang="ts">
   import bem from '@/utils/init/bem'
-  import { defineComponent, reactive, computed, watchEffect, onMounted } from 'vue'
+  import { defineComponent, reactive, computed, watchEffect, onMounted, toRef } from 'vue'
   import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 
   export interface State {
     count: number
     double?: number
     init: number
+    show: boolean
   }
 
   export default defineComponent({
@@ -25,22 +23,21 @@
       HelloWorld
     },
     setup() {
-      onMounted(() => {
-        // eslint-disable-next-line vue/no-parsing-error
-        console.log(bem('button')())
-      })
-
       const state: State = reactive({
         count: 0,
         init: 0,
         double: computed(() => state.count * 2),
-        arr: ['dajiao', 'teacher', 28]
+        arr: ['dajiao', 'teacher', 28],
+        show: false
       })
 
-      // const s: State = reactive({
-      //   count: 123,
-      //   init: 444
-      // })
+      onMounted(() => {
+        // eslint-disable-next-line vue/no-parsing-error
+        setTimeout(() => {
+          state.show = true
+          console.log(state.show)
+        }, 2000)
+      })
 
       // watchEffect(onInvalidate => {
       //   console.log(`count的值为${state.count}`)
@@ -64,3 +61,10 @@
     }
   })
 </script>
+
+<style lang="scss">
+  .home {
+    width: 100%;
+    height: 100%;
+  }
+</style>

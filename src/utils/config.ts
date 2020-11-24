@@ -1,3 +1,4 @@
 export default {
-  frameworkName: 'Fat'
+  frameworkName: 'Fat',
+  className: 'fat'
 }

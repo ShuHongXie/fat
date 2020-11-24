@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-11-19 17:36:43
  * @Last Modified by: shuhongxie
- * @Last Modified time: 2020-11-24 14:37:28
+ * @Last Modified time: 2020-11-24 17:34:00
  */
 
 /**
@@ -20,7 +20,7 @@ type bemObj = Array<string> | Record<any, string> | string
 
 // 初始化类名
 export const initClass = (compClass: string): string => {
-  return `${config.frameworkName}-${compClass}`
+  return `${config.className}-${compClass}`
 }
 
 // 初始化类名 + 子区域名 如: button__子区域名
@@ -57,6 +57,7 @@ export const addTextWithIdent = (child: string, ident: Record<any, string>): str
 
 // 初始化类名格式
 export default function initBem(name: string) {
+  console.log(name)
   return function(childName?: bemObj, ident?: Record<any, string>): any {
     // 字符串
     if (typeof childName === 'string') {
