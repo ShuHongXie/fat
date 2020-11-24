@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-11-19 17:36:43
  * @Last Modified by: shuhongxie
- * @Last Modified time: 2020-11-20 17:30:17
+ * @Last Modified time: 2020-11-24 14:37:28
  */
 
 /**
@@ -13,13 +13,14 @@
  * b('text', { disabled }) // 'button__text button__text--disabled'
  * b(['disabled', 'primary']) // 'button button--disabled button--primary'
  */
+import config from '@/utils/config'
 
 // 初始化type
 type bemObj = Array<string> | Record<any, string> | string
 
 // 初始化类名
 export const initClass = (compClass: string): string => {
-  return `fat-${compClass}`
+  return `${config.frameworkName}-${compClass}`
 }
 
 // 初始化类名 + 子区域名 如: button__子区域名

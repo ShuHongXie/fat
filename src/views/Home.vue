@@ -3,6 +3,8 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png" @click="increment" />
     Count is: {{ state.count }}, double is: {{ state.double }} init is:
     {{ state.init }} -->
+    234
+    <fat-mask></fat-mask>
   </div>
 </template>
 

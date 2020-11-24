@@ -4,4 +4,6 @@ declare module '*.vue' {
   export default component
 }
 
+declare module '*.tsx'
+
 declare module '*.ts'
