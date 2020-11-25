@@ -1,12 +1,13 @@
 <template>
   <teleport :to="teleport">
-    <transition name="fade">
+    <transition name="fat-fade">
       <div
         :class="initBem()"
         :style="{
-          zIndex
+          zIndex,
+          animationDuration: `${duration}s`
         }"
-        v-if="visible"
+        v-if="visible && show"
       ></div>
     </transition>
   </teleport>
@@ -30,6 +31,14 @@
       teleport: {
         type: String,
         default: 'body'
+      },
+      duration: {
+        type: String,
+        default: '.3'
+      },
+      show: {
+        type: Boolean,
+        default: true
       }
     },
     setup() {

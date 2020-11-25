@@ -1,10 +1,21 @@
 <template>
   <teleport :to="teleport">
-    <transition :name="position === 'center' ? 'van-fade' : `van-popup-slide-${position}`">
-      <div :class="initBem()"></div>
+    <transition :name="position === 'center' ? `fat-fade` : `fat-popup-slide-${position}`">
+      <div
+        v-if="visible"
+        :class="initBem({ [position]: 'p' })"
+        :style="{
+          ...style,
+          animationDuration: `${duration}s`
+        }"
+      >
+        <slot>
+          <div>{{ position }}</div>
+        </slot>
+      </div>
     </transition>
   </teleport>
-  <fat-mask :teleport="teleport" :visible="visible" />
+  <fat-mask :show="overlay" :duration="duration" :teleport="teleport" :visible="visible" />
 </template>
 
 <script lang="ts">
@@ -19,10 +30,12 @@
         type: Number,
         default: 2
       },
+      // 显隐
       visible: {
         type: Boolean,
         default: false
       },
+      // 挂载点
       teleport: {
         type: String,
         default: 'body'
@@ -31,6 +44,21 @@
       position: {
         type: String,
         default: 'center'
+      },
+      // 样式
+      style: {
+        type: Object,
+        default: () => {}
+      },
+      // 动画持续时间
+      duration: {
+        type: [String, Number],
+        default: '.3'
+      },
+      // 是否显示弹窗
+      overlay: {
+        type: Boolean,
+        default: true
       }
     },
     setup() {

@@ -1,10 +1,65 @@
-.fade {
-  &-enter-active,
-  &-leave-active {
-    transition: opacity 0.5s;
+.fat {
+  // 显隐渐变
+  &-fade {
+    &-enter-active {
+      animation: fat-fade-enter $animation-duration-base both;
+    }
+    &-leave-active {
+      animation: fat-fade-leave $animation-duration-base both;
+    }
   }
-  &-enter-from,
-  &-leave-to {
+  // 从上到下
+  &-popup-slide-top {
+    &-enter-active {
+      animation: fat-slide-top-enter $animation-duration-base both;
+    }
+    &-leave-active {
+      animation: fat-slide-top-leave $animation-duration-base both;
+    }
+  }
+  // 从下到上
+  &-popup-slide-bottom {
+    &-enter-active {
+      animation: fat-slide-bottom-enter $animation-duration-base both;
+    }
+    &-leave-active {
+      animation: fat-slide-bottom-leave $animation-duration-base both;
+    }
+  }
+}
+
+@keyframes fat-fade-enter {
+  from {
     opacity: 0;
+  }
+}
+
+@keyframes fat-fade-leave {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fat-slide-top-enter {
+  from {
+    transform: translate3D(0, -100%, 0);
+  }
+}
+
+@keyframes fat-slide-top-leave {
+  to {
+    transform: translate3D(0, -100%, 0);
+  }
+}
+
+@keyframes fat-slide-bottom-enter {
+  from {
+    transform: translate3D(0, 100%, 0);
+  }
+}
+
+@keyframes fat-slide-bottom-leave {
+  to {
+    transform: translate3D(0, 100%, 0);
   }
 }

@@ -20,6 +20,7 @@ module.exports = {
     'vue/no-use-v-if-with-v-for': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    "@typescript-eslint/no-empty-function": 'off',
     'no-empty': 'warn',
     '@typescript-eslint/no-var-requires': 'off',
     semi: [2, 'never'],
