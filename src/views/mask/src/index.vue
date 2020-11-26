@@ -8,13 +8,14 @@
           animationDuration: `${duration}s`
         }"
         v-if="visible && show"
+        @click="maskClick"
       ></div>
     </transition>
   </teleport>
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, computed, watchEffect, onMounted } from 'vue'
+  import { defineComponent, reactive, computed, watchEffect, onMounted, inject } from 'vue'
   import init from '@/utils/init'
   import config from '@/utils/config'
   export default defineComponent({
@@ -43,8 +44,12 @@
     },
     setup() {
       const [initBem] = reactive(init('mask'))
+      const shouldClose = inject('clickMaskClose')
+      const maskClick = inject('maskClickEvent')
       return {
-        initBem
+        initBem,
+        shouldClose,
+        maskClick
       }
     }
   })

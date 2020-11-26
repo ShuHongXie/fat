@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-11-19 17:36:43
  * @Last Modified by: shuhongxie
- * @Last Modified time: 2020-11-24 17:34:00
+ * @Last Modified time: 2020-11-26 18:29:55
  */
 
 /**
@@ -42,11 +42,11 @@ export const initClassArrayOjbect = (name: string, child?: bemObj): string => {
   let str = ''
   if (Object.prototype.toString.call(child) === '[object Array]') {
     for (const i of child as Array<string>) {
-      str += `${name}--${i}`
+      str += `${name}--${i} `
     }
   } else {
     for (const i in child as Record<string, any>) {
-      str += `${name}--${i}`
+      str += i ? `${name}--${i} ` : ''
     }
   }
   return str

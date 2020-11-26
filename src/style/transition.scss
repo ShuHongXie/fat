@@ -26,6 +26,24 @@
       animation: fat-slide-bottom-leave $animation-duration-base both;
     }
   }
+  // 从左到右
+  &-popup-slide-left {
+    &-enter-active {
+      animation: fat-slide-left-enter $animation-duration-base both;
+    }
+    &-leave-active {
+      animation: fat-slide-left-leave $animation-duration-base both;
+    }
+  }
+  // 从右到左
+  &-popup-slide-right {
+    &-enter-active {
+      animation: fat-slide-right-enter $animation-duration-base both;
+    }
+    &-leave-active {
+      animation: fat-slide-right-leave $animation-duration-base both;
+    }
+  }
 }
 
 @keyframes fat-fade-enter {
@@ -61,5 +79,29 @@
 @keyframes fat-slide-bottom-leave {
   to {
     transform: translate3D(0, 100%, 0);
+  }
+}
+
+@keyframes fat-slide-left-enter {
+  from {
+    transform: translate3D(-100%, 0, 0);
+  }
+}
+
+@keyframes fat-slide-left-leave {
+  to {
+    transform: translate3D(-100%, 0, 0);
+  }
+}
+
+@keyframes fat-slide-right-enter {
+  from {
+    transform: translate3D(100%, 0, 0);
+  }
+}
+
+@keyframes fat-slide-right-leave {
+  to {
+    transform: translate3D(100%, 0, 0);
   }
 }

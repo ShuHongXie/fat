@@ -2,13 +2,13 @@
   <div class="home">
     234
     <fat-popup
-      position="bottom"
+      position="top"
+      clickMaskClose
       v-model:visible="state.show"
+      round
       :style="{
         height: '30%'
       }"
-      duration="1"
-      :overlay="false"
     />
   </div>
 </template>
@@ -46,9 +46,9 @@
           console.log(state.show)
         }, 2000)
 
-        setTimeout(() => {
-          state.show = false
-        }, 6000)
+        // setTimeout(() => {
+        //   state.show = false
+        // }, 6000)
       })
 
       // watchEffect(onInvalidate => {

@@ -3,7 +3,12 @@
     <transition :name="position === 'center' ? `fat-fade` : `fat-popup-slide-${position}`">
       <div
         v-if="visible"
-        :class="initBem({ [position]: 'p' })"
+        :class="
+          initBem({
+            [position]: position,
+            [round ? 'round' : '']: round
+          })
+        "
         :style="{
           ...style,
           animationDuration: `${duration}s`
@@ -15,11 +20,11 @@
       </div>
     </transition>
   </teleport>
-  <fat-mask :show="overlay" :duration="duration" :teleport="teleport" :visible="visible" />
+  <fat-mask :show="mask" :duration="duration" :teleport="teleport" :visible="visible" />
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, computed, watchEffect, onMounted } from 'vue'
+  import { defineComponent, reactive, computed, watchEffect, onMounted, provide, readonly } from 'vue'
   import mask from '../mask/src/index.vue'
   import init from '@/utils/init'
   import config from '@/utils/config'
@@ -55,15 +60,51 @@
         type: [String, Number],
         default: '.3'
       },
-      // 是否显示弹窗
-      overlay: {
+      // 是否显示遮罩层
+      mask: {
+        type: Boolean,
+        default: true
+      },
+      // 圆角
+      round: {
+        type: Boolean,
+        default: false
+      },
+      // 是否点击圆角的时候关闭
+      clickMaskClose: {
+        type: Boolean,
+        default: false
+      },
+      // 锁定背景滚动
+      lockScroll: {
         type: Boolean,
         default: true
       }
     },
-    setup() {
-      console.log(mask)
+    setup(props, { emit }) {
       const [initBem] = reactive(init('popup'))
+
+      // 关闭弹窗
+      const handleMaskClick = () => {
+        if (props.clickMaskClose) {
+          console.log(emit)
+          emit('update:visible', false)
+        }
+      }
+      // 注入
+      provide('clickMaskClose', props.clickMaskClose)
+      provide('maskClickEvent', handleMaskClick)
+
+      //
+      onMounted(() => {
+        const DomBody = document.querySelector('body')
+        console.log(DomBody?.classList.length)
+        if (DomBody?.classList.contains('fat-overflow-hidden')) {
+        }
+        // console.log(document.querySelector('body')?.classList)
+        // .addClassList
+      })
+
       return {
         initBem
       }

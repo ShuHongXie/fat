@@ -1,4 +1,5 @@
 export default {
   frameworkName: 'Fat',
-  className: 'fat'
+  className: 'fat',
+  lockScrollClass: 'fat--lockscroll'
 }
