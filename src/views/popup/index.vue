@@ -1,8 +1,14 @@
 <template>
   <teleport :to="teleport">
-    <transition :name="position === 'center' ? `fat-fade` : `fat-popup-slide-${position}`">
+    <transition
+      :name="position === 'center' ? `fat-fade` : `fat-popup-slide-${position}`"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @leave="leave"
+      @after-leave="afterLeave"
+    >
       <div
-        v-if="visible"
+        v-show="visible"
         :class="
           initBem({
             [position]: position,
@@ -11,8 +17,10 @@
         "
         :style="{
           ...style,
-          animationDuration: `${duration}s`
+          animationDuration: `${duration}s`,
+          zIndex: zIndexObj.popup
         }"
+        @click.stop="$emit('click')"
       >
         <slot>
           <div>{{ position }}</div>
@@ -20,14 +28,34 @@
       </div>
     </transition>
   </teleport>
-  <fat-mask :show="mask" :duration="duration" :teleport="teleport" :visible="visible" />
+  <fat-mask
+    :show="mask"
+    :duration="duration"
+    :teleport="teleport"
+    :visible="visible"
+    :z-index="zIndexObj.mask"
+  />
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, computed, watchEffect, onMounted, provide, readonly } from 'vue'
+  import {
+    defineComponent,
+    reactive,
+    computed,
+    watchEffect,
+    onMounted,
+    provide,
+    readonly,
+    onUnmounted,
+    watch,
+    nextTick,
+    ref
+  } from 'vue'
   import mask from '../mask/src/index.vue'
   import init from '@/utils/init'
   import config from '@/utils/config'
+  import lockFunc from '@/utils/use/useLockScroll'
+  import maxZIndex from '@/utils/general/maxZIndex'
   export default defineComponent({
     name: `${config.frameworkName}Popup`,
     props: {
@@ -81,32 +109,69 @@
         default: true
       }
     },
+    emits: ['open', 'close', 'opened', 'closed', 'click-mask', 'update:visible'],
     setup(props, { emit }) {
       const [initBem] = reactive(init('popup'))
-
+      const [lock, unlock] = lockFunc(props.lockScroll)
+      const zIndexObj = reactive({
+        popup: 0,
+        mask: 0
+      })
       // 关闭弹窗
       const handleMaskClick = () => {
+        emit('click-mask')
         if (props.clickMaskClose) {
-          console.log(emit)
           emit('update:visible', false)
         }
       }
-      // 注入
+      // 注入显示事件
       provide('clickMaskClose', props.clickMaskClose)
       provide('maskClickEvent', handleMaskClick)
 
-      //
+      // 挂载完
       onMounted(() => {
-        const DomBody = document.querySelector('body')
-        console.log(DomBody?.classList.length)
-        if (DomBody?.classList.contains('fat-overflow-hidden')) {
-        }
-        // console.log(document.querySelector('body')?.classList)
-        // .addClassList
+        // z-index递增
+        setTimeout(() => {
+          zIndexObj.mask = maxZIndex()
+          zIndexObj.popup = maxZIndex() + 1
+        }, 0)
+        // 背景滚动锁定
+        props.lockScroll ? lock() : unlock()
       })
 
+      // 监听显隐 控制背景滚动锁定
+      watch(
+        () => props.visible,
+        n => {
+          if (!n) unlock()
+        }
+      )
+
+      // 进入
+      const enter = (el: DOMTokenList, done: any) => {
+        emit('open')
+        done()
+      }
+
+      // 进入后
+      const afterEnter = () => emit('opened')
+
+      // 退出
+      const leave = (el: DOMTokenList, done: any) => {
+        emit('close')
+        done()
+      }
+
+      // 进入后
+      const afterLeave = () => emit('closed')
+
       return {
-        initBem
+        initBem,
+        zIndexObj,
+        enter,
+        afterEnter,
+        leave,
+        afterLeave
       }
     }
   })

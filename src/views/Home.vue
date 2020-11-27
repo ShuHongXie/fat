@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    234
-    <fat-popup
+    <!-- <router-link to="/other">Go to Home</router-link>
+    {{ state.count }} -->
+    <!-- <div class="home-box"></div> -->
+    <!-- <fat-popup
       position="top"
       clickMaskClose
       v-model:visible="state.show"
@@ -9,7 +11,14 @@
       :style="{
         height: '30%'
       }"
-    />
+      @open="open"
+      @close="close"
+    /> -->
+    <fat-row>
+      <fat-col :span="8">1312321</fat-col>
+      <fat-col :span="8">21321</fat-col>
+      <fat-col :span="8">12323112</fat-col>
+    </fat-row>
   </div>
 </template>
 
@@ -41,6 +50,9 @@
 
       onMounted(() => {
         // eslint-disable-next-line vue/no-parsing-error
+        window.addEventListener('popstate', function() {
+          console.log(history.state)
+        })
         setTimeout(() => {
           state.show = true
           console.log(state.show)
@@ -51,15 +63,13 @@
         // }, 6000)
       })
 
-      // watchEffect(onInvalidate => {
-      //   console.log(`count的值为${state.count}`)
-      //   console.log(`init${state.init}`)
-      //   onInvalidate(() => {
-      //     // id 改变时 或 停止侦听时
-      //     // 取消之前的异步操作
-      //     console.log('副作用清除xx')
-      //   })
-      // })
+      const open = () => {
+        console.log('open')
+      }
+
+      const close = () => {
+        console.log('close')
+      }
 
       function increment(): void {
         const res = [1, 2, 3]
@@ -68,7 +78,9 @@
 
       return {
         state,
-        increment
+        increment,
+        open,
+        close
       }
     }
   })
@@ -78,5 +90,11 @@
   .home {
     width: 100%;
     height: 100%;
+
+    &-box {
+      width: 80px;
+      height: 200%;
+      background-color: black;
+    }
   }
 </style>

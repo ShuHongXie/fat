@@ -2,7 +2,9 @@ import { App } from 'vue'
 
 import mask from './views/mask/index.ts'
 import popup from './views/popup/index.ts'
-const components = [mask, popup]
+import row from './views/row/index.ts'
+import col from './views/col/index.ts'
+const components = [mask, popup, row, col]
 
 function install(app: App) {
   console.log(app, components)

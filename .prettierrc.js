@@ -8,7 +8,7 @@ module.exports = {
   htmlWhitespaceSensitivity: 'ignore',
   vueIndentScriptAndStyle: true, // 缩进vue文件里面的 script,style标签里面的代码
   tabWidth: 2,
-  printWidth: 300
+  printWidth: 100
 }
 /*
 {

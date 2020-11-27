@@ -7,7 +7,7 @@
           zIndex,
           animationDuration: `${duration}s`
         }"
-        v-if="visible && show"
+        v-show="visible && show"
         @click="maskClick"
       ></div>
     </transition>
@@ -23,7 +23,7 @@
     props: {
       zIndex: {
         type: Number,
-        default: 2
+        default: 0
       },
       visible: {
         type: Boolean,
