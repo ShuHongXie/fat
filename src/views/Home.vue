@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <!-- <router-link to="/other">Go to Home</router-link>
-    {{ state.count }} -->
+    <router-link to="/other">Go to Home</router-link>
+    {{ state.count }}
     <!-- <div class="home-box"></div> -->
     <!-- <fat-popup
       position="top"
@@ -14,11 +14,17 @@
       @open="open"
       @close="close"
     /> -->
-    <fat-row>
-      <fat-col :span="8">1312321</fat-col>
-      <fat-col :span="8">21321</fat-col>
-      <fat-col :span="8">12323112</fat-col>
+    <i class="fat-icon fat-icon-arrow-up-circle">123</i>
+    <fat-row :tag="`span`" type="flex" @clicks="clickRow">
+      <fat-col :span="6" offset="10">1312321</fat-col>
+      <fat-col :span="6">21321</fat-col>
+      <fat-col :span="6">12323112</fat-col>
     </fat-row>
+    <!-- <van-row gutter="10">
+      <van-col :span="8" offset="1">是的撒所多撒</van-col>
+      <van-col :span="8">是的撒所多撒</van-col>
+      <van-col :span="8">是的撒所多撒</van-col>
+    </van-row> -->
   </div>
 </template>
 
@@ -63,6 +69,11 @@
         // }, 6000)
       })
 
+      const clickRow = (e: MouseEvent) => {
+        console.log('----')
+        console.log(e)
+      }
+
       const open = () => {
         console.log('open')
       }
@@ -80,13 +91,15 @@
         state,
         increment,
         open,
-        close
+        close,
+        clickRow
       }
     }
   })
 </script>
 
 <style lang="scss">
+  @import '~@/style/index.scss';
   .home {
     width: 100%;
     height: 100%;

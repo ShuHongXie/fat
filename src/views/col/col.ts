@@ -4,40 +4,39 @@ import config from '@/utils/config'
 import './index.scss'
 
 export default defineComponent({
-  name: `${config.frameworkName}Row`,
+  name: `${config.frameworkName}Col`,
   props: {
     tag: {
       type: String,
       default: 'div'
     },
+    span: {
+      type: Number,
+      default: 0
+    },
     type: {
       type: String,
       default: ''
     },
-    justify: {
-      type: String,
-      default: 'start'
-    },
-    align: {
-      type: String,
-      default: 'top'
+    offset: {
+      type: [Number, String],
+      default: 0
     }
   },
   setup(props, { slots, attrs, emit }) {
-    const [initBem] = reactive(init('row'))
-    console.log(slots)
+    const [initBem] = reactive(init('col'))
     // 返回render函数
     return () =>
       h(
         props.tag,
         {
           class: initBem({
-            [props.type]: '',
-            [props.type === 'flex' ? `justify-${props.justify}` : '']: '',
-            [props.type === 'flex' ? `align-${props.align}` : '']: ''
+            [props.span]: '',
+            [props.offset !== 0 ? `offset-${props.offset}` : '']: ''
           }),
+          style: {},
           onClick: (event: MouseEvent) => {
-            event.stopPropagation()
+            // event.stopPropagation()
             emit('click', event)
           }
         },

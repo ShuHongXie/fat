@@ -1,5 +1,21 @@
 @import '~@/style/variables.scss';
 @import '~@/style/transition.scss';
-
+$i: 1;
+$j: 1;
 .fat-col {
+  display: inline-block;
+
+  @while $i <= 24 {
+    &.fat-col--#{$i} {
+      width: $i/24 * 100%;
+    }
+    $i: $i + 1;
+  }
+
+  @while $j <= 24 {
+    &.fat-col--offset-#{$j} {
+      margin-left: $j/24 * 100%;
+    }
+    $j: $j + 1;
+  }
 }

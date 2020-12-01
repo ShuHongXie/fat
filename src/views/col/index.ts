@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import col from './index.vue'
+import col from './col.ts'
 
 col.install = (app: App) => {
   app.component(col.name, col)

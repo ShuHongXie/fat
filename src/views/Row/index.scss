@@ -2,4 +2,38 @@
 @import '~@/style/transition.scss';
 
 .fat-row {
+  display: inline-block;
+  width: 100%;
+  &--flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &--justify {
+    &-start {
+      justify-content: flex-start;
+    }
+    &-center {
+      justify-content: center;
+    }
+    &-end {
+      justify-content: flex-end;
+    }
+    &-space-around {
+      justify-content: space-around;
+    }
+    &-space-between {
+      justify-content: space-between;
+    }
+  }
+  &--align {
+    &-top {
+      align-items: flex-start;
+    }
+    &-center {
+      align-items: center;
+    }
+    &-bottom {
+      align-items: flex-end;
+    }
+  }
 }
