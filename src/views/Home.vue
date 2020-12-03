@@ -2,7 +2,6 @@
   <div class="home">
     <router-link to="/other">Go to Home</router-link>
     {{ state.count }}
-    <!-- <div class="home-box"></div> -->
     <!-- <fat-popup
       position="top"
       clickMaskClose
@@ -14,7 +13,7 @@
       @open="open"
       @close="close"
     /> -->
-    <i class="fat-icon fat-icon-arrow-up-circle">123</i>
+    <fat-icon @click="clickIcon" name="arrow-up-circle" color="red" badge="1231"></fat-icon>
     <fat-row :tag="`span`" type="flex" @clicks="clickRow">
       <fat-col :span="6" offset="10">1312321</fat-col>
       <fat-col :span="6">21321</fat-col>
@@ -69,6 +68,10 @@
         // }, 6000)
       })
 
+      const clickIcon = () => {
+        console.log('clickIcon')
+      }
+
       const clickRow = (e: MouseEvent) => {
         console.log('----')
         console.log(e)
@@ -92,7 +95,8 @@
         increment,
         open,
         close,
-        clickRow
+        clickRow,
+        clickIcon
       }
     }
   })
