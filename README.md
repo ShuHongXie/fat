@@ -1,24 +1,3 @@
-# cnode-vue3
+# FAT-UI
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+scss 形容词标识物 名字-形容-class名-style名 如：$cell-large-title-font-size

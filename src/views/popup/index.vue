@@ -2,10 +2,10 @@
   <teleport :to="teleport">
     <transition
       :name="position === 'center' ? `fat-fade` : `fat-popup-slide-${position}`"
-      @enter="enter"
-      @after-enter="afterEnter"
-      @leave="leave"
-      @after-leave="afterLeave"
+      @enter="$emit('open')"
+      @after-enter="$emit('opened')"
+      @leave="$emit('close')"
+      @after-leave="$emit('closed')"
     >
       <div
         v-show="visible"
@@ -147,31 +147,9 @@
         }
       )
 
-      // 进入
-      const enter = (el: DOMTokenList, done: any) => {
-        emit('open')
-        done()
-      }
-
-      // 进入后
-      const afterEnter = () => emit('opened')
-
-      // 退出
-      const leave = (el: DOMTokenList, done: any) => {
-        emit('close')
-        done()
-      }
-
-      // 进入后
-      const afterLeave = () => emit('closed')
-
       return {
         initBem,
-        zIndexObj,
-        enter,
-        afterEnter,
-        leave,
-        afterLeave
+        zIndexObj
       }
     }
   })

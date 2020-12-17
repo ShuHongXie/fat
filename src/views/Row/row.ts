@@ -35,11 +35,7 @@ export default defineComponent({
             [props.type]: '',
             [props.type === 'flex' ? `justify-${props.justify}` : '']: '',
             [props.type === 'flex' ? `align-${props.align}` : '']: ''
-          }),
-          onClick: (event: MouseEvent) => {
-            event.stopPropagation()
-            emit('click', event)
-          }
+          })
         },
         slots
       )

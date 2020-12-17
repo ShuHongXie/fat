@@ -16,6 +16,12 @@ $orange-dark: #ed6a0c;
 $orange-light: #fffbe8;
 $green: #07c160;
 
+$font-size-xs: 10px;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-lg: 16px;
+$font-weight-bold: 500;
+
 // Mask
 $mask-bg-color: rgba(0, 0, 0, 0.7);
 
@@ -24,3 +30,9 @@ $animation-duration-base: 0.3s;
 
 // Popup
 $popup-round-radius: 14px;
+
+// Cell
+$cell-large-title-font-size: $font-size-lg;
+$cell-font-size: $font-size-md;
+
+//

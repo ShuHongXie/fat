@@ -5,7 +5,6 @@
       color,
       fontSize: typeof size === 'number' ? `${size}px` : size
     }"
-    @click="$emit('click')"
   >
     <div v-if="dot" :class="initInfoBem({ dot })"></div>
     <div v-if="badge" :class="initInfoBem({ badge })">{{ badge }}</div>
@@ -41,14 +40,18 @@
       },
       // 红点标识
       badge: {
-        type: Boolean,
+        type: [Boolean, String],
         defult: false
       }
     },
-    emits: [],
     setup(props, { emit }) {
       const [initBem] = reactive(init('icon'))
       const [initInfoBem] = reactive(init('info'))
+
+      const beClick = () => {
+        console.log('xxx')
+      }
+
       return {
         initBem,
         initInfoBem

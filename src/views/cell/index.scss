@@ -1,0 +1,27 @@
+@import '~@/style/variables.scss';
+@import '~@/style/transition.scss';
+
+.fat-cell {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 16px;
+  overflow: hidden;
+  color: #323233;
+  font-size: $cell-font-size;
+  line-height: 24px;
+  background-color: #fff;
+  &__title {
+    flex: 1;
+  }
+  &__value {
+    flex: 1;
+  }
+  &__label {
+  }
+  &--large {
+    .fat-cell__title {
+      font-size: $cell-large-title-font-size;
+    }
+  }
+}

@@ -1,20 +1,31 @@
 <template>
   <div class="home">
-    <router-link to="/other">Go to Home</router-link>
-    {{ state.count }}
+    <fat-cell value="value" title="title" size="large">
+      <template #title>
+        title1
+      </template>
+      <template #label>
+        label2
+      </template>
+      value3
+    </fat-cell>
+    <!-- <router-link to="/other">Go to Home</router-link>
+    {{ state.count }} -->
     <!-- <fat-popup
-      position="top"
+      position="left"
       clickMaskClose
       v-model:visible="state.show"
       round
       :style="{
-        height: '30%'
+        width: '30%',
+        height: '100%'
       }"
       @open="open"
       @close="close"
     /> -->
-    <fat-icon @click="clickIcon" name="arrow-up-circle" color="red" badge="1231"></fat-icon>
-    <fat-row :tag="`span`" type="flex" @clicks="clickRow">
+    <!-- <fat-mask :visible="true" /> -->
+    <fat-icon @click="clickIcon" name="arrow-up-circle" color="red" dot></fat-icon>
+    <fat-row :tag="`span`" type="flex" @click="clickRow">
       <fat-col :span="6" offset="10">1312321</fat-col>
       <fat-col :span="6">21321</fat-col>
       <fat-col :span="6">12323112</fat-col>
@@ -24,6 +35,18 @@
       <van-col :span="8">是的撒所多撒</van-col>
       <van-col :span="8">是的撒所多撒</van-col>
     </van-row> -->
+    <van-cell>
+      <template #title>
+        title
+      </template>
+      <template #label>
+        label
+      </template>
+      1232
+    </van-cell>
+    <div class="test-box tbox">
+      1321
+    </div>
   </div>
 </template>
 
@@ -58,10 +81,10 @@
         window.addEventListener('popstate', function() {
           console.log(history.state)
         })
-        setTimeout(() => {
-          state.show = true
-          console.log(state.show)
-        }, 2000)
+        // setTimeout(() => {
+        //   state.show = true
+        //   console.log(state.show)
+        // }, 2000)
 
         // setTimeout(() => {
         //   state.show = false
@@ -112,6 +135,30 @@
       width: 80px;
       height: 200%;
       background-color: black;
+    }
+    .test-box {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      // border: 1px solid red;
+      &::before {
+        position: absolute;
+        box-sizing: border-box;
+        content: ' ';
+        pointer-events: none;
+        top: -50%;
+        right: -50%;
+        bottom: -50%;
+        left: -50%;
+        border: 0 solid red;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+      }
+    }
+    .tbox {
+      &::before {
+        border-width: 1px 0;
+      }
     }
   }
 </style>
