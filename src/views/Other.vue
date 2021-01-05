@@ -1,13 +1,11 @@
 <template>
-  <div class="home">
-    other
-  </div>
+  <div class="home">other</div>
 </template>
 
 <script lang="ts">
   import bem from '@/utils/init/bem'
   import { defineComponent, reactive, computed, watchEffect, onMounted, toRef } from 'vue'
-  import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+  // import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 
   export interface State {
     count: number
@@ -18,9 +16,9 @@
 
   export default defineComponent({
     name: 'Home',
-    components: {
-      HelloWorld
-    },
+    // components: {
+    //   HelloWorld
+    // },
     setup() {
       return {}
     }

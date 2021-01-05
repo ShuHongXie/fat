@@ -7,16 +7,27 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <title><%= htmlWebpackPlugin.options.title %></title>
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
 </head>
 
 <body>
   <noscript>
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-      Please enable it to continue.</strong>
+        Please enable it to continue.</strong>
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  <script crossorigin="anonymous"
+    integrity="sha512-4rm/+TjWJ42q4ai1+AllF912B+17Dx7uCz4OiDOC1y8Y3sVmuVzCyhSIDC1ZYndzYFtaV5iX9kQ2rutVO39eAw=="
+    src="https://lib.baomitu.com/vue/3.0.5/vue.cjs.prod.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-Oh170BVacwjrUsSJDoT5pA8qnxcANUmvo0dhuCt7d4732ChKoJPOzUJnf1HLG21XNYlybndjLPVjK2St2YUKHw=="
+    src="https://lib.baomitu.com/vue-router/4.0.2/vue-router.cjs.prod.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-+1ZIbwx7OTOOIiStfQaiHn/GcFdwy3sJi3DKnSAz9+PciLd6HYI2wkkPQMVgizR/SR3d0PDsJh35CcY9pD1APw=="
+    src="https://lib.baomitu.com/vuex/4.0.0-rc.2/vuex.cjs.min.js"></script>
 </body>
 
 </html>

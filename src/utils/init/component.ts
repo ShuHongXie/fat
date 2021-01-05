@@ -15,7 +15,7 @@ import config from '@/utils/config'
  * @return {*}
  */
 export default function initComponents(name: string) {
-  return function(sfc: ComponentOptionsWithObjectProps) {
+  return function (sfc: ComponentOptionsWithObjectProps) {
     sfc.name = `${config.frameworkName}-${name}`
     console.log(sfc.name)
     sfc.install = (app: App) => {

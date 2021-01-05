@@ -53,12 +53,12 @@ export const initClassArrayOjbect = (name: string, child?: bemObj): string => {
 }
 
 // 有类名 有区域名时初始化
-export const addTextWithIdent = (child: string, ident: Record<any, string>): string => `${child} ${initIdent(child, ident)}`
+export const addTextWithIdent = (child: string, ident: Record<any, string>): string =>
+  `${child} ${initIdent(child, ident)}`
 
 // 初始化类名格式
 export default function initBem(name: string) {
-  console.log(name)
-  return function(childName?: bemObj, ident?: Record<any, string>): any {
+  return function (childName?: bemObj, ident?: Record<any, string>): any {
     // 字符串
     if (typeof childName === 'string') {
       // 如果有携带其他标识物

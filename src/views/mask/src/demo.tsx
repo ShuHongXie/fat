@@ -5,21 +5,13 @@ const [initBem, initComponents] = init('mask')
 
 export default initComponents({
   name: 'mask',
-  props: {
-    
-  },
+  props: {},
   setup(props) {
     console.log(props)
-    const renderMask = () => (
-      <div 
-        class={initBem()}
-      ></div>
-    )
+    const renderMask = () => <div class={initBem()}></div>
 
     return () => {
-      return (
-        <transition name="fade">{ renderMask() }</transition>
-      )
+      return <transition name="fade">{renderMask()}</transition>
     }
   }
 })

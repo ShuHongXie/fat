@@ -1,12 +1,8 @@
 <template>
   <div class="home">
-    <fat-cell value="value" title="title" size="large">
-      <template #title>
-        title1
-      </template>
-      <template #label>
-        label2
-      </template>
+    <fat-cell to="/other" value="value" title="title" size="large">
+      <template #title>title1</template>
+      <template #label>label2</template>
       value3
     </fat-cell>
     <!-- <router-link to="/other">Go to Home</router-link>
@@ -24,6 +20,8 @@
       @close="close"
     /> -->
     <!-- <fat-mask :visible="true" /> -->
+    <van-icon class-prefix="my-icon" name="extra" />
+    <fat-icon classPrefix="dsss" name="arrow-up-circle" color="red" dot></fat-icon>
     <fat-icon @click="clickIcon" name="arrow-up-circle" color="red" dot></fat-icon>
     <fat-row :tag="`span`" type="flex" @click="clickRow">
       <fat-col :span="6" offset="10">1312321</fat-col>
@@ -35,24 +33,26 @@
       <van-col :span="8">是的撒所多撒</van-col>
       <van-col :span="8">是的撒所多撒</van-col>
     </van-row> -->
-    <van-cell>
-      <template #title>
-        title
-      </template>
-      <template #label>
-        label
-      </template>
+    <van-cell to="/other">
+      <template #title>title</template>
+      <template #label>label</template>
       1232
     </van-cell>
-    <div class="test-box tbox">
-      1321
-    </div>
+    <div class="test-box tbox">1321</div>
   </div>
 </template>
 
 <script lang="ts">
   import bem from '@/utils/init/bem'
-  import { defineComponent, reactive, computed, watchEffect, onMounted, toRef } from 'vue'
+  import {
+    getCurrentInstance,
+    defineComponent,
+    reactive,
+    computed,
+    watchEffect,
+    onMounted,
+    toRef
+  } from 'vue'
   import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 
   export interface State {
@@ -76,9 +76,30 @@
         show: false
       })
 
+      const pullPromise = () => {
+        Promise.all([
+          new Promise((res, rej) => {
+            setTimeout(() => {
+              console.log('1')
+              res('1')
+            }, 10000)
+          }),
+          new Promise((res, rej) => {
+            setTimeout(() => {
+              console.log('2')
+              res('2')
+            }, 10000)
+          })
+        ]).then(res => {
+          console.log(res)
+        })
+      }
+
       onMounted(() => {
+        console.log(getCurrentInstance())
+        // pullPromise()
         // eslint-disable-next-line vue/no-parsing-error
-        window.addEventListener('popstate', function() {
+        window.addEventListener('popstate', function () {
           console.log(history.state)
         })
         // setTimeout(() => {
@@ -119,7 +140,8 @@
         open,
         close,
         clickRow,
-        clickIcon
+        clickIcon,
+        pullPromise
       }
     }
   })

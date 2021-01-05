@@ -1,6 +1,12 @@
 <template>
   <i
-    :class="initBem({ [name]: name })"
+    :class="
+      classPrefix
+        ? name
+          ? `${classPrefix} ${classPrefix}-${name}`
+          : `${classPrefix}`
+        : initBem({ [name]: name })
+    "
     :style="{
       color,
       fontSize: typeof size === 'number' ? `${size}px` : size
@@ -42,6 +48,11 @@
       badge: {
         type: [Boolean, String],
         defult: false
+      },
+      // 自定义前缀
+      classPrefix: {
+        type: String,
+        defult: ''
       }
     },
     setup(props, { emit }) {
