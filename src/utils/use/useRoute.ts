@@ -13,9 +13,7 @@ const route = (vm: ComponentPublicInstance<RouteProps>) => {
   const router = vm.$router
   const { to, url, replace } = vm
   if (router && to) {
-    router.push(to)
-  } else if (replace) {
-    // router.replace(to)
+    router[replace ? 'replace' : 'push'](to)
   }
 }
 

@@ -51,7 +51,8 @@
     computed,
     watchEffect,
     onMounted,
-    toRef
+    toRef,
+    ref
   } from 'vue'
   import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 
@@ -60,6 +61,16 @@
     double?: number
     init: number
     show: boolean
+  }
+
+  export enum color {
+    Red
+  }
+
+  export interface SquareConfig {
+    color?: string
+    width?: number
+    [propName: string]: any
   }
 
   export default defineComponent({
@@ -75,6 +86,8 @@
         arr: ['dajiao', 'teacher', 28],
         show: false
       })
+
+      const yanse: color = color.Red
 
       const pullPromise = () => {
         Promise.all([
@@ -96,6 +109,7 @@
       }
 
       onMounted(() => {
+        console.log(yanse)
         console.log(getCurrentInstance())
         // pullPromise()
         // eslint-disable-next-line vue/no-parsing-error
