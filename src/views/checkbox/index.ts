@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import checkbox from './checkbox.vue'
+import checkbox from './index.vue'
 
 checkbox.install = (app: App) => {
   app.component(checkbox.name, checkbox)

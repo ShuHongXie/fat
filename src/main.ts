@@ -7,7 +7,6 @@ import 'lib-flexible/flexible'
 import './style/index.scss'
 import { Checkbox, Icon, CheckboxGroup, RadioGroup, Radio, AddressEdit, Col, Row, Cell } from 'vant'
 import fat from './index'
-console.log(fat)
 
 createApp(App)
   .use(store)

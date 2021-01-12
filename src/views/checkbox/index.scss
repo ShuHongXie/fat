@@ -1,0 +1,42 @@
+@import '~@/style/variables.scss';
+@import '~@/style/transition.scss';
+
+.fat-checkbox {
+  display: flex;
+  align-items: center;
+  &__icon {
+    height: 1em;
+    font-size: 20px;
+    line-height: 1em;
+    .fat-icon {
+      border: 1px solid #c8c9cc;
+      display: block;
+      box-sizing: border-box;
+      width: 1.25em;
+      height: 1.25em;
+      color: transparent;
+      font-size: 0.8em;
+      line-height: 1.25;
+      text-align: center;
+    }
+    &--disabled {
+      cursor: not-allowed;
+      .fat-icon {
+        background-color: #ebedf0;
+        border-color: #c8c9cc;
+      }
+    }
+    &--checked {
+      .fat-icon {
+        color: #fff;
+        background-color: #1989fa;
+        border-color: #1989fa;
+      }
+    }
+    &--round {
+      .fat-icon {
+        border-radius: 50%;
+      }
+    }
+  }
+}

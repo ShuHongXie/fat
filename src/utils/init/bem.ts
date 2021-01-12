@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-11-19 17:36:43
  * @Last Modified by: shuhongxie
- * @Last Modified time: 2020-11-26 18:29:55
+ * @Last Modified time: 2021-01-11 16:39:40
  */
 
 /**
@@ -29,11 +29,18 @@ export const initClassTextChild = (compClass: string, child: string): string => 
 }
 
 // 初始化特性 如: button__text--disabled
-export const initIdent = (child: string, ident: Record<any, string>): string => {
+export const initIdent = (child: string, ident: Record<any, string> | Array<string>): string => {
   let str = ''
-  for (const key in ident) {
-    str += `${child}--${key} `
+  if (Object.prototype.toString.call(ident) === '[object Array]') {
+    for (const key of ident as any) {
+      key ? (str += `${child}--${key} `) : ''
+    }
+  } else {
+    for (const key in ident) {
+      str += `${child}--${key} `
+    }
   }
+
   return str
 }
 
@@ -58,7 +65,7 @@ export const addTextWithIdent = (child: string, ident: Record<any, string>): str
 
 // 初始化类名格式
 export default function initBem(name: string) {
-  return function (childName?: bemObj, ident?: Record<any, string>): any {
+  return function (childName?: bemObj, ident?: Record<any, string>): string {
     // 字符串
     if (typeof childName === 'string') {
       // 如果有携带其他标识物

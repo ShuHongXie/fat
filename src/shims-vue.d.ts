@@ -13,3 +13,5 @@ declare module '*.ts' {
 declare module '*.tsx'
 
 declare module '*.ts'
+
+declare module 'uuid'

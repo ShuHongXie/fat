@@ -33,12 +33,31 @@
       <van-col :span="8">是的撒所多撒</van-col>
       <van-col :span="8">是的撒所多撒</van-col>
     </van-row> -->
-    <van-cell to="/other">
-      <template #title>title</template>
-      <template #label>label</template>
-      1232
-    </van-cell>
-    <div class="test-box tbox">1321</div>
+    <!-- <fat-checkbox v-model="state.show" @change="change">
+      复选框
+      <template #icon="{ props }">
+        <div>{{ props }}213</div>
+      </template>
+    </fat-checkbox> -->
+    <!-- <van-checkbox-group v-model="checkData" direction="horizontal">
+      <van-checkbox name="a">复选框 a</van-checkbox>
+      <van-checkbox name="b">复选框 b</van-checkbox>
+      <van-checkbox name="c">复选框 c</van-checkbox>
+    </van-checkbox-group> -->
+    <fat-checkbox-group v-model="checkData">
+      <fat-cell>
+        <div class="sdsd">
+          <fat-checkbox name="a">复选框 a</fat-checkbox>
+        </div>
+      </fat-cell>
+      <fat-checkbox name="b">复选框 b</fat-checkbox>
+      <fat-checkbox name="c">复选框 c</fat-checkbox>
+      <div>123</div>
+    </fat-checkbox-group>
+    <!-- <fat-checkbox-group v-model="checkData1">
+      <fat-checkbox name="a">复选框 a</fat-checkbox>
+      <fat-checkbox name="b">复选框 b</fat-checkbox>
+    </fat-checkbox-group> -->
   </div>
 </template>
 
@@ -51,8 +70,7 @@
     computed,
     watchEffect,
     onMounted,
-    toRef,
-    ref
+    toRef
   } from 'vue'
   import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 
@@ -87,6 +105,9 @@
         show: false
       })
 
+      const checkData = reactive(['a', 'b'])
+      const checkData1: Array<boolean> = reactive([])
+
       const yanse: color = color.Red
 
       const pullPromise = () => {
@@ -108,9 +129,20 @@
         })
       }
 
+      const getup = (val: boolean) => {
+        console.log(val)
+      }
+
+      const change = (bool: boolean) => {
+        console.log(bool)
+      }
+
+      const onInput = (val: any) => {
+        console.log(val)
+      }
+
       onMounted(() => {
-        console.log(yanse)
-        console.log(getCurrentInstance())
+        // console.log(yanse)
         // pullPromise()
         // eslint-disable-next-line vue/no-parsing-error
         window.addEventListener('popstate', function () {
@@ -143,19 +175,18 @@
         console.log('close')
       }
 
-      function increment(): void {
-        const res = [1, 2, 3]
-        state.count++
-      }
-
       return {
         state,
-        increment,
         open,
         close,
         clickRow,
         clickIcon,
-        pullPromise
+        pullPromise,
+        getup,
+        change,
+        checkData,
+        checkData1,
+        onInput
       }
     }
   })
