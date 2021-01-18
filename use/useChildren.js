@@ -60,7 +60,6 @@ export function useChildren(key) {
       publicChildren.splice(index, 1)
       internalChildren.splice(index, 1)
     }
-
     provide(
       key,
       _extends(

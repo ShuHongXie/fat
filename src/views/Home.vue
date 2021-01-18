@@ -45,11 +45,11 @@
       <van-checkbox name="c">复选框 c</van-checkbox>
     </van-checkbox-group> -->
     <fat-checkbox-group v-model="checkData">
-      <fat-cell>
+      <!-- <fat-cell>
         <div class="sdsd">
-          <fat-checkbox name="a">复选框 a</fat-checkbox>
+          <fat-checkbox checked-color="red" name="a">复选框 a</fat-checkbox>
         </div>
-      </fat-cell>
+      </fat-cell> -->
       <fat-checkbox name="b">复选框 b</fat-checkbox>
       <fat-checkbox name="c">复选框 c</fat-checkbox>
       <div>123</div>
@@ -105,7 +105,7 @@
         show: false
       })
 
-      const checkData = reactive(['a', 'b'])
+      const checkData = reactive([])
       const checkData1: Array<boolean> = reactive([])
 
       const yanse: color = color.Red

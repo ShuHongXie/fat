@@ -9,7 +9,8 @@
     "
     :style="{
       color,
-      fontSize: typeof size === 'number' ? `${size}px` : size
+      fontSize: typeof size === 'number' ? `${size}px` : size,
+      ...style
     }"
   >
     <div v-if="dot" :class="initInfoBem({ dot })"></div>
@@ -53,6 +54,11 @@
       classPrefix: {
         type: String,
         defult: ''
+      },
+      // 样式
+      style: {
+        type: Object,
+        default: () => {}
       }
     },
     setup(props, { emit }) {

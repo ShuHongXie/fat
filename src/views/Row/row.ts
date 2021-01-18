@@ -25,7 +25,7 @@ export default defineComponent({
   },
   setup(props, { slots, attrs, emit }) {
     const [initBem] = reactive(init('row'))
-    console.log(slots)
+    // console.log(slots)
     // 返回render函数
     return () =>
       h(

@@ -9,7 +9,7 @@ export const routeProps = {
 export type RouteProps = ExtractPropTypes<typeof routeProps>
 
 const route = (vm: ComponentPublicInstance<RouteProps>) => {
-  console.log(vm)
+  // console.log(vm)
   const router = vm.$router
   const { to, url, replace } = vm
   if (router && to) {
@@ -19,6 +19,6 @@ const route = (vm: ComponentPublicInstance<RouteProps>) => {
 
 export const useRoute = () => {
   const vm = getCurrentInstance()!.proxy as ComponentPublicInstance<RouteProps>
-  console.log(vm)
+  // console.log(vm)
   return () => route(vm)
 }

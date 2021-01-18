@@ -23,7 +23,8 @@
       cursor: not-allowed;
       .fat-icon {
         background-color: #ebedf0;
-        border-color: #c8c9cc;
+        border-color: #ebedf0;
+        color: #c8c9cc;
       }
     }
     &--checked {
@@ -38,5 +39,9 @@
         border-radius: 50%;
       }
     }
+  }
+  &__label {
+    background-color: #fff;
+    text-decoration: none;
   }
 }
