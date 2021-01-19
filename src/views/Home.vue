@@ -28,36 +28,25 @@
       <fat-col :span="6">21321</fat-col>
       <fat-col :span="6">12323112</fat-col>
     </fat-row>
-    <!-- <van-row gutter="10">
-      <van-col :span="8" offset="1">是的撒所多撒</van-col>
-      <van-col :span="8">是的撒所多撒</van-col>
-      <van-col :span="8">是的撒所多撒</van-col>
-    </van-row> -->
+    <button @click="toggle">123</button>
     <!-- <fat-checkbox v-model="state.show" @change="change">
       复选框
       <template #icon="{ props }">
         <div>{{ props }}213</div>
       </template>
     </fat-checkbox> -->
-    <!-- <van-checkbox-group v-model="checkData" direction="horizontal">
-      <van-checkbox name="a">复选框 a</van-checkbox>
-      <van-checkbox name="b">复选框 b</van-checkbox>
-      <van-checkbox name="c">复选框 c</van-checkbox>
-    </van-checkbox-group> -->
-    <fat-checkbox-group v-model="checkData">
+    <fat-checkbox-group ref="doms" v-model="checkData" @change="changeCheckboxGroup">
       <!-- <fat-cell>
         <div class="sdsd">
           <fat-checkbox checked-color="red" name="a">复选框 a</fat-checkbox>
         </div>
       </fat-cell> -->
       <fat-checkbox name="b">复选框 b</fat-checkbox>
-      <fat-checkbox name="c">复选框 c</fat-checkbox>
+      <fat-checkbox name="c" v-model="state.show" :bind-group="false">复选框 c</fat-checkbox>
+      <fat-checkbox name="d">复选框 d</fat-checkbox>
       <div>123</div>
     </fat-checkbox-group>
-    <!-- <fat-checkbox-group v-model="checkData1">
-      <fat-checkbox name="a">复选框 a</fat-checkbox>
-      <fat-checkbox name="b">复选框 b</fat-checkbox>
-    </fat-checkbox-group> -->
+    <fat-checkbox name="c" disabled v-model="state.show">复选框 c</fat-checkbox>
   </div>
 </template>
 
@@ -70,7 +59,7 @@
     computed,
     watchEffect,
     onMounted,
-    toRef
+    ref
   } from 'vue'
   import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 
@@ -105,29 +94,14 @@
         show: false
       })
 
+      const doms = ref(null)
+
       const checkData = reactive([])
       const checkData1: Array<boolean> = reactive([])
 
       const yanse: color = color.Red
 
-      const pullPromise = () => {
-        Promise.all([
-          new Promise((res, rej) => {
-            setTimeout(() => {
-              console.log('1')
-              res('1')
-            }, 10000)
-          }),
-          new Promise((res, rej) => {
-            setTimeout(() => {
-              console.log('2')
-              res('2')
-            }, 10000)
-          })
-        ]).then(res => {
-          console.log(res)
-        })
-      }
+      const pullPromise = () => {}
 
       const getup = (val: boolean) => {
         console.log(val)
@@ -143,7 +117,6 @@
 
       onMounted(() => {
         // console.log(yanse)
-        // pullPromise()
         // eslint-disable-next-line vue/no-parsing-error
         window.addEventListener('popstate', function () {
           console.log(history.state)
@@ -175,6 +148,15 @@
         console.log('close')
       }
 
+      const changeCheckboxGroup = (arr: any) => {
+        console.log(arr)
+      }
+
+      const toggle = () => {
+        ;(doms as any).value.toggleAll()
+        console.log(doms.value)
+      }
+
       return {
         state,
         open,
@@ -186,7 +168,10 @@
         change,
         checkData,
         checkData1,
-        onInput
+        onInput,
+        changeCheckboxGroup,
+        doms,
+        toggle
       }
     }
   })

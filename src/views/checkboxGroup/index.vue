@@ -1,5 +1,19 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-01-07 20:34:26
+ * @LastEditTime: 2021-01-19 17:57:42
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /fat-ui/src/views/checkboxGroup/index.vue
+-->
 <template>
-  <div :class="[initBem()]">
+  <div
+    :class="[
+      initBem({
+        [direction]: ''
+      })
+    ]"
+  >
     <slot></slot>
   </div>
 </template>
@@ -9,13 +23,13 @@
     defineComponent,
     reactive,
     computed,
-    watchEffect,
-    onMounted,
+    watch,
     onBeforeMount,
     inject,
     ref,
     Ref,
-    getCurrentInstance
+    getCurrentInstance,
+    onMounted
   } from 'vue'
   import init from '@/utils/init'
   import useChildren from '@/utils/use/useChildren'
@@ -29,25 +43,38 @@
       modelValue: {
         type: Array,
         default: () => []
+      },
+      direction: {
+        type: String,
+        default: 'horizontal'
       }
     },
     setup(props, { emit }) {
       const [initBem] = reactive(init('checkbox-group'))
       const [initBemCheckBox = initBem] = reactive(init('checkbox'))
+      const { children, linkChildren } = useChildren(COMPONENT_PARENT_NAME)
       const value = reactive([])
       // const checkboxGroupRef: Ref<any> = ref(null)
       onBeforeMount(() => {
-        console.log(getCurrentInstance())
-        const { children, linkChildren } = useChildren(COMPONENT_PARENT_NAME)
         linkChildren({
           emit,
           props
         })
-        const value = []
+        console.log('--s')
       })
+
+      onMounted(() => {})
+
+      const toggleAll = (options?: boolean) => {
+        for (const child of children) {
+          ;(child as any).toggle(typeof options === 'boolean' ? options : null)
+        }
+      }
+
       return {
         initBem,
-        initBemCheckBox
+        initBemCheckBox,
+        toggleAll
       }
     }
   })

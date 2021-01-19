@@ -1,3 +1,5 @@
+/* * @Author: shuhongxie * @Date: 2021-01-19 17:53:00 * @Last Modified by: shuhongxie * @Last
+Modified time: 2021-01-19 17:53:00 */
 <template>
   <div :class="initBem()" :data-checked="modelValue">
     <div
@@ -84,13 +86,16 @@
       const checked = computed({
         get() {
           console.log(87)
-
           // 如果是和父级绑定 并且父级的值跟当前值相当 那么就等于父级的值
-          console.log(props.bindGroup, parentObj)
-          if (props.bindGroup && props.name === parent?.props.modelValue[parentObj.index.value]) {
+          if (
+            props.bindGroup &&
+            parent &&
+            props.name === parent?.props.modelValue[parentObj.index.value]
+          ) {
             return true
           } else if (
             props.bindGroup &&
+            parent &&
             props.name !== parent?.props.modelValue[parentObj.index.value]
           ) {
             return false
@@ -99,28 +104,25 @@
           }
         },
         set(value) {
-          // emit('update:moduleValue', value)
           return value
         }
       })
 
       // 初始化参数
       const initialize = (value: boolean = props.modelValue) => {
-        console.log('开始初始化', parentObj.index)
-        if (props.bindGroup) {
+        console.log('开始初始化', parentObj.index, parent)
+        if (props.bindGroup && parent) {
           const parentValue = parent?.props.modelValue
-          console.log(parentValue)
           parentValue[parentObj.index.value] = value ? props.name : ''
-          console.log(parentValue)
           parent?.emit('update:moduleValue', parentValue)
+          parent?.emit('change', parentValue)
+          return
         }
-        return
       }
 
       // 选中/反选
       const change = (e: Event) => {
         if (props.disabled) return
-        console.log(!checked.value)
         initialize(!checked.value)
         emit('update:modelValue', !checked.value)
         emit('change', !checked.value)
@@ -129,44 +131,55 @@
         }, 0)
       }
 
+      const toggle = (checked?: boolean) => {
+        if (typeof checked === 'boolean') {
+          if (props.bindGroup && parent) {
+            const parentValue = parent?.props.modelValue
+            parentValue[parentObj.index.value] = checked ? props.name : ''
+            parent?.emit('update:moduleValue', parentValue)
+            parent?.emit('change', parentValue)
+          } else {
+            emit('update:moduleValue', checked ? true : false)
+            emit('change', checked ? true : false)
+          }
+        } else {
+          if (props.bindGroup && parent) {
+            const parentValue = parent?.props.modelValue
+            parentValue[parentObj.index.value] = !parentValue[parentObj.index.value]
+              ? props.name
+              : ''
+            parent?.emit('update:moduleValue', parentValue)
+            parent?.emit('change', parentValue)
+          } else {
+            emit('update:moduleValue', !checked)
+            emit('change', !checked)
+          }
+        }
+      }
+
       onBeforeMount(() => {
         // 账号绑定
         if (props.bindGroup) {
           parentObj = useParent(COMPONENT_PARENT_NAME)
           parent = parentObj.parent
-          // initialize()
+          console.log
         }
-        // console.log(getCurrentInstance())
-        console.log(parent?.props.modelValue, parentObj.index)
       })
 
-      // watch(
-      //   () => parent.modelValue,
-      //   n => {
-      //     console.log('nnn')
-      //     initialize()
-      //   }
-      // )
-
-      // watch(
-      //   () => value,
-      //   n => {
-      //     console.log('xxxxx')
-      //     console.log(value)
-      //     console.log(parent)
-      //     initialize()
-      //   }
-      //   // {
-      //   //   immediate: true
-      //   // }
-      // )
+      watch(
+        () => props.modelValue,
+        n => {
+          emit('change', props.modelValue)
+        }
+      )
 
       return {
         initBem,
         change,
         checked,
         initialize,
-        props
+        props,
+        toggle
       }
     }
   })

@@ -18,13 +18,8 @@
       font-size: 0.8em;
       line-height: 1.25;
       text-align: center;
-    }
-    &--disabled {
-      cursor: not-allowed;
-      .fat-icon {
-        background-color: #ebedf0;
-        border-color: #ebedf0;
-        color: #c8c9cc;
+      &::before {
+        opacity: 0;
       }
     }
     &--checked {
@@ -32,6 +27,17 @@
         color: #fff;
         background-color: #1989fa;
         border-color: #1989fa;
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+    &--disabled {
+      cursor: not-allowed;
+      .fat-icon {
+        background-color: #ebedf0 !important;
+        border-color: #ebedf0 !important;
+        color: #999;
       }
     }
     &--round {
@@ -43,5 +49,6 @@
   &__label {
     background-color: #fff;
     text-decoration: none;
+    padding-left: 8px;
   }
 }
