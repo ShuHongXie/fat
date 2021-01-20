@@ -8,7 +8,9 @@ import icon from './views/icon/index.ts'
 import cell from './views/cell/index.ts'
 import checkbox from './views/checkbox/index.ts'
 import checkboxGroup from './views/checkboxGroup/index.ts'
-const components = [mask, popup, row, col, icon, cell, checkbox, checkboxGroup]
+import radio from './views/radio/index.ts'
+import radioGroup from './views/radioGroup/index.ts'
+const components = [mask, popup, row, col, icon, cell, checkbox, checkboxGroup, radio, radioGroup]
 
 function install(app: App) {
   // console.log(app, components)

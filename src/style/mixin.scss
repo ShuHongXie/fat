@@ -1,0 +1,15 @@
+/**
+ * @Description: 缩放
+ * @Author: shuhongxie
+ */
+@mixin scale($time: 0.1s) {
+  animation: scale $time ease;
+  @keyframes scale {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}

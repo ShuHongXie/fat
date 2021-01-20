@@ -28,30 +28,47 @@
       <fat-col :span="6">21321</fat-col>
       <fat-col :span="6">12323112</fat-col>
     </fat-row>
-    <button @click="toggle">123</button>
+    <button @click="toggle">toggle测试</button>
+    <button @click="radioData = 'c'">单选测试</button>
     <!-- <fat-checkbox v-model="state.show" @change="change">
       复选框
       <template #icon="{ props }">
         <div>{{ props }}213</div>
       </template>
     </fat-checkbox> -->
-    <fat-checkbox-group ref="doms" v-model="checkData" @change="changeCheckboxGroup">
-      <!-- <fat-cell>
+    <fat-checkbox-group
+      direction="vertical"
+      ref="doms"
+      v-model="checkData"
+      @change="changeCheckboxGroup"
+    >
+      <fat-cell>
         <div class="sdsd">
           <fat-checkbox checked-color="red" name="a">复选框 a</fat-checkbox>
         </div>
-      </fat-cell> -->
-      <fat-checkbox name="b">复选框 b</fat-checkbox>
+      </fat-cell>
+      <fat-checkbox labelDisabled checked-color="#999" name="b">复选框 b</fat-checkbox>
       <fat-checkbox name="c" v-model="state.show" :bind-group="false">复选框 c</fat-checkbox>
       <fat-checkbox name="d">复选框 d</fat-checkbox>
       <div>123</div>
     </fat-checkbox-group>
-    <fat-checkbox name="c" disabled v-model="state.show">复选框 c</fat-checkbox>
+    <fat-radio-group direction="vertical" v-model="radioData" @change="changeRadioGroup">
+      <!-- <fat-cell>
+        <div class="sdsd">
+          <fat-radio checked-color="red" name="a">复选框 a</fat-radio>
+        </div>
+      </fat-cell> -->
+      <fat-radio labelDisabled name="b">单选框 b</fat-radio>
+      <fat-radio name="c">单选框 c</fat-radio>
+      <fat-radio name="d">单选框 d</fat-radio>
+    </fat-radio-group>
+    <!-- <hello-world v-model="radioData" /> -->
   </div>
 </template>
 
 <script lang="ts">
   import bem from '@/utils/init/bem'
+  import Vue from 'vue'
   import {
     getCurrentInstance,
     defineComponent,
@@ -68,6 +85,7 @@
     double?: number
     init: number
     show: boolean
+    radioData: string
   }
 
   export enum color {
@@ -91,12 +109,14 @@
         init: 0,
         double: computed(() => state.count * 2),
         arr: ['dajiao', 'teacher', 28],
-        show: false
+        show: false,
+        radioData: 'd'
       })
 
       const doms = ref(null)
 
       const checkData = reactive([])
+      const radioData = ref('b')
       const checkData1: Array<boolean> = reactive([])
 
       const yanse: color = color.Red
@@ -116,7 +136,7 @@
       }
 
       onMounted(() => {
-        // console.log(yanse)
+        console.log()
         // eslint-disable-next-line vue/no-parsing-error
         window.addEventListener('popstate', function () {
           console.log(history.state)
@@ -152,9 +172,20 @@
         console.log(arr)
       }
 
+      const changeRadioGroup = (value: string) => {
+        console.log(radioData.value)
+
+        console.log(value)
+      }
+
       const toggle = () => {
         ;(doms as any).value.toggleAll()
         console.log(doms.value)
+      }
+
+      const getRadioValue = (val: any) => {
+        console.log('默认值')
+        console.log(val)
       }
 
       return {
@@ -171,7 +202,10 @@
         onInput,
         changeCheckboxGroup,
         doms,
-        toggle
+        toggle,
+        radioData,
+        changeRadioGroup,
+        getRadioValue
       }
     }
   })

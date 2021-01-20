@@ -11,20 +11,17 @@ export declare interface ProvidePrototype {
 }
 
 export default function useParent(key: string) {
-  console.log(key)
   const parent = inject<ProvidePrototype | null>(key, null)
   const current = getCurrentInstance()
-  console.log(parent, current)
   if (parent && current) {
-    console.log('---')
     const { addLink, removeLink, insideChildren, ...rest } = parent
     parent.addLink(current)
+
     onUnmounted(() => {
       parent.removeLink(current)
     })
-    console.log(insideChildren, current)
     const index = computed(() => insideChildren.indexOf(current))
-    console.log(index)
+
     return {
       parent: rest,
       index

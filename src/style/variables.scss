@@ -16,11 +16,21 @@ $orange-dark: #ed6a0c;
 $orange-light: #fffbe8;
 $green: #07c160;
 
+// Padding
+$padding-base: 4px;
+$padding-xs: $padding-base * 2;
+$padding-sm: $padding-base * 3;
+$padding-md: $padding-base * 4;
+$padding-lg: $padding-base * 6;
+$padding-xl: $padding-base * 8;
+
 $font-size-xs: 10px;
 $font-size-sm: 12px;
 $font-size-md: 14px;
 $font-size-lg: 16px;
 $font-weight-bold: 500;
+
+$text-color: $gray-8;
 
 // Mask
 $mask-bg-color: rgba(0, 0, 0, 0.7);
@@ -35,4 +45,11 @@ $popup-round-radius: 14px;
 $cell-large-title-font-size: $font-size-lg;
 $cell-font-size: $font-size-md;
 
-//
+// Checkbox
+$checkbox-checked-background-color: $blue;
+$checkbox-checked-border-color: $blue;
+$checkbox-disabeld-background-color: $gray-3;
+$checkbox-label-color: $text-color;
+$checkbox-border-color: $gray-5;
+$checkbox-disabled-label-color: $gray-5;
+$checkbox-label-margin: $padding-xs;

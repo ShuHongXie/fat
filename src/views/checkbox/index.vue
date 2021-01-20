@@ -1,5 +1,3 @@
-/* * @Author: shuhongxie * @Date: 2021-01-19 17:53:00 * @Last Modified by: shuhongxie * @Last
-Modified time: 2021-01-19 17:53:00 */
 <template>
   <div :class="initBem()" :data-checked="modelValue">
     <div
@@ -8,11 +6,11 @@ Modified time: 2021-01-19 17:53:00 */
         initBem('icon', [
           checked ? 'checked' : '',
           shape === 'round' ? 'round' : 'shape',
-          disabled ? 'disabled' : ''
+          isParentDisabled || disabled ? 'disabled' : ''
         ])
       "
     >
-      <slot name="icon" :props="props">
+      <slot name="icon" :props="props" @click="change">
         <fat-icon
           name="select"
           :style="{
@@ -76,6 +74,11 @@ Modified time: 2021-01-19 17:53:00 */
       name: {
         type: String,
         default: ''
+      },
+      // 文本区域是否可点击
+      labelDisabled: {
+        type: Boolean,
+        default: false
       }
     },
     setup(props, { emit }) {
@@ -85,7 +88,6 @@ Modified time: 2021-01-19 17:53:00 */
       // 选中的状态
       const checked = computed({
         get() {
-          console.log(87)
           // 如果是和父级绑定 并且父级的值跟当前值相当 那么就等于父级的值
           if (
             props.bindGroup &&
@@ -108,21 +110,37 @@ Modified time: 2021-01-19 17:53:00 */
         }
       })
 
-      // 初始化参数
+      // 父级是否为禁止状态
+      const isParentDisabled = computed(() => parent?.props && parent?.props.disabled)
+
+      /**
+       * @Description: 参数初始化
+       * @Author: shuhongxie
+       * @param {*} initialize 父级的值
+       */
       const initialize = (value: boolean = props.modelValue) => {
         console.log('开始初始化', parentObj.index, parent)
         if (props.bindGroup && parent) {
           const parentValue = parent?.props.modelValue
           parentValue[parentObj.index.value] = value ? props.name : ''
-          parent?.emit('update:moduleValue', parentValue)
+          parent?.emit('update:modelValue', parentValue)
           parent?.emit('change', parentValue)
           return
         }
       }
 
-      // 选中/反选
-      const change = (e: Event) => {
-        if (props.disabled) return
+      /**
+       * @Description: 选中/反选
+       * @Author: shuhongxie
+       * @param {*} change
+       */
+      const change = (e: Event | null) => {
+        // 是否禁用
+        if (props.disabled || isParentDisabled.value) return
+        // 是否禁止文本区域点击
+        if ((e?.target as HTMLElement).className === 'fat-checkbox__label' && props.labelDisabled)
+          return
+        // 开始初始化
         initialize(!checked.value)
         emit('update:modelValue', !checked.value)
         emit('change', !checked.value)
@@ -131,6 +149,11 @@ Modified time: 2021-01-19 17:53:00 */
         }, 0)
       }
 
+      /**
+       * @Description: 自动设置反选/勾选/取消勾选
+       * @Author: shuhongxie
+       * @param {*} toggle true: 勾选 false: 取消勾选 (空): 反选
+       */
       const toggle = (checked?: boolean) => {
         if (typeof checked === 'boolean') {
           if (props.bindGroup && parent) {
@@ -162,7 +185,6 @@ Modified time: 2021-01-19 17:53:00 */
         if (props.bindGroup) {
           parentObj = useParent(COMPONENT_PARENT_NAME)
           parent = parentObj.parent
-          console.log
         }
       })
 
@@ -179,7 +201,10 @@ Modified time: 2021-01-19 17:53:00 */
         checked,
         initialize,
         props,
-        toggle
+        toggle,
+        parent,
+        parentObj,
+        isParentDisabled
       }
     }
   })

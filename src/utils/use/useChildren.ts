@@ -23,7 +23,6 @@ export declare interface ProvidePrototype {
  * @return {*}  {*}
  */
 export const importVnode = (parentInstance: instance): any => {
-  console.log(parentInstance)
   const list: Array<VNode> = []
 
   const deep = (children: VNodeNormalizedChildren | unknown) => {

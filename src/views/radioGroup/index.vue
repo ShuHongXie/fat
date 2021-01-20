@@ -4,7 +4,7 @@
  * @LastEditTime: 2021-01-19 17:57:42
  * @LastEditors: your name
  * @Description: In User Settings Edit
- * @FilePath: /fat-ui/src/views/checkboxGroup/index.vue
+ * @FilePath: /fat-ui/src/views/radioGroup/index.vue
 -->
 <template>
   <div
@@ -34,31 +34,21 @@
   import init from '@/utils/init'
   import useChildren from '@/utils/use/useChildren'
   import config from '@/utils/config'
-  import { v4 as uuidv4 } from 'uuid'
-  export const COMPONENT_PARENT_NAME = 'checkboxGroup'
+  export const COMPONENT_PARENT_NAME = 'radioGroup'
   export default defineComponent({
-    name: `${config.frameworkName}CheckboxGroup`,
+    name: `${config.frameworkName}RadioGroup`,
     props: {
       // 源数据
-      modelValue: {
-        type: Array,
-        default: () => []
-      },
-      // 布局方向 horizontal | vertical
+      modelValue: String,
       direction: {
         type: String,
         default: 'horizontal'
-      },
-      disabled: {
-        type: Boolean,
-        default: false
       }
     },
     setup(props, { emit }) {
-      const [initBem] = reactive(init('checkbox-group'))
+      const [initBem] = reactive(init('radio-group'))
       const { children, linkChildren } = useChildren(COMPONENT_PARENT_NAME)
-      const value = reactive([])
-      // const checkboxGroupRef: Ref<any> = ref(null)
+
       onBeforeMount(() => {
         linkChildren({
           emit,
@@ -66,20 +56,8 @@
         })
       })
 
-      /**
-       * @Description: 控制子级全选或反选/
-       * @Author: shuhongxie
-       * @param {*} toggle true: 勾选 false: 取消勾选 (空): 反选
-       */
-      const toggleAll = (options?: boolean) => {
-        for (const child of children) {
-          ;(child as any).toggle(typeof options === 'boolean' ? options : null)
-        }
-      }
-
       return {
-        initBem,
-        toggleAll
+        initBem
       }
     }
   })
