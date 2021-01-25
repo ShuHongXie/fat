@@ -30,6 +30,7 @@
     </fat-row>
     <button @click="toggle">toggle测试</button>
     <button @click="radioData = 'c'">单选测试</button>
+    <button @click="routerpush">路由跳转</button>
     <!-- <fat-checkbox v-model="state.show" @change="change">
       复选框
       <template #icon="{ props }">
@@ -62,6 +63,7 @@
       <fat-radio name="c">单选框 c</fat-radio>
       <fat-radio name="d">单选框 d</fat-radio>
     </fat-radio-group>
+    <!-- <fat-toast></fat-toast> -->
     <!-- <hello-world v-model="radioData" /> -->
   </div>
 </template>
@@ -76,6 +78,7 @@
     computed,
     watchEffect,
     onMounted,
+    inject,
     ref
   } from 'vue'
   import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
@@ -103,7 +106,7 @@
     components: {
       HelloWorld
     },
-    setup() {
+    setup(props, context) {
       const state: State = reactive({
         count: 0,
         init: 0,
@@ -112,6 +115,10 @@
         show: false,
         radioData: 'd'
       })
+
+      const toastProvide = inject('toast', null)
+
+      const curr = getCurrentInstance()
 
       const doms = ref(null)
 
@@ -135,17 +142,25 @@
         console.log(val)
       }
 
+      const routerpush = () => {
+        // console.log(curr?.proxy?.$toast)
+        ;(curr?.proxy?.$toast as any).init()
+        // curr?.proxy?.$router.push('/other')
+      }
+
       onMounted(() => {
-        console.log()
+        console.log(toastProvide, typeof getCurrentInstance()?.proxy?.$toast)
+        // getCurrentInstance()?.proxy?.$toast('')
+
+        // getCurrentInstance()?.proxy?.$toast()
         // eslint-disable-next-line vue/no-parsing-error
-        window.addEventListener('popstate', function () {
-          console.log(history.state)
-        })
+        // window.addEventListener('popstate', function () {
+        //   console.log(history.state)
+        // })
         // setTimeout(() => {
         //   state.show = true
         //   console.log(state.show)
         // }, 2000)
-
         // setTimeout(() => {
         //   state.show = false
         // }, 6000)
@@ -205,7 +220,9 @@
         toggle,
         radioData,
         changeRadioGroup,
-        getRadioValue
+        getRadioValue,
+        routerpush,
+        toastProvide
       }
     }
   })

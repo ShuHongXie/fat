@@ -2,4 +2,47 @@
 @import '~@/style/transition.scss';
 
 .fat-toast {
+  width: 200px;
+  max-height: 150px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transition: 0.3s;
+  &__loading {
+    animation: loading 0.7s linear infinite;
+  }
+  &__content {
+    margin: 0;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    font-size: 18px;
+  }
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

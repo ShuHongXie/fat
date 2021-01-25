@@ -1,13 +1,13 @@
 <!--
- * @Author: your name
+ * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-01-19 17:57:42
- * @LastEditors: your name
+ * @LastEditTime: 2021-01-21 20:46:42
+ * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
- * @FilePath: /fat-ui/src/views/radioGroup/index.vue
+ * @FilePath: /fat-ui/src/views/toast/index.vue
 -->
 <template>
-  <div
+  <!-- <div
     :class="[
       initBem({
         [direction]: ''
@@ -15,28 +15,32 @@
     ]"
   >
     <slot></slot>
-  </div>
+  </div> -->
+  <transition name="fat-fade" @after-leave="handleAfterLeave">
+    <div :class="[initBem()]" v-show="options.visible">
+      <slot>
+        <div>图标</div>
+        <!-- <div :class="iconClass" v-if="options.dangerouslyUseHTMLString" v-html="icon"></div> -->
+      </slot>
+      <p :class="initBem('content')">{{ options.message }}</p>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
   import {
     defineComponent,
     reactive,
-    computed,
-    watch,
     onBeforeMount,
     inject,
     ref,
-    Ref,
     getCurrentInstance,
     onMounted
   } from 'vue'
   import init from '@/utils/init'
-  import useChildren from '@/utils/use/useChildren'
   import config from '@/utils/config'
-  export const COMPONENT_PARENT_NAME = 'radioGroup'
   export default defineComponent({
-    name: `${config.frameworkName}RadioGroup`,
+    name: `${config.frameworkName}Toast`,
     props: {
       // 源数据
       modelValue: String,
@@ -46,18 +50,47 @@
       }
     },
     setup(props, { emit }) {
-      const [initBem] = reactive(init('radio-group'))
-      const { children, linkChildren } = useChildren(COMPONENT_PARENT_NAME)
-
-      onBeforeMount(() => {
-        linkChildren({
-          emit,
-          props
-        })
+      const [initBem] = reactive(init('toast'))
+      const options = reactive({
+        message: '', // 提示信息
+        icon: '', // 当前渲染的图片
+        dangerouslyUseHTMLString: true, // 是否使用v-html渲染
+        duration: 3000, // 持续时间
+        iconType: '', // 当前的icon类型  scroll/null
+        timer: null, // 存储当前定时器
+        visible: true, // 显示隐藏
+        closed: false // 隐藏的标识
       })
 
+      const close = () => {
+        options.closed = true
+      }
+
+      const open = () => {
+        options.visible = true
+      }
+
+      const startTimer = () => {
+        if (options.duration > 0) {
+          ;(options.timer as any) = setTimeout(() => {
+            close()
+          }, options.duration)
+        }
+      }
+
+      const handleAfterLeave = () => {
+        // this.$destroy(true);
+        // this.$el.parentNode.removeChild(this.$el);
+      }
+
+      onBeforeMount(() => {})
+
       return {
-        initBem
+        initBem,
+        options,
+        handleAfterLeave,
+        close,
+        open
       }
     }
   })
