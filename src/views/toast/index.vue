@@ -16,15 +16,17 @@
   >
     <slot></slot>
   </div> -->
-  <transition name="fat-fade" @after-leave="handleAfterLeave">
-    <div :class="[initBem()]" v-show="options.visible">
-      <slot>
-        <div>图标</div>
-        <!-- <div :class="iconClass" v-if="options.dangerouslyUseHTMLString" v-html="icon"></div> -->
-      </slot>
-      <p :class="initBem('content')">{{ options.message }}</p>
-    </div>
-  </transition>
+  <teleport to="body">
+    <transition name="fat-fade" @after-leave="handleAfterLeave">
+      <div :class="[initBem()]" v-show="options.visible">
+        <slot>
+          <div>图标</div>
+          <!-- <div :class="iconClass" v-if="options.dangerouslyUseHTMLString" v-html="icon"></div> -->
+        </slot>
+        <p :class="initBem('content')">{{ options.message }}</p>
+      </div>
+    </transition>
+  </teleport>
 </template>
 
 <script lang="ts">

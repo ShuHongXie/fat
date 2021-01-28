@@ -13,6 +13,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
+  // 0: 不校验 1:警告 2:错误
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -27,8 +28,8 @@ module.exports = {
     'key-spacing': [2, { afterColon: true }], // 对象前空格
     'keyword-spacing': [2, { before: true }], // 关键字空格
     'object-property-newline': [2, { allowAllPropertiesOnSameLine: false }], // 对象换行
-    semi: [2, 'never'],
-    quotes: [2, 'single'],
+    'semi': [2, 'never'],
+    'quotes': [2, 'single'],
     'prettier/prettier': [
       'error',
       // 如果插件配置中修改了相关选项，

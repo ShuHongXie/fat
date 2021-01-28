@@ -10,9 +10,9 @@ import type { DefineComponent, Plugin } from 'vue'
 import toast from './index.vue'
 import mountComponent from '@/utils/general/mountComponent.ts'
 
-toast.install = (app: App) => {
-  app.component(toast.name, toast)
-}
+// toast.install = (app: App) => {
+//   app.component(toast.name, toast)
+// }
 
 // export default toast
 
@@ -27,13 +27,8 @@ class Toast {
   }
 
   init() {
-    const { instance, unmount } = mountComponent({
-      props: {},
-      setup() {
-        // getCurrentInstance()?.render = () => toast
-      }
-    })
-    console.log(getCurrentInstance())
+    const { instance, unmount } = mountComponent(toast)
+    console.log(getCurrentInstance(), instance)
     // ;(getCurrentInstance() as any).render = () => toast
     // return toast
   }

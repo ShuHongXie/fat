@@ -15,13 +15,14 @@ import './style/index.scss'
 import { Checkbox, Icon, CheckboxGroup, RadioGroup, Radio, AddressEdit, Col, Row, Cell } from 'vant'
 import fat from './index'
 import toast from './views/toast/index.ts'
-console.log(fat)
-// console.log(toast)
+import home from './views/Home.vue'
+console.log(toast)
+console.log(App)
+console.log(home)
 
 export const app = createApp(App)
   .use(store)
   .use(router)
-  .use(toast as any, { type: 'toast' })
   .use(fat)
   .use(Checkbox)
   .use(CheckboxGroup)
@@ -35,3 +36,5 @@ export const app = createApp(App)
 
 app.config.globalProperties.$toast = toast
 app.mount('#app')
+
+console.log(app)
