@@ -2,9 +2,9 @@
 @import '~@/style/transition.scss';
 
 .fat-toast {
-  width: 200px;
-  max-height: 150px;
-  background-color: rgba(0, 0, 0, 0.5);
+  // width: 200px;
+  // max-height: 150px;
+  background-color: rgba(0, 0, 0, 0.6);
   opacity: 1;
   border-radius: 6px;
   display: flex;
@@ -18,7 +18,20 @@
   left: 0;
   right: 0;
   margin: auto;
+  font-size: 14px;
+  line-height: 20px;
   transition: 0.3s;
+  color: #fff;
+  &--text {
+    max-width: 70%;
+    width: fit-content;
+    height: fit-content;
+    min-width: 96px;
+    min-height: 0;
+    padding: 8px 12px;
+  }
+  &--middle {
+  }
   &__loading {
     animation: loading 0.7s linear infinite;
   }

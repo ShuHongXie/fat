@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <fat-loading></fat-loading>
     <fat-cell to="/other" value="value" title="title" size="large">
       <template #title>title1</template>
       <template #label>label2</template>
@@ -128,7 +129,11 @@
 
       const yanse: color = color.Red
 
-      const pullPromise = () => {}
+      const pullPromise = () => {
+        // eslint-disable-next-line prefer-rest-params
+        console.log(arguments)
+        console.log('xxx')
+      }
 
       const getup = (val: boolean) => {
         console.log(val)
@@ -143,13 +148,19 @@
       }
 
       const routerpush = () => {
-        // console.log(curr?.proxy?.$toast)
-        ;(curr?.proxy?.$toast as any).init()
+        console.log(curr?.proxy)
+        console.log(typeof curr?.proxy)
+        // curr?.proxy?.$test('123')
+        curr?.proxy?.$toast({
+          message: 'xxx',
+          duration: 0
+        })
         // curr?.proxy?.$router.push('/other')
       }
 
       onMounted(() => {
-        console.log(toastProvide, typeof getCurrentInstance()?.proxy?.$toast)
+        console.log(getCurrentInstance())
+        // console.log(pullPromise())
         // getCurrentInstance()?.proxy?.$toast('')
 
         // getCurrentInstance()?.proxy?.$toast()

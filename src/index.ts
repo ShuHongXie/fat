@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-11-24 16:11:03
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-01-25 19:07:41
+ * @LastEditTime: 2021-02-01 21:38:03
  * @FilePath: /fat-ui/src/index.ts
  */
 import { App } from 'vue'
@@ -17,6 +17,7 @@ import checkbox from './views/checkbox/index.ts'
 import checkboxGroup from './views/checkboxGroup/index.ts'
 import radio from './views/radio/index.ts'
 import radioGroup from './views/radioGroup/index.ts'
+import loading from './views/loading/index.ts'
 // import toast from './views/toast/index.ts'
 const components = [
   mask,
@@ -28,7 +29,8 @@ const components = [
   checkbox,
   checkboxGroup,
   radio,
-  radioGroup
+  radioGroup,
+  loading
   // toast
 ]
 

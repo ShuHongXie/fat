@@ -76,7 +76,7 @@ module.exports = {
     resolve: {
       alias: {
         '@': resolve('src'),
-        '*': resolve('src/assets/image')
+        '*': resolve('./')
       },
       extensions: ['*', '.js', '.json', '.vue', '.ts']
     }

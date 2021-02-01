@@ -1,3 +1,10 @@
+<!--
+ * @Author: shuhongxie
+ * @Date: 2020-12-01 20:43:46
+ * @LastEditors: shuhongxie
+ * @LastEditTime: 2021-02-01 22:12:32
+ * @FilePath: /fat-ui/src/views/icon/index.vue
+-->
 <template>
   <i
     :class="
@@ -9,7 +16,7 @@
     "
     :style="{
       color,
-      fontSize: typeof size === 'number' ? `${size}px` : size,
+      fontSize: stringParseFunc(size),
       ...style
     }"
   >
@@ -22,6 +29,7 @@
   import { defineComponent, reactive } from 'vue'
   import init from '@/utils/init'
   import config from '@/utils/config'
+  import stringParse from '@/utils/general/stringParse'
   export default defineComponent({
     name: `${config.frameworkName}Icon`,
     props: {
@@ -64,14 +72,12 @@
     setup(props, { emit }) {
       const [initBem] = reactive(init('icon'))
       const [initInfoBem] = reactive(init('info'))
-
-      const beClick = () => {
-        console.log('xxx')
-      }
+      const stringParseFunc = value => stringParse(value)
 
       return {
         initBem,
-        initInfoBem
+        initInfoBem,
+        stringParseFunc
       }
     }
   })

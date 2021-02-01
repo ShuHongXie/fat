@@ -1,0 +1,86 @@
+<!--
+ * @Author: shuhongxie
+ * @Date: 2021-02-01 21:27:56
+ * @LastEditors: shuhongxie
+ * @LastEditTime: 2021-02-01 22:33:57
+ * @FilePath: /fat-ui/src/views/loading/index.vue
+-->
+<template>
+  <div
+    :class="[
+      initBem({
+        [vertical ? 'vertical' : '']: ''
+      })
+    ]"
+  >
+    <span :class="initBem({ warp: '' })">
+      <fat-icon name="loading" :color="color" :size="size"></fat-icon>
+      <span :class="[initBem('rotate')]"></span>
+    </span>
+    <span
+      :class="initBem('text')"
+      :style="{ fontSize: stringParseFunc(textSize), color: textColor }"
+    >
+      {{ text }}
+    </span>
+  </div>
+</template>
+
+<script lang="ts">
+  import { defineComponent, reactive } from 'vue'
+  import init from '@/utils/init'
+  import config from '@/utils/config'
+  import stringParse from '@/utils/general/stringParse'
+  export default defineComponent({
+    name: `${config.frameworkName}Loading`,
+    props: {
+      // 颜色
+      color: {
+        type: String,
+        default: '#C9C9C9'
+      },
+      // 类型
+      type: {
+        type: String,
+        default: 'circular'
+      },
+      // icon图标大小
+      size: {
+        type: [String, Number],
+        default: '30px'
+      },
+      text: {
+        type: String,
+        default: '加载中...'
+      },
+      // 字体大小
+      textSize: {
+        type: [String, Number],
+        default: '14px'
+      },
+      // 字体大小
+      textColor: {
+        type: String,
+        default: '#C9C9C9'
+      },
+      // 是否竖向排列
+      vertical: {
+        type: Boolean,
+        default: false
+      }
+    },
+    setup(props, { emit }) {
+      const [initBem] = reactive(init('loading'))
+      const stringParseFunc = value => stringParse(value)
+
+      return {
+        initBem,
+        stringParseFunc
+      }
+    }
+  })
+</script>
+
+<style lang="scss">
+  @import './index';
+</style>

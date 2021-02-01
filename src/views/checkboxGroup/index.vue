@@ -1,8 +1,8 @@
 <!--
- * @Author: your name
+ * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-01-19 17:57:42
- * @LastEditors: your name
+ * @LastEditTime: 2021-01-29 14:12:56
+ * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/views/checkboxGroup/index.vue
 -->
