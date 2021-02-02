@@ -9,12 +9,13 @@
     >
       <div
         v-show="visible"
-        :class="
+        :class="[
           initBem({
             [position]: position,
             [round ? 'round' : '']: round
-          })
-        "
+          }),
+          className
+        ]"
         :style="{
           ...style,
           animationDuration: `${duration}s`,
@@ -59,6 +60,7 @@
   export default defineComponent({
     name: `${config.frameworkName}Popup`,
     props: {
+      // z-index值
       zIndex: {
         type: Number,
         default: 2
@@ -107,9 +109,14 @@
       lockScroll: {
         type: Boolean,
         default: true
+      },
+      // 自定义类名
+      className: {
+        type: String,
+        default: ''
       }
     },
-    emits: ['open', 'close', 'opened', 'closed', 'click-mask', 'update:visible'],
+    emits: ['open', 'close', 'opened', 'closed', 'click-mask', 'update:visible', 'click'],
     setup(props, { emit }) {
       const [initBem] = reactive(init('popup'))
       const [lock, unlock] = lockFunc(props.lockScroll)

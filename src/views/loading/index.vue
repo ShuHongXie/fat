@@ -2,11 +2,11 @@
  * @Author: shuhongxie
  * @Date: 2021-02-01 21:27:56
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-01 22:33:57
+ * @LastEditTime: 2021-02-02 15:03:31
  * @FilePath: /fat-ui/src/views/loading/index.vue
 -->
 <template>
-  <div
+  <span
     :class="[
       initBem({
         [vertical ? 'vertical' : '']: ''
@@ -15,15 +15,16 @@
   >
     <span :class="initBem({ warp: '' })">
       <fat-icon name="loading" :color="color" :size="size"></fat-icon>
-      <span :class="[initBem('rotate')]"></span>
+      <!-- <span :class="[initBem('rotate')]" :style="overLayStyle"></span> -->
     </span>
     <span
       :class="initBem('text')"
       :style="{ fontSize: stringParseFunc(textSize), color: textColor }"
+      v-if="text"
     >
       {{ text }}
     </span>
-  </div>
+  </span>
 </template>
 
 <script lang="ts">
@@ -67,6 +68,10 @@
       vertical: {
         type: Boolean,
         default: false
+      },
+      overLayStyle: {
+        type: Object,
+        default: () => {}
       }
     },
     setup(props, { emit }) {

@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-20 17:06:50
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-01 17:55:16
+ * @LastEditTime: 2021-02-02 20:19:47
  * @FilePath: /fat-ui/src/views/toast/index.ts
  */
 import { App, createVNode, render, getCurrentInstance } from 'vue'
@@ -17,7 +17,9 @@ toast.install = (app: App) => {
 
 export type InitOptions = {
   message?: string // 提示信息
-  icon?: string // 当前渲染的图片
+  icon?: string // 当前渲染的图片/图标
+  iconPrefix?: string // 图标前缀
+  mask?: boolean // 是否显示遮罩层
   dangerouslyUseHTMLString?: boolean // 是否使用v-html渲染
   duration?: number // 持续时间
   iconType?: string // 当前的icon类型  scroll/null
@@ -27,9 +29,13 @@ export type InitOptions = {
   transition?: string // 过渡动画名字
   teleport?: string //挂载位置
   type?: string // 类型
-  className?: string // 自定义类名
+  className?: string | string[] // 自定义类名
   position?: string // 位置
-  forbidClick?: boolean // 背景点击
+  forbidClick?: boolean // 是否禁止点击事件
+  closeOnClickMask?: boolean // 是否点击遮罩层关闭
+  closeOnClick?: boolean // 是否点击toast内容区域关闭toast
+  onOpened?: () => void // 完全展示后的回调函数
+  onClose?: () => void // 关闭时的回调
 }
 
 const initOptions: InitOptions = {
@@ -37,6 +43,7 @@ const initOptions: InitOptions = {
   icon: '',
   dangerouslyUseHTMLString: true,
   duration: 3000,
+  mask: false,
   iconType: '',
   timer: null,
   visible: false,
@@ -46,7 +53,11 @@ const initOptions: InitOptions = {
   type: 'text',
   className: '',
   position: 'middle',
-  forbidClick: false
+  forbidClick: false,
+  closeOnClick: false,
+  closeOnClickMask: false,
+  onOpened: () => {},
+  onClose: () => {}
 }
 
 /**
@@ -54,6 +65,7 @@ const initOptions: InitOptions = {
  * @Author: shuhongxie
  */
 const queue: any = [] // 缓存队列
+let appInstance = null
 
 /**
  * @Description: 选项融合
@@ -73,7 +85,7 @@ const parseOption = (option: string | InitOptions) => {
  * @param {*} any
  */
 const createToastInstance = (): any => {
-  const { vm, unmount } = mountComponent(toast)
+  const { vm, unmount } = mountComponent(appInstance, toast)
   // vm.component?.proxy.options = finalOptions
   queue.push({
     instance: vm,
@@ -97,6 +109,7 @@ function Toast(ops?: any): any {
 
 Toast.install = (app: App, options: any) => {
   app.use(toast.install)
+  appInstance = app
   app.config.globalProperties.$toast = Toast
 }
 ;['loading', 'success', 'fail'].forEach((type: string) => {

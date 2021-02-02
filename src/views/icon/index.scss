@@ -6,4 +6,8 @@
   display: inline-block;
   position: relative;
   font-size: 32px;
+  &__image {
+    width: 1em;
+    height: 1em;
+  }
 }

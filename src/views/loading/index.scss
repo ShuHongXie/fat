@@ -7,6 +7,9 @@
   vertical-align: middle;
   &--warp {
     position: relative;
+    .fat-icon {
+      animation: fat-rotate 2s linear infinite;
+    }
   }
   &--vertical {
     display: inline-flex;
@@ -25,6 +28,5 @@
     z-index: 2;
     background: linear-gradient(-180deg, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0));
     border-radius: 50%;
-    animation: fat-rotate 0.8s linear infinite;
   }
 }

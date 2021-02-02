@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-09-24 15:52:53
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-01 17:21:56
+ * @LastEditTime: 2021-02-02 14:44:39
  * @FilePath: /fat-ui/src/main.ts
  */
 import { createApp } from 'vue'

@@ -151,9 +151,18 @@
         console.log(curr?.proxy)
         console.log(typeof curr?.proxy)
         // curr?.proxy?.$test('123')
-        curr?.proxy?.$toast({
-          message: 'xxx',
-          duration: 0
+        curr?.proxy?.$toast.loading({
+          message: 'loading测试',
+          duration: 0,
+          icon: 'layers',
+          position: 'top',
+          className: ['das', 'demo'],
+          closeOnClick: true,
+          mask: false,
+          // forbidClick: true,
+          onOpened: () => {
+            console.log('完全开启了')
+          }
         })
         // curr?.proxy?.$router.push('/other')
       }

@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-12-01 20:43:46
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-01 22:12:32
+ * @LastEditTime: 2021-02-02 15:41:39
  * @FilePath: /fat-ui/src/views/icon/index.vue
 -->
 <template>
@@ -22,11 +22,12 @@
   >
     <div v-if="dot" :class="initInfoBem({ dot })"></div>
     <div v-if="badge" :class="initInfoBem({ badge })">{{ badge }}</div>
+    <slot v-if="isImage"><img :src="name" :class="initBem('image')" alt="" /></slot>
   </i>
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive } from 'vue'
+  import { defineComponent, onMounted, reactive, ref } from 'vue'
   import init from '@/utils/init'
   import config from '@/utils/config'
   import stringParse from '@/utils/general/stringParse'
@@ -72,12 +73,19 @@
     setup(props, { emit }) {
       const [initBem] = reactive(init('icon'))
       const [initInfoBem] = reactive(init('info'))
+      const isImage = ref(false)
       const stringParseFunc = value => stringParse(value)
+
+      onMounted(() => {
+        isImage.value = props.name.includes('/')
+      })
 
       return {
         initBem,
         initInfoBem,
-        stringParseFunc
+        stringParseFunc,
+        isImage,
+        onMounted
       }
     }
   })
