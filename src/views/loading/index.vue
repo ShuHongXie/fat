@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-01 21:27:56
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-04 14:39:47
+ * @LastEditTime: 2021-02-04 22:58:00
  * @FilePath: /fat-ui/src/views/loading/index.vue
 -->
 <template>
@@ -52,7 +52,7 @@
       },
       text: {
         type: String,
-        default: '加载中...'
+        default: ''
       },
       // 字体大小
       textSize: {

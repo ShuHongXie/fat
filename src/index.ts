@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-11-24 16:11:03
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-04 16:58:22
+ * @LastEditTime: 2021-02-04 21:46:11
  * @FilePath: /fat-ui/src/index.ts
  */
 import { App } from 'vue'
@@ -21,6 +21,7 @@ import radio from './views/radio/index.ts'
 import radioGroup from './views/radioGroup/index.ts'
 import loading from './views/loading/index.ts'
 import toast from './views/toast/index.ts'
+import image from './views/image/index'
 const components = [
   mask,
   popup,
@@ -33,7 +34,8 @@ const components = [
   radio,
   radioGroup,
   loading,
-  toast
+  toast,
+  image
 ]
 
 function install(app: App) {

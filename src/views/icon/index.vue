@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-12-01 20:43:46
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-04 14:32:21
+ * @LastEditTime: 2021-02-04 23:10:06
  * @FilePath: /fat-ui/src/views/icon/index.vue
 -->
 <template>
@@ -62,7 +62,7 @@
       // 自定义前缀
       classPrefix: {
         type: String,
-        defult: ''
+        defult: 'fat'
       },
       // 样式
       style: {
