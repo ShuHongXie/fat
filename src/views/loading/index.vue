@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-01 21:27:56
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-02 15:03:31
+ * @LastEditTime: 2021-02-04 14:39:47
  * @FilePath: /fat-ui/src/views/loading/index.vue
 -->
 <template>
@@ -76,7 +76,7 @@
     },
     setup(props, { emit }) {
       const [initBem] = reactive(init('loading'))
-      const stringParseFunc = value => stringParse(value)
+      const stringParseFunc = (value: number | string) => stringParse(value)
 
       return {
         initBem,

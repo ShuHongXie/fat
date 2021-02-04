@@ -1,7 +1,7 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-01-29 14:12:56
+ * @LastEditTime: 2021-02-04 14:39:17
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/views/checkboxGroup/index.vue
@@ -42,7 +42,7 @@
       // 源数据
       modelValue: {
         type: Array,
-        default: () => []
+        default: (): any => []
       },
       // 布局方向 horizontal | vertical
       direction: {

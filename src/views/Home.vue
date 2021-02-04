@@ -31,7 +31,9 @@
     </fat-row>
     <button @click="toggle">toggle测试</button>
     <button @click="radioData = 'c'">单选测试</button>
-    <button @click="routerpush">路由跳转</button>
+    <button @click="routerpush">路由跳转1</button>
+    <button @click="routerpush1">路由跳转2</button>
+    <button @click="routerpush2">测试卸载</button>
     <!-- <fat-checkbox v-model="state.show" @change="change">
       复选框
       <template #icon="{ props }">
@@ -64,8 +66,19 @@
       <fat-radio name="c">单选框 c</fat-radio>
       <fat-radio name="d">单选框 d</fat-radio>
     </fat-radio-group>
+    <div></div>
     <!-- <fat-toast></fat-toast> -->
     <!-- <hello-world v-model="radioData" /> -->
+    <div class="img-warp">
+      <div
+        class="box"
+        v-for="(item, index) in imgList"
+        lazy-init-img="http://www.ay1.cc/img?w=300&h=300"
+        :key="index"
+        v-lazy:background="item"
+      ></div>
+      <!-- <img v-for="(item, index) in imgList" :key="index" v-lazy="item" :src="item" alt="" /> -->
+    </div>
   </div>
 </template>
 
@@ -108,6 +121,10 @@
       HelloWorld
     },
     setup(props, context) {
+      const imgList = reactive([
+        'https://img01.yzcdn.cn/vant/apple-1.jpg',
+        'https://img01.yzcdn.cn/vant/apple-2.jpg'
+      ])
       const state: State = reactive({
         count: 0,
         init: 0,
@@ -151,8 +168,8 @@
         console.log(curr?.proxy)
         console.log(typeof curr?.proxy)
         // curr?.proxy?.$test('123')
-        curr?.proxy?.$toast.loading({
-          message: 'loading测试',
+        const toast = curr?.proxy?.$toast.loading({
+          message: 'loading测试1',
           duration: 0,
           icon: 'layers',
           position: 'top',
@@ -164,11 +181,44 @@
             console.log('完全开启了')
           }
         })
+        console.log(toast)
+
         // curr?.proxy?.$router.push('/other')
+      }
+
+      const routerpush1 = () => {
+        console.log(curr?.proxy)
+        console.log(typeof curr?.proxy)
+        curr?.proxy?.$toast('123')
+        // curr?.proxy?.$toast.loading({
+        //   message: 'loading测试2',
+        //   duration: 0,
+        //   icon: 'layers',
+        //   position: 'bottom',
+        //   // position: ,
+        //   className: ['das', 'demo'],
+        //   closeOnClick: true,
+        //   mask: false,
+        //   // forbidClick: true,
+        //   onOpened: () => {
+        //     console.log('完全开启了')
+        //   }
+        // })
+
+        // curr?.proxy?.$router.push('/other')
+      }
+
+      const routerpush2 = () => {
+        curr?.proxy?.$toast.clear(true)
       }
 
       onMounted(() => {
         console.log(getCurrentInstance())
+        curr?.proxy?.$toast.setDefaultOptions({
+          type: 'loading',
+          closeOnClick: true
+        })
+        curr?.proxy.$toast?.allowMultiple(true)
         // console.log(pullPromise())
         // getCurrentInstance()?.proxy?.$toast('')
 
@@ -242,7 +292,10 @@
         changeRadioGroup,
         getRadioValue,
         routerpush,
-        toastProvide
+        routerpush1,
+        routerpush2,
+        toastProvide,
+        imgList
       }
     }
   })
@@ -282,6 +335,20 @@
       &::before {
         border-width: 1px 0;
       }
+    }
+    .img-warp {
+      display: flex;
+      flex-direction: column;
+      .box {
+        width: 300px;
+        height: 300px;
+        background-size: 100% 100%;
+      }
+      // img {
+      //   width: 300px;
+      //   height: 300px;
+      //   transition: 0.2s;
+      // }
     }
   }
 </style>

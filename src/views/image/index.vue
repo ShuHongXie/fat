@@ -2,8 +2,8 @@
  * @Author: shuhongxie
  * @Date: 2020-12-01 20:43:46
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-04 14:32:21
- * @FilePath: /fat-ui/src/views/icon/index.vue
+ * @LastEditTime: 2021-02-04 15:56:32
+ * @FilePath: /fat-ui/src/views/image/index.vue
 -->
 <template>
   <i
@@ -32,7 +32,7 @@
   import config from '@/utils/config'
   import stringParse from '@/utils/general/stringParse'
   export default defineComponent({
-    name: `${config.frameworkName}Icon`,
+    name: `${config.frameworkName}Image`,
     props: {
       // 名称
       name: {
@@ -71,7 +71,7 @@
       }
     },
     setup(props, { emit }) {
-      const [initBem] = reactive(init('icon'))
+      const [initBem] = reactive(init('image'))
       const [initInfoBem] = reactive(init('info'))
       const isImage = ref(false)
       const stringParseFunc = (value: number | string) => stringParse(value)

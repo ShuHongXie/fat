@@ -2,13 +2,20 @@
  * @Author: shuhongxie
  * @Date: 2021-01-25 20:12:29
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-02 14:58:12
+ * @LastEditTime: 2021-02-04 15:53:16
  * @FilePath: /fat-ui/src/utils/general/mountComponent.ts
  */
 import { createApp, App, defineComponent, render, createVNode } from 'vue'
-import type { Component } from 'vue'
+import type { Component, VNode } from 'vue'
 
-export default function mountComponent(app, container: Component) {
+export type mountedCompoent = {
+  instance: VNode
+  clear: () => void
+}
+
+export default function mountComponent(app: App, container: Component): mountedCompoent {
+  console.log(app)
+
   // 创建实例
   const instance = createApp(container)
   const vm = createVNode(container, {})
@@ -16,16 +23,16 @@ export default function mountComponent(app, container: Component) {
   // 创建元素
   const div = document.createElement('div')
   render(vm, div)
-  // console.log(app)
   document.body.appendChild(div)
   // 挂载
-  // instance.mount(div)
-  console.log(app)
+  instance.mount(div)
 
   return {
-    vm,
-    unmount: () => {
+    instance: vm,
+    clear: () => {
+      instance.unmount(div)
       document.body.removeChild(div)
+      setTimeout(() => {}, 0)
     }
   }
 }

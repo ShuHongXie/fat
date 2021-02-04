@@ -2,11 +2,11 @@
  * @Author: shuhongxie
  * @Date: 2021-01-20 17:06:50
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-02 20:19:47
+ * @LastEditTime: 2021-02-04 15:53:05
  * @FilePath: /fat-ui/src/views/toast/index.ts
  */
 import { App, createVNode, render, getCurrentInstance } from 'vue'
-import type { DefineComponent, Plugin } from 'vue'
+import { mountedCompoent } from '@/utils/general/mountComponent'
 import toast from './index.vue'
 import mountComponent from '@/utils/general/mountComponent.ts'
 console.log(toast)
@@ -38,6 +38,30 @@ export type InitOptions = {
   onClose?: () => void // 关闭时的回调
 }
 
+export type type = string[]
+
+const OPTIONS: InitOptions = {
+  message: '',
+  icon: '',
+  dangerouslyUseHTMLString: true,
+  duration: 3000,
+  mask: false,
+  iconType: '',
+  timer: null,
+  visible: false,
+  closed: false,
+  transition: 'fat-fade',
+  teleport: 'body',
+  type: 'text',
+  className: '',
+  position: 'middle',
+  forbidClick: false,
+  closeOnClick: false,
+  closeOnClickMask: false,
+  onOpened: () => {},
+  onClose: () => {}
+}
+
 const initOptions: InitOptions = {
   message: '',
   icon: '',
@@ -60,12 +84,10 @@ const initOptions: InitOptions = {
   onClose: () => {}
 }
 
-/**
- * @Description: 实例队列
- * @Author: shuhongxie
- */
-const queue: any = [] // 缓存队列
-let appInstance = null
+let queue: any = [] // 缓存实例队列
+let appInstance: App | null = null // 存储App实例
+let allowMultiple = false // 是否允许出现多个
+const toastType: type = ['loading', 'success', 'fail']
 
 /**
  * @Description: 选项融合
@@ -85,13 +107,11 @@ const parseOption = (option: string | InitOptions) => {
  * @param {*} any
  */
 const createToastInstance = (): any => {
-  const { vm, unmount } = mountComponent(appInstance, toast)
-  // vm.component?.proxy.options = finalOptions
+  const { instance, clear } = mountComponent(appInstance, toast)
   queue.push({
-    instance: vm,
-    unmount
+    instance,
+    clear
   })
-
   return queue[queue.length - 1]
 }
 
@@ -101,18 +121,87 @@ const createToastInstance = (): any => {
  * @param {any} ops
  */
 function Toast(ops?: any): any {
+  if (!allowMultiple && queue.length) {
+    Toast.clear(true)
+  }
   const { instance } = createToastInstance()
+  console.log(instance)
+
   const options = parseOption(ops)
   instance?.component?.proxy.initOptions(options)
   return instance
 }
 
-Toast.install = (app: App, options: any) => {
+/**
+ * @Description: 插件注册
+ * @Author: shuhongxie
+ * @param {App} app
+ */
+Toast.install = (app: App) => {
   app.use(toast.install)
   appInstance = app
   app.config.globalProperties.$toast = Toast
 }
-;['loading', 'success', 'fail'].forEach((type: string) => {
+
+/**
+ * @Description: 是否允许多选
+ * @Author: shuhongxie
+ */
+Toast.allowMultiple = (allow = false): void => {
+  allowMultiple = allow
+}
+
+/**
+ * @Description: 清除toast实例InitOptions
+ * @Author: shuhongxie
+ * @param {*} clearAll 是否清除全部
+ */
+Toast.clear = (clearAll = false) => {
+  if (clearAll) {
+    if (queue.length) {
+      queue.forEach((item: mountedCompoent) => item.clear())
+      queue = []
+    }
+  } else {
+    if (queue.length) {
+      queue[0].clear()
+      queue.splice(0, 1)
+    }
+  }
+}
+
+/**
+ * @Description: 修改全局默认设置 具体看
+ * @Author: shuhongxie
+ * @param {string} options
+ */
+Toast.setDefaultOptions = (options: string | InitOptions) => {
+  if (typeof options === 'string') {
+    initOptions.type = options
+  } else {
+    for (const i in options) {
+      initOptions[i] = options[i]
+    }
+  }
+}
+
+/**
+ * @Description: 重置为默认设置
+ * @Author: shuhongxie
+ * @param {InitOptions} optons
+ */
+Toast.resetDefaultOptions = () => {
+  for (const i in OPTIONS) {
+    initOptions[i] = OPTIONS[i]
+  }
+}
+
+toastType.forEach((type: string) => {
+  /**
+   * @Description: 设置不同类型的toast实例
+   * @Author: shuhongxie
+   * @param {InitOptions} options
+   */
   Toast[type] = (options: InitOptions) => {
     return Toast({
       type,

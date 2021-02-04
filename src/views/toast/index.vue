@@ -1,18 +1,13 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-02 20:16:23
+ * @LastEditTime: 2021-02-04 15:01:55
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/views/toast/index.vue
 -->
 <template>
   <teleport :to="options.teleport">
-    <!-- <transition
-      :name="options.transition"
-      @after-enter="options.onOpened()"
-      @after-leave="options.onClose()"
-    > -->
     <fat-popup
       v-model:visible="options.visible"
       :mask="options.mask"
@@ -28,7 +23,6 @@
         ${Array.isArray(options.className) ? options.className.join(' ') : options.className}
       `"
     >
-      <!-- :click-mask-close="options.closeOnClick" -->
       <slot>
         <!-- <div :class="iconClass" v-if="options.dangerouslyUseHTMLString" v-html="icon"></div> -->
         <fat-loading text="" v-if="options.type === 'loading'" />
@@ -38,42 +32,15 @@
       </slot>
       <span :class="initBem('text')">{{ options.message }}</span>
     </fat-popup>
-    <!-- <div
-        :class="[
-          initBem({
-            [options.type === 'text' && options.icon ? '' : options.type]: '',
-            [options.position]: ''
-          }),
-          Array.isArray(options.className) ? options.className.join(' ') : options.className
-        ]"
-        @click="closeIt"
-        v-show="options.visible"
-      >
-        <slot>
-          <fat-loading text="" v-if="options.type === 'loading'" />
-          <fat-icon name="select" v-if="options.type === 'success'" />
-          <fat-icon name="close" v-if="options.type === 'fail'" />
-          <fat-icon :name="options.icon" v-if="options.type === 'text' && options.icon" />
-        </slot>
-        <span :class="initBem('text')">{{ options.message }}</span>
-      </div> -->
-    <!-- </transition> -->
   </teleport>
 </template>
 
 <script lang="ts">
-  import {
-    defineComponent,
-    reactive,
-    onBeforeMount,
-    inject,
-    ref,
-    getCurrentInstance,
-    onMounted,
-    watch
-  } from 'vue'
+  import { defineComponent, reactive, onMounted, watch } from 'vue'
   import init from '@/utils/init'
   import config from '@/utils/config'
+  import lockFunc from '@/utils/use/useLockScroll'
+  import useLockTouch from '@/utils/use/useLockTouch'
   import { InitOptions } from './index'
   export default defineComponent({
     name: `${config.frameworkName}Toast`,
@@ -104,7 +71,6 @@
         onOpened: () => {},
         onClose: () => {}
       })
-
       /**
        * @Description: 合并所有参数
        * @Author: shuhongxie
@@ -164,6 +130,7 @@
         // startTimer()
       })
 
+      // 监听关闭
       watch(
         () => options.closed,
         n => {
@@ -171,21 +138,18 @@
         }
       )
 
+      // 全局禁用 加滚动锁和触摸锁
       watch(
         () => options.forbidClick,
         n => {
-          console.log('监听forbidClick', n)
-
+          const [lock, unlock] = lockFunc(options.forbidClick)
+          const [touchLock, unTouchLock] = useLockTouch(options.forbidClick)
           if (n) {
-            document.addEventListener(
-              'touchstart',
-              ev => {
-                ev.preventDefault()
-              },
-              { passive: false }
-            )
+            lock()
+            touchLock()
           } else {
-            document.removeEventListener('touchstart', ev => {})
+            unlock()
+            unTouchLock()
           }
         }
       )
@@ -206,3 +170,23 @@
 <style lang="scss">
   @import './index';
 </style>
+<!-- <div
+        :class="[
+          initBem({
+            [options.type === 'text' && options.icon ? '' : options.type]: '',
+            [options.position]: ''
+          }),
+          Array.isArray(options.className) ? options.className.join(' ') : options.className
+        ]"
+        @click="closeIt"
+        v-show="options.visible"
+      >
+        <slot>
+          <fat-loading text="" v-if="options.type === 'loading'" />
+          <fat-icon name="select" v-if="options.type === 'success'" />
+          <fat-icon name="close" v-if="options.type === 'fail'" />
+          <fat-icon :name="options.icon" v-if="options.type === 'text' && options.icon" />
+        </slot>
+        <span :class="initBem('text')">{{ options.message }}</span>
+      </div> -->
+<!-- </transition> -->

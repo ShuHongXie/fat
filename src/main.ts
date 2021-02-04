@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-09-24 15:52:53
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-02 14:44:39
+ * @LastEditTime: 2021-02-04 17:03:08
  * @FilePath: /fat-ui/src/main.ts
  */
 import { createApp } from 'vue'
@@ -44,8 +44,6 @@ export const app = createApp(App)
   .use(Col)
   .use(Cell)
   .use(Row)
-  .use(toast as any)
+// .use(toast as any)
 // .use(Toast)
 app.mount('#app')
-
-console.log(app)

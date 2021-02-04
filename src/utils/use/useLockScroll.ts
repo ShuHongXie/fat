@@ -16,6 +16,8 @@ let lockCount = 0
 export default function lockFunc(status: boolean) {
   const lock = (): void => {
     if (status) {
+      console.log(status)
+
       lockCount++
       if (!document.body.classList.contains(CLASSNAME)) {
         document.body.classList.add(CLASSNAME)
