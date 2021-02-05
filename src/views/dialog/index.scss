@@ -1,0 +1,88 @@
+@import '~@/style/variables.scss';
+@import '~@/style/transition.scss';
+
+.fat-dialog {
+  max-width: 70%;
+  min-width: 96px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 14px;
+  line-height: 20px;
+  transition: 0.3s;
+  color: #fff;
+  width: fit-content;
+  height: fit-content;
+  width: 88px;
+  min-height: 88px;
+  padding: 16px;
+  & > .fat-icon {
+    font-size: 36px;
+    padding: 4px;
+  }
+  &--text,
+  &--loading,
+  &--fail,
+  &--success {
+    min-width: 88px;
+    min-height: 88px;
+  }
+  &--text {
+    min-height: 0;
+    padding: 8px 12px;
+    min-width: 70%;
+    white-space: pre-wrap;
+    .fat-toast__text {
+      margin: 0;
+      overflow: hidden;
+    }
+  }
+  &--top {
+    top: 10%;
+    margin-top: 0;
+  }
+  &--bottom {
+    top: 70%;
+    margin-top: 0;
+  }
+  &__loading {
+    animation: loading 0.7s linear infinite;
+  }
+  &__content {
+    margin: 0;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    font-size: 18px;
+  }
+  &__text {
+    margin-top: 8px;
+  }
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

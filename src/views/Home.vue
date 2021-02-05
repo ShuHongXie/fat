@@ -69,7 +69,7 @@
     <div></div>
     <!-- <fat-toast></fat-toast> -->
     <!-- <hello-world v-model="radioData" /> -->
-    <div class="img-warp">
+    <div class="img-warp fat-multi-ellipsis--l3">
       <div
         class="box"
         v-for="(item, index) in imgList"
@@ -79,18 +79,14 @@
       ></div>
       <!-- <img v-for="(item, index) in imgList" :key="index" v-lazy="item" :src="item" alt="" /> -->
     </div>
-    <fat-row>
-      <fat-col :span="8">
-        <fat-image
-          width="200px"
-          height="100px"
-          object-fit="scale-down"
-          alt="1321"
-          lazy-load
-          src="https://img01.yzcdn.cn/vant/apple-1.jpg"
-        />
-      </fat-col>
-    </fat-row>
+    <fat-image
+      width="200px"
+      height="100px"
+      object-fit="scale-down"
+      alt="1321"
+      lazy-load
+      src="https://img01.yzcdn.cn/vant/apple-1.jpg"
+    />
   </div>
 </template>
 

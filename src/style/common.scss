@@ -1,3 +1,30 @@
+/**
+ * @Description: 全局滚动锁定
+ * @Author: shuhongxie
+ */
+$l: 1;
 .fat--lock {
   overflow: hidden;
+}
+/**
+ * @Description: 单行溢出省略号
+ * @Author: shuhongxie
+ */
+.fat-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.fat {
+  @while $l < 24 {
+    &-multi-ellipsis--l#{$l} {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: $l;
+      -webkit-box-orient: vertical;
+    }
+    $l: $l + 1;
+  }
 }

@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-12-01 20:43:46
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-04 23:25:21
+ * @LastEditTime: 2021-02-05 10:50:50
  * @FilePath: /fat-ui/src/views/image/index.vue
 -->
 <template>
@@ -23,10 +23,9 @@
       @error="loadError"
       @load="loadSuccess(this)"
       ref="curr"
-      v-if="lazyLoad"
       v-lazy="src"
     />
-    <img
+    <!-- <img
       :class="initBem('img')"
       :src="src"
       :alt="alt"
@@ -35,7 +34,7 @@
       @load="loadSuccess(this)"
       ref="curr"
       v-else
-    />
+    /> -->
     <div v-if="showLoading && isImageLoad" :class="initBem('loading')">
       <slot name="laoding">
         <fat-loading />
@@ -139,7 +138,9 @@
       const stringParseFunc = (value: number | string) => stringParse(value)
       const isImageError = ref(false)
       const isImageLoad = ref(true)
+      const isFirstLoad = ref(false)
 
+      // 加载失败
       const loadError = (ev: Event) => {
         console.log(ev)
 
@@ -153,7 +154,11 @@
 
       // 加载成功才显示
       const loadSuccess = () => {
+        if (isFirstLoad.value) return
         curr.value.style.display = 'block'
+        console.log(curr.value.offsetTop)
+
+        isFirstLoad.value = true
         isImageLoad.value = false
         emit('load')
         console.log('加载成功')
