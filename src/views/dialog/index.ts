@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-20 17:06:50
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-05 15:29:53
+ * @LastEditTime: 2021-02-05 16:17:12
  * @FilePath: /fat-ui/src/views/dialog/index.ts
  */
 import { App, createVNode, render, getCurrentInstance } from 'vue'
@@ -154,13 +154,9 @@ Dialog.install = (app: App) => {
  * @Author: shuhongxie
  * @param {string} options
  */
-Dialog.setDefaultOptions = (options: string | InitOptions) => {
-  if (typeof options === 'string') {
-    initOptions.type = options
-  } else {
-    for (const i in options) {
-      initOptions[i] = options[i]
-    }
+Dialog.setDefaultOptions = (options: InitOptions) => {
+  for (const i in options) {
+    initOptions[i] = options[i]
   }
 }
 

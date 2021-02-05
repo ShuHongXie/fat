@@ -176,9 +176,10 @@
         console.log(curr?.proxy)
         console.log(typeof curr?.proxy)
         // curr?.proxy?.$test('123')
-        const toast = curr?.proxy?.$toast.loading({
-          message: 'loading测试1',
+        const toast = curr?.proxy?.$toast({
+          message: '213213',
           duration: 0,
+          type: 'html',
           icon: 'layers',
           position: 'top',
           className: ['das', 'demo'],

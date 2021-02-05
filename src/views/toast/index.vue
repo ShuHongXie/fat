@@ -1,7 +1,7 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-04 15:01:55
+ * @LastEditTime: 2021-02-05 17:12:28
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/views/toast/index.vue
@@ -17,7 +17,9 @@
       @closed="options.onClose()"
       @click="closeIt"
       :className="`${initBem({
-        [options.type === 'text' && options.icon ? '' : options.type]: '',
+        [(options.type === 'text' || options.type === 'html') && options.icon
+          ? ''
+          : options.type]: '',
         [options.position]: ''
       })}
         ${Array.isArray(options.className) ? options.className.join(' ') : options.className}
@@ -28,9 +30,13 @@
         <fat-loading text="" v-if="options.type === 'loading'" />
         <fat-icon name="select" v-if="options.type === 'success'" />
         <fat-icon name="close" v-if="options.type === 'fail'" />
-        <fat-icon :name="options.icon" v-if="options.type === 'text' && options.icon" />
+        <fat-icon
+          :name="options.icon"
+          v-if="(options.type === 'text' || options.type === 'html') && options.icon"
+        />
       </slot>
-      <span :class="initBem('text')">{{ options.message }}</span>
+      <span :class="initBem('text')" v-if="options.type !== 'html'">{{ options.message }}</span>
+      <div :class="initBem('text')" v-html="options.message" v-else></div>
     </fat-popup>
   </teleport>
 </template>

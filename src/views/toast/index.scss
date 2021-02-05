@@ -31,17 +31,18 @@
     font-size: 36px;
     padding: 4px;
   }
-  &--text,
   &--loading,
   &--fail,
   &--success {
     min-width: 88px;
     min-height: 88px;
+    padding: 16px;
   }
-  &--text {
+  &--text,
+  &--html {
     min-height: 0;
     padding: 8px 12px;
-    min-width: 70%;
+    max-width: 70%;
     white-space: pre-wrap;
     .fat-toast__text {
       margin: 0;

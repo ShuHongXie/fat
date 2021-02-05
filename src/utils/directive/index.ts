@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-04 16:14:11
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-05 11:23:11
+ * @LastEditTime: 2021-02-05 17:26:33
  * @FilePath: /fat-ui/src/utils/directive/index.ts
  */
 import { App, nextTick, DirectiveBinding } from 'vue'
