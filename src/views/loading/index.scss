@@ -5,8 +5,13 @@
 .fat-loading {
   font-size: 32px;
   vertical-align: middle;
-  &--warp {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  &__warp {
     position: relative;
+    display: flex;
+    align-items: center;
     .fat-icon {
       animation: fat-rotate 2s linear infinite;
     }

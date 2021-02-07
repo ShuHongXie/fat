@@ -1,5 +1,16 @@
 <template>
   <div class="home">
+    <fat-button
+      size="small"
+      plain
+      type="primary"
+      icon="drag"
+      color="linear-gradient(to right, #ff6034, #ee0a24)"
+      iconPosition="right"
+      to="other"
+    >
+      123213
+    </fat-button>
     <fat-loading></fat-loading>
     <fat-cell to="/other" value="value" title="title" size="large">
       <template #title>title1</template>

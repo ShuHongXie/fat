@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-01 21:27:56
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-04 22:58:00
+ * @LastEditTime: 2021-02-07 21:47:05
  * @FilePath: /fat-ui/src/views/loading/index.vue
 -->
 <template>
@@ -13,7 +13,7 @@
       })
     ]"
   >
-    <span :class="initBem({ warp: '' })">
+    <span :class="initBem('warp')">
       <fat-icon name="loading" :color="color" :size="size"></fat-icon>
       <!-- <span :class="[initBem('rotate')]" :style="overLayStyle"></span> -->
     </span>
