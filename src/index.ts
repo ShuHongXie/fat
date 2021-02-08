@@ -2,27 +2,28 @@
  * @Author: shuhongxie
  * @Date: 2020-11-24 16:11:03
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-07 20:21:53
+ * @LastEditTime: 2021-02-08 22:59:23
  * @FilePath: /fat-ui/src/index.ts
  */
 import { App } from 'vue'
 
 import directive from './utils/directive'
 
-import mask from './views/mask/index.ts'
-import popup from './views/popup/index.ts'
-import row from './views/row/index.ts'
-import col from './views/col/index.ts'
-import icon from './views/icon/index.ts'
-import cell from './views/cell/index.ts'
-import checkbox from './views/checkbox/index.ts'
-import checkboxGroup from './views/checkboxGroup/index.ts'
-import radio from './views/radio/index.ts'
-import radioGroup from './views/radioGroup/index.ts'
-import loading from './views/loading/index.ts'
-import toast from './views/toast/index.ts'
-import image from './views/image'
-import button from './views/button'
+import mask from './package/mask/index'
+import popup from './package/popup/index.ts'
+import row from './package/row/index.ts'
+import col from './package/col/index.ts'
+import icon from './package/icon/index.ts'
+import cell from './package/cell/index.ts'
+import checkbox from './package/checkbox/index.ts'
+import checkboxGroup from './package/checkboxGroup/index.ts'
+import radio from './package/radio/index.ts'
+import radioGroup from './package/radioGroup/index.ts'
+import loading from './package/loading/index.ts'
+import toast from './package/toast/index.ts'
+import image from './package/image'
+import button from './package/button'
+import dialog from './package/dialog'
 const components = [
   mask,
   popup,
@@ -37,7 +38,8 @@ const components = [
   loading,
   toast,
   image,
-  button
+  button,
+  dialog
 ]
 
 function install(app: App) {

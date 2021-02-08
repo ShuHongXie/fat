@@ -1,7 +1,7 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-04 14:39:17
+ * @LastEditTime: 2021-02-08 17:14:49
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/views/checkboxGroup/index.vue
@@ -34,7 +34,6 @@
   import init from '@/utils/init'
   import useChildren from '@/utils/use/useChildren'
   import config from '@/utils/config'
-  import { v4 as uuidv4 } from 'uuid'
   export const COMPONENT_PARENT_NAME = 'checkboxGroup'
   export default defineComponent({
     name: `${config.frameworkName}CheckboxGroup`,

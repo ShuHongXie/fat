@@ -5,7 +5,8 @@
       plain
       type="primary"
       icon="drag"
-      color="linear-gradient(to right, #ff6034, #ee0a24)"
+      color=""
+      hairline
       iconPosition="right"
       to="other"
     >

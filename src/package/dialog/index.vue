@@ -1,7 +1,7 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-05 15:21:47
+ * @LastEditTime: 2021-02-08 17:03:23
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/views/dialog/index.vue
@@ -25,6 +25,7 @@
     >
       <div :class="initBem('header')">标题</div>
       <div :class="initBem('content')">内容</div>
+      <div :class="initBem('footer')"></div>
     </fat-popup>
   </teleport>
 </template>
@@ -95,7 +96,7 @@
         for (const k in options) {
           options[k] = option[k]
         }
-        options.visible = true
+        // options.visible = true
       }
 
       /**
@@ -104,7 +105,7 @@
        * @param {*} close
        */
       const close = () => {
-        options.closed = true
+        // options.closed = true
       }
 
       /**
@@ -113,9 +114,9 @@
        * @param {*} closeIt
        */
       const closeIt = () => {
-        if (options.closeOnClick) {
-          close()
-        }
+        // if (options.closeOnClick) {
+        //   close()
+        // }
       }
 
       /**
@@ -133,11 +134,11 @@
        * @param {*} startTimer
        */
       const startTimer = () => {
-        if (options.duration > 0) {
-          options.timer = setTimeout(() => {
-            close()
-          }, options.duration)
-        }
+        // if (options.duration > 0) {
+        //   options.timer = setTimeout(() => {
+        //     close()
+        //   }, options.duration)
+        // }
       }
 
       onMounted(() => {
@@ -146,28 +147,27 @@
       })
 
       // 监听关闭
-      watch(
-        () => options.closed,
-        n => {
-          n ? (options.visible = false) : null
-        }
-      )
+      // watch()
+      // () => options.closed,
+      // n => {
+      //   n ? (options.visible = false) : null
+      // }
 
       // 全局禁用 加滚动锁和触摸锁
-      watch(
-        () => options.forbidClick,
-        n => {
-          const [lock, unlock] = lockFunc(options.forbidClick)
-          const [touchLock, unTouchLock] = useLockTouch(options.forbidClick)
-          if (n) {
-            lock()
-            touchLock()
-          } else {
-            unlock()
-            unTouchLock()
-          }
-        }
-      )
+      // watch(
+      //   () => options.forbidClick,
+      //   n => {
+      //     const [lock, unlock] = lockFunc(options.forbidClick)
+      //     const [touchLock, unTouchLock] = useLockTouch(options.forbidClick)
+      //     if (n) {
+      //       lock()
+      //       touchLock()
+      //     } else {
+      //       unlock()
+      //       unTouchLock()
+      //     }
+      //   }
+      // )
 
       return {
         initBem,

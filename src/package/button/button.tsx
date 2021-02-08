@@ -2,8 +2,8 @@
  * @Author: shuhongxie
  * @Date: 2021-02-07 20:03:15
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-07 23:20:51
- * @FilePath: /fat-ui/src/views/button/button.tsx
+ * @LastEditTime: 2021-02-09 00:12:17
+ * @FilePath: /fat-ui/src/package/button/button.tsx
  */
 import { defineComponent, ref, PropType, reactive } from 'vue'
 import init from '@/utils/init'
@@ -12,6 +12,7 @@ import config from '@/utils/config'
 import stringParse from '@/utils/general/stringParse'
 import './index.scss'
 
+//  "button": "./src/package/button/index.ts",
 export default defineComponent({
   name: `${config.frameworkName}Button`,
   props: {

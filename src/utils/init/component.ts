@@ -14,14 +14,14 @@ import config from '@/utils/config'
  * @param {string} name
  * @return {*}
  */
-export default function initComponents(name: string) {
-  return function (sfc: ComponentOptionsWithObjectProps) {
-    sfc.name = `${config.frameworkName}-${name}`
-    console.log(sfc.name)
-    sfc.install = (app: App) => {
-      app.component(`${sfc.name}`, sfc)
-    }
+// export default function initComponents(name: string) {
+//   return function (sfc: ComponentOptionsWithObjectProps) {
+//     sfc.name = `${config.frameworkName}-${name}`
+//     console.log(sfc.name)
+//     sfc.install = (app: App) => {
+//       app.component(`${sfc.name}`, sfc)
+//     }
 
-    return defineComponent(sfc)
-  } as typeof defineComponent
-}
+//     return defineComponent(sfc)
+//   } as typeof defineComponent
+// }

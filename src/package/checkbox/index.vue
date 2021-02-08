@@ -41,7 +41,7 @@
   import init from '@/utils/init'
   import config from '@/utils/config'
   import useParent from '@/utils/use/useParent'
-  import { COMPONENT_PARENT_NAME } from '@/views/checkboxGroup/index.vue'
+  import { COMPONENT_PARENT_NAME } from '@/package/checkboxGroup/index.vue'
   export default defineComponent({
     name: `${config.frameworkName}Checkbox`,
     props: {
