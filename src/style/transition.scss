@@ -44,6 +44,16 @@
       animation: fat-slide-right-leave $animation-duration-base both;
     }
   }
+
+  // 从小变大
+  &-scale {
+    &-enter-active {
+      animation: fat-scale-enter $animation-duration-base both;
+    }
+    &-leave-active {
+      animation: fat-scale-leave $animation-duration-base both;
+    }
+  }
 }
 
 @keyframes fat-fade-enter {
@@ -103,6 +113,18 @@
 @keyframes fat-slide-right-leave {
   to {
     transform: translate3D(100%, 0, 0);
+  }
+}
+
+@keyframes fat-scale-enter {
+  from {
+    transform: scale(0, 0);
+  }
+}
+
+@keyframes fat-scale-leave {
+  to {
+    transform: scale(1, 1);
   }
 }
 

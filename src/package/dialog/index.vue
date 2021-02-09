@@ -1,31 +1,57 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-08 17:03:23
+ * @LastEditTime: 2021-02-09 22:31:51
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
- * @FilePath: /fat-ui/src/views/dialog/index.vue
+ * @FilePath: /fat-ui/src/package/dialog/index.vue
 -->
 <template>
   <teleport :to="options.teleport">
     <fat-popup
       v-model:visible="options.visible"
       :mask="options.mask"
-      :lock-scroll="options.forbidClick"
+      :lock-scroll="options.lockScroll"
       :click-mask-close="options.closeOnClickMask"
-      @opened="options.onOpened()"
-      @closed="options.onClose()"
       @click="closeIt"
-      :className="`${initBem({
-        [options.type === 'text' && options.icon ? '' : options.type]: '',
-        [options.position]: ''
-      })}
+      :transition="options.transition"
+      :className="`${initBem()}
         ${Array.isArray(options.className) ? options.className.join(' ') : options.className}
       `"
+      :style="{
+        width: options.width ? stringParseFunc(options.width) : ''
+        //  width: '300px'
+      }"
     >
-      <div :class="initBem('header')">标题</div>
-      <div :class="initBem('content')">内容</div>
-      <div :class="initBem('footer')"></div>
+      <div :class="initBem('header')">{{ options.title }}</div>
+      <div
+        :class="[
+          initBem('content', {
+            ['has-title']: '',
+            [options.messageAlign ? options.messageAlign : '']: ''
+          })
+        ]"
+      >
+        {{ options.message }}
+      </div>
+      <div :class="initBem('footer')">
+        <fat-button
+          block
+          :className="initBem('cancel')"
+          v-if="options.showCancelButton"
+          :style="{ color: options.cancelButtonColor }"
+        >
+          {{ options.cancelButtonText }}
+        </fat-button>
+        <fat-button
+          block
+          :className="initBem('confrim')"
+          v-if="options.showConfirmButton"
+          :style="{ color: options.confirmButtonColor }"
+        >
+          {{ options.confirmButtonText }}
+        </fat-button>
+      </div>
     </fat-popup>
   </teleport>
 </template>
@@ -34,26 +60,27 @@
   import { defineComponent, reactive, onMounted, watch } from 'vue'
   import init from '@/utils/init'
   import config from '@/utils/config'
+  import stringParse from '@/utils/general/stringParse'
   import lockFunc from '@/utils/use/useLockScroll'
   import useLockTouch from '@/utils/use/useLockTouch'
-  import { InitOptions } from './index'
+  // import { InitOptions } from './index'
   export default defineComponent({
-    name: `${config.frameworkName}Toast`,
+    name: `${config.frameworkName}Dialog`,
     props: {
       // 源数据
       modelValue: String
     },
     setup(props, { emit }) {
       const [initBem] = reactive(init('dialog'))
-      const options: InitOptions = reactive({
+      const options: any = reactive({
         // message: '', // 提示信息
         // icon: '', // 当前渲染的图片
-        // mask: false,
+        // mask: true,
         // dangerouslyUseHTMLString: true, // 是否使用v-html渲染
         // duration: 3000, // 持续时间
         // iconType: '', // 当前的icon类型  scroll/null
         // timer: null, // 存储当前定时器
-        // visible: false, // 显示隐藏
+        visible: false, // 显示隐藏
         // closed: false, // 隐藏的标识
         // transition: 'fat-fade', // 过渡动画名字
         // teleport: 'body', //挂载位置
@@ -63,10 +90,11 @@
         // closeOnClick: false,
         // closeOnClickMask: false,
         // className: '',
-        // onOpened: () => {},
-        // onClose: () => {}
+        onOpened: () => {},
+        onClose: () => {},
+
         title: '',
-        width: '30px',
+        width: '',
         message: '',
         messageAlign: '',
         theme: '',
@@ -75,18 +103,19 @@
         showCancelButton: false,
         confirmButtonText: '',
         confirmButtonColor: '#ee0a24',
-        cancelButtonText: '取消',
+        cancelButtonText: '',
         cancelButtonColor: 'black',
-        overlay: true,
-        overlayClass: '',
-        overlayStyle: {},
+        mask: true,
+        maskClass: '',
+        maskStyle: {},
         closeOnPopstate: false,
         lockScroll: true,
         allowHtml: false,
         beforeClose: () => true,
-        transition: '',
-        teleport: ''
+        transition: 'fade',
+        teleport: 'body'
       })
+      const stringParseFunc = (value: number | string) => stringParse(value)
       /**
        * @Description: 合并所有参数
        * @Author: shuhongxie
@@ -96,7 +125,9 @@
         for (const k in options) {
           options[k] = option[k]
         }
-        // options.visible = true
+        console.log(option)
+        console.log(options)
+        options.visible = true
       }
 
       /**
@@ -147,27 +178,12 @@
       })
 
       // 监听关闭
-      // watch()
-      // () => options.closed,
-      // n => {
-      //   n ? (options.visible = false) : null
-      // }
-
-      // 全局禁用 加滚动锁和触摸锁
-      // watch(
-      //   () => options.forbidClick,
-      //   n => {
-      //     const [lock, unlock] = lockFunc(options.forbidClick)
-      //     const [touchLock, unTouchLock] = useLockTouch(options.forbidClick)
-      //     if (n) {
-      //       lock()
-      //       touchLock()
-      //     } else {
-      //       unlock()
-      //       unTouchLock()
-      //     }
-      //   }
-      // )
+      watch(
+        () => options.closed,
+        n => {
+          n ? (options.visible = false) : null
+        }
+      )
 
       return {
         initBem,
@@ -176,7 +192,8 @@
         open,
         startTimer,
         initOptions,
-        closeIt
+        closeIt,
+        stringParseFunc
       }
     }
   })
@@ -185,23 +202,3 @@
 <style lang="scss">
   @import './index';
 </style>
-<!-- <div
-        :class="[
-          initBem({
-            [options.type === 'text' && options.icon ? '' : options.type]: '',
-            [options.position]: ''
-          }),
-          Array.isArray(options.className) ? options.className.join(' ') : options.className
-        ]"
-        @click="closeIt"
-        v-show="options.visible"
-      >
-        <slot>
-          <fat-loading text="" v-if="options.type === 'loading'" />
-          <fat-icon name="select" v-if="options.type === 'success'" />
-          <fat-icon name="close" v-if="options.type === 'fail'" />
-          <fat-icon :name="options.icon" v-if="options.type === 'text' && options.icon" />
-        </slot>
-        <span :class="initBem('text')">{{ options.message }}</span>
-      </div> -->
-<!-- </transition> -->

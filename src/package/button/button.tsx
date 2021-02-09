@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-07 20:03:15
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-09 00:12:17
+ * @LastEditTime: 2021-02-09 19:51:17
  * @FilePath: /fat-ui/src/package/button/button.tsx
  */
 import { defineComponent, ref, PropType, reactive } from 'vue'
@@ -111,6 +111,10 @@ export default defineComponent({
       type: Object,
       default: () => {}
     },
+    className: {
+      type: String,
+      default: ''
+    },
     ...routeProps
   },
   setup(props, { slots }) {
@@ -136,7 +140,8 @@ export default defineComponent({
         loadingSize,
         loadingText,
         style,
-        color
+        color,
+        className
       } = props
 
       const onClick = () => {
@@ -164,7 +169,8 @@ export default defineComponent({
               [loading ? 'loading' : '']: '',
               [disabled ? 'disabled' : '']: '',
               [hairline ? 'hairline' : '']: ''
-            })
+            }),
+            className
           ]}
           style={{
             ...style,

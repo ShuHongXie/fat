@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- <fat-dialog></fat-dialog> -->
     <fat-button
       size="small"
       plain
@@ -8,7 +9,7 @@
       color=""
       hairline
       iconPosition="right"
-      to="other"
+      @click="dialogTest"
     >
       123213
     </fat-button>
@@ -207,6 +208,15 @@
         // curr?.proxy?.$router.push('/other')
       }
 
+      const dialogTest = () => {
+        curr?.proxy.$dialog({
+          title: '展示的标题',
+          message: '信息123231',
+          messageAlign: 'center',
+          width: 200
+        })
+      }
+
       const routerpush1 = () => {
         console.log(curr?.proxy)
         console.log(typeof curr?.proxy)
@@ -316,7 +326,8 @@
         routerpush1,
         routerpush2,
         toastProvide,
-        imgList
+        imgList,
+        dialogTest
       }
     }
   })

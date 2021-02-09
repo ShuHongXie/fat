@@ -2,20 +2,21 @@
  * @Author: shuhongxie
  * @Date: 2021-01-20 17:06:50
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-05 16:17:12
- * @FilePath: /fat-ui/src/views/dialog/index.ts
+ * @LastEditTime: 2021-02-09 23:12:26
+ * @FilePath: /fat-ui/src/package/dialog/index.ts
  */
 import { App, createVNode, render, getCurrentInstance } from 'vue'
-import { mountedCompoent } from '@/utils/general/mountComponent'
 import dialog from './index.vue'
 import mountComponent from '@/utils/general/mountComponent.ts'
-console.log(dialog)
 
 dialog.install = (app: App) => {
   app.component(dialog.name, dialog)
 }
 
+// export default dialog
+
 export type InitOptions = {
+  visible?: boolean
   title?: string // 标题
   width?: number | string // 弹窗宽度，默认单位为px	320px
   message?: string // 文本内容
@@ -28,11 +29,11 @@ export type InitOptions = {
   confirmButtonColor?: string // 确认按钮颜色	#ee0a24
   cancelButtonText?: string //	取消按钮文案 取消
   cancelButtonColor?: string //	取消按钮颜色	black
-  overlay?: boolean // 是否展示遮罩层	boolean	true
-  overlayClass?: string | string[] | object // 自定义遮罩层类名
-  overlayStyle?: object // 自定义遮罩层样式
+  mask?: boolean // 是否展示遮罩层	boolean	true
+  maskClass?: string | string[] | object // 自定义遮罩层类名
+  maskStyle?: object // 自定义遮罩层样式
   closeOnPopstate?: boolean //	是否在页面回退时自动关闭	true
-  closeOnClickOverlay?: boolean //	是否在点击遮罩层后关闭弹窗	false
+  closeOnClickMask?: boolean //	是否在点击遮罩层后关闭弹窗	false
   lockScroll?: boolean // 是否锁定背景滚动	true
   allowHtml?: boolean // 是否允许 message 内容中渲染 HTML	false
   beforeClose?: () => boolean //关闭前的回调函数，返回 false 可阻止关闭，支持返回 Promise	(action) => boolean | Promise	-
@@ -43,56 +44,56 @@ export type InitOptions = {
 export type type = string[]
 
 const OPTIONS: InitOptions = {
+  visible: true,
   title: '',
-  width: '30px',
+  width: '',
   message: '',
   messageAlign: '',
   theme: '',
   className: '',
   showConfirmButton: false,
   showCancelButton: false,
-  confirmButtonText: '',
+  confirmButtonText: '确认',
   confirmButtonColor: '#ee0a24',
   cancelButtonText: '取消',
   cancelButtonColor: 'black',
-  overlay: true,
-  overlayClass: '',
-  overlayStyle: {},
+  mask: true,
+  maskClass: '',
+  maskStyle: {},
   closeOnPopstate: false,
   lockScroll: true,
   allowHtml: false,
   beforeClose: () => true,
   transition: '',
-  teleport: ''
+  teleport: 'body'
 }
 
 const initOptions: InitOptions = {
+  visible: false,
   title: '',
-  width: '30px',
+  width: '',
   message: '',
   messageAlign: '',
   theme: '',
   className: '',
-  showConfirmButton: false,
-  showCancelButton: false,
-  confirmButtonText: '',
+  showConfirmButton: true,
+  showCancelButton: true,
+  confirmButtonText: '确认',
   confirmButtonColor: '#ee0a24',
   cancelButtonText: '取消',
   cancelButtonColor: 'black',
-  overlay: true,
-  overlayClass: '',
-  overlayStyle: {},
+  mask: true,
+  maskClass: '',
+  maskStyle: {},
   closeOnPopstate: false,
   lockScroll: true,
   allowHtml: false,
   beforeClose: () => true,
-  transition: '',
-  teleport: ''
+  transition: 'scale',
+  teleport: 'body'
 }
 
-const queue: any = [] // 缓存实例队列
 let appInstance: App | null = null // 存储App实例
-const allowMultiple = false // 是否允许出现多个
 const dialogType: type = ['alert', 'confirm']
 
 /**
@@ -114,11 +115,10 @@ const parseOption = (option: string | InitOptions) => {
  */
 const createDialogInstance = (): any => {
   const { instance, clear } = mountComponent(appInstance, dialog)
-  queue.push({
+  return {
     instance,
     clear
-  })
-  return queue[queue.length - 1]
+  }
 }
 
 /**
@@ -127,9 +127,8 @@ const createDialogInstance = (): any => {
  * @param {any} ops
  */
 function Dialog(ops?: any): any {
-  if (!allowMultiple && queue.length) {
-    // Dialog.clear(true)
-  }
+  console.log('开始初始化dialog')
+
   const { instance } = createDialogInstance()
   console.log(instance)
 
@@ -144,8 +143,8 @@ function Dialog(ops?: any): any {
  * @param {App} app
  */
 Dialog.install = (app: App) => {
-  app.use(dialog.install)
   appInstance = app
+  app.use(dialog.install)
   app.config.globalProperties.$dialog = Dialog
 }
 

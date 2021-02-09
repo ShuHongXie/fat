@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-01 22:00:53
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-01 22:03:53
+ * @LastEditTime: 2021-02-09 22:29:30
  * @FilePath: /fat-ui/src/utils/general/stringParse.ts
  */
 
@@ -13,8 +13,5 @@
  * @param {*} suffix
  */
 export default function stringParse(value: number | string, suffix = 'px') {
-  if (typeof value === 'number') {
-    return `${value}${suffix}`
-  }
-  return value
+  return typeof value === 'number' ? `${value}${suffix}` : value
 }

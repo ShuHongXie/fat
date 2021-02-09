@@ -1,7 +1,7 @@
 <template>
   <teleport :to="teleport">
     <transition
-      :name="position === 'center' ? `fat-fade` : `fat-popup-slide-${position}`"
+      :name="position === 'center' ? `fat-${transition}` : `fat-popup-slide-${position}`"
       @enter="$emit('open')"
       @after-enter="$emit('opened')"
       @leave="$emit('close')"
@@ -35,6 +35,8 @@
     :teleport="teleport"
     :visible="visible"
     :z-index="zIndexObj.mask"
+    :custom-style="maskStyle"
+    :class-name="maskClassName"
   />
 </template>
 
@@ -114,6 +116,21 @@
       className: {
         type: String,
         default: ''
+      },
+      // 过渡动画名称
+      transition: {
+        type: String,
+        default: 'fade'
+      },
+      // 自定义遮罩层类名
+      maskClassName: {
+        type: String,
+        default: ''
+      },
+      // 自定义遮罩层样式
+      maskStyle: {
+        type: Object,
+        default: () => {}
       }
     },
     emits: ['open', 'close', 'opened', 'closed', 'click-mask', 'update:visible', 'click'],

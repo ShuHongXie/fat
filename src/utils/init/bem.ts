@@ -70,7 +70,7 @@ export default function initBem(name: string) {
     if (typeof childName === 'string') {
       // 如果有携带其他标识物
       if (ident) {
-        return `${initClass(name)} ${addTextWithIdent(initClassTextChild(name, childName), ident)}`
+        return `${addTextWithIdent(initClassTextChild(name, childName), ident)}`
       } else {
         return initClassTextChild(name, childName)
       }
