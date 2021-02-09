@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-25 20:12:29
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-04 15:53:16
+ * @LastEditTime: 2021-02-09 14:20:04
  * @FilePath: /fat-ui/src/utils/general/mountComponent.ts
  */
 import { createApp, App, defineComponent, render, createVNode } from 'vue'

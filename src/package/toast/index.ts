@@ -2,8 +2,8 @@
  * @Author: shuhongxie
  * @Date: 2021-01-20 17:06:50
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-04 15:53:05
- * @FilePath: /fat-ui/src/views/toast/index.ts
+ * @LastEditTime: 2021-02-09 14:43:54
+ * @FilePath: /fat-ui/src/package/toast/index.ts
  */
 import { App, createVNode, render, getCurrentInstance } from 'vue'
 import { mountedCompoent } from '@/utils/general/mountComponent'
