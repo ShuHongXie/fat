@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-17 21:21:41
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 21:25:21
+ * @LastEditTime: 2021-02-17 22:16:42
  * @FilePath: /fat-ui/build/webpack.config.index.js
  */
 /*
@@ -21,7 +21,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'production',
-  entry: path.resolve(__dirname, 'src/css.ts'),
+  entry: path.resolve(__dirname, '../src/css.ts'),
   output: {
     path: path.resolve(__dirname, '../test'),
     filename: '[name].js',
@@ -56,26 +56,18 @@ module.exports = {
           'sass-loader'
         ]
       },
+      {
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            outputPath: '../font'
+          }
+        }
+      },
       // 转换ts
       {
         test: /\.ts$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              // 转换ES2020 可选链操作符(?.)
-              plugins: ['@babel/plugin-proposal-optional-chaining']
-            }
-          },
-          {
-            loader: 'ts-loader',
-            options: { appendTsSuffixTo: [/TS\.vue$/] }
-          }
-        ]
-      },
-      {
-        test: /\.tsx$/,
         use: [
           {
             loader: 'babel-loader',
@@ -99,12 +91,12 @@ module.exports = {
     // ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       // 类似于 webpackOptions.output 中的选项
       // 所有选项都是可选的
-      filename: '/lib/index.css',
-      chunkFilename: '/lib/index.css'
+      filename: '../lib/style/index.css',
+      chunkFilename: '../lib/style/index.css'
     })
   ]
 }
