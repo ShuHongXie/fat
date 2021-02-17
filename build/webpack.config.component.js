@@ -2,12 +2,13 @@
  * @Author: shuhongxie
  * @Date: 2021-02-08 20:28:45
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 21:31:32
+ * @LastEditTime: 2021-02-17 22:55:45
  * @FilePath: /fat-ui/build/webpack.config.component.js
  */
 const path = require('path')
-const Components = require('../config/component.json')
 // json配置多入口
+const Components = require('../config/component.json')
+// vue文件解析
 const VueLoaderPlugin = require('vue-loader/dist/plugin').default
 // css压缩提炼
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')

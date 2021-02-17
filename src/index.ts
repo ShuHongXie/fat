@@ -2,9 +2,10 @@
  * @Author: shuhongxie
  * @Date: 2020-11-24 16:11:03
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 16:50:51
+ * @LastEditTime: 2021-02-17 22:59:43
  * @FilePath: /fat-ui/src/index.ts
  */
+import './style/index.scss'
 import { App } from 'vue'
 
 import directive from './utils/directive'
