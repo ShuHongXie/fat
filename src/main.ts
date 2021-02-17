@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-09-24 15:52:53
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 16:51:44
+ * @LastEditTime: 2021-02-17 21:35:23
  * @FilePath: /fat-ui/src/main.ts
  */
 import { createApp } from 'vue'
@@ -33,7 +33,7 @@ import home from './views/Home.vue'
 // console.log(Toast)
 
 export const app = createApp(App)
-  .use(store)
+  // .use(store)
   .use(router)
   .use(fat)
   .use(Checkbox)
