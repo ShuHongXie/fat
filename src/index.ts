@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-11-24 16:11:03
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-09 20:45:44
+ * @LastEditTime: 2021-02-17 16:50:51
  * @FilePath: /fat-ui/src/index.ts
  */
 import { App } from 'vue'
@@ -38,8 +38,8 @@ const components = [
   loading,
   toast,
   image,
-  button
-  // dialog
+  button,
+  dialog
 ]
 
 function install(app: App) {

@@ -11,5 +11,7 @@
   "radioGroup": "./src/package/radioGroup/index.ts",
   "loading": "./src/package/loading/index.ts",
   "image": "./src/package/image/index.ts",
-  "toast": "./src/package/toast/index.ts"
+  "toast": "./src/package/toast/index.ts",
+  "button": "./src/package/button/index.ts",
+  "dialog": "./src/package/dialog/index.ts"
 }

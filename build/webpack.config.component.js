@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-08 20:28:45
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-09 14:42:32
+ * @LastEditTime: 2021-02-17 17:04:59
  * @FilePath: /fat-ui/build/webpack.config.component.js
  */
 const path = require('path')
@@ -61,6 +61,23 @@ module.exports = {
       // 转换ts
       {
         test: /\.ts$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              // 转换ES2020 可选链操作符(?.)
+              plugins: ['@babel/plugin-proposal-optional-chaining']
+            }
+          },
+          {
+            loader: 'ts-loader',
+            options: { appendTsSuffixTo: [/TS\.vue$/] }
+          }
+        ]
+      },
+      {
+        test: /\.tsx$/,
         use: [
           {
             loader: 'babel-loader',

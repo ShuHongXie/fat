@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-09-24 15:52:53
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-09 20:46:37
+ * @LastEditTime: 2021-02-17 16:51:44
  * @FilePath: /fat-ui/src/main.ts
  */
 import { createApp } from 'vue'
@@ -12,7 +12,18 @@ import store from './store'
 
 import 'lib-flexible/flexible'
 import './style/index.scss'
-import { Checkbox, Icon, CheckboxGroup, RadioGroup, Radio, AddressEdit, Col, Row, Cell } from 'vant'
+import {
+  Dialog,
+  Checkbox,
+  Icon,
+  CheckboxGroup,
+  RadioGroup,
+  Radio,
+  AddressEdit,
+  Col,
+  Row,
+  Cell
+} from 'vant'
 import fat from './index'
 import toast from './package/toast/index.ts'
 import dialog from './package/dialog/index.ts'
@@ -34,7 +45,6 @@ export const app = createApp(App)
   .use(Col)
   .use(Cell)
   .use(Row)
-  .use(dialog as any)
 // .use(toast as any)
 // .use(Toast)
 app.mount('#app')

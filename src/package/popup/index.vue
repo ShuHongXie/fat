@@ -143,6 +143,9 @@
       })
       // 关闭弹窗
       const handleMaskClick = () => {
+        console.log('开始关闭弹窗')
+        console.log(props)
+
         emit('click-mask')
         if (props.clickMaskClose) {
           emit('update:visible', false)

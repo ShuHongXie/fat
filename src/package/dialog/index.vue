@@ -1,55 +1,67 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-09 22:31:51
+ * @LastEditTime: 2021-02-15 23:05:37
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/package/dialog/index.vue
 -->
 <template>
-  <teleport :to="options.teleport">
+  <teleport :to="teleport">
     <fat-popup
       v-model:visible="options.visible"
-      :mask="options.mask"
-      :lock-scroll="options.lockScroll"
-      :click-mask-close="options.closeOnClickMask"
+      :mask="mask"
+      :lock-scroll="lockScroll"
+      :click-mask-close="closeOnClickMask"
       @click="closeIt"
-      :transition="options.transition"
+      @closed="() => {}"
+      :transition="transition"
       :className="`${initBem()}
-        ${Array.isArray(options.className) ? options.className.join(' ') : options.className}
+        ${Array.isArray(className) ? className.join(' ') : className}
       `"
       :style="{
-        width: options.width ? stringParseFunc(options.width) : ''
-        //  width: '300px'
+        width: width ? stringParseFunc(width) : ''
       }"
     >
-      <div :class="initBem('header')">{{ options.title }}</div>
+      <div :class="initBem('header')">{{ title }}</div>
       <div
+        v-if="allowHtml"
+        v-html="message"
         :class="[
           initBem('content', {
             ['has-title']: '',
-            [options.messageAlign ? options.messageAlign : '']: ''
+            [messageAlign ? messageAlign : '']: ''
+          })
+        ]"
+      ></div>
+      <div
+        v-else
+        :class="[
+          initBem('content', {
+            ['has-title']: '',
+            [messageAlign ? messageAlign : '']: ''
           })
         ]"
       >
-        {{ options.message }}
+        {{ message }}
       </div>
       <div :class="initBem('footer')">
         <fat-button
           block
           :className="initBem('cancel')"
-          v-if="options.showCancelButton"
-          :style="{ color: options.cancelButtonColor }"
+          v-if="showCancelButton"
+          :style="{ color: cancelButtonColor }"
         >
-          {{ options.cancelButtonText }}
+          {{ cancelButtonText }}
         </fat-button>
         <fat-button
           block
           :className="initBem('confrim')"
-          v-if="options.showConfirmButton"
-          :style="{ color: options.confirmButtonColor }"
+          v-if="showConfirmButton"
+          :style="{ color: confirmButtonColor }"
+          @click="close"
         >
-          {{ options.confirmButtonText }}
+          {{ confirmButtonText }}
         </fat-button>
       </div>
     </fat-popup>
@@ -68,8 +80,98 @@
     name: `${config.frameworkName}Dialog`,
     props: {
       // 源数据
-      modelValue: String
+      modelValue: {
+        default: false,
+        type: Boolean
+      },
+      // visible: {
+      //   type: Boolean,
+      //   default: false
+      // }, // 显示隐藏
+      title: {
+        type: String,
+        default: ''
+      },
+      width: String,
+      message: {
+        type: String,
+        default: ''
+      },
+      messageAlign: {
+        type: String,
+        default: ''
+      },
+      theme: String,
+      className: {
+        type: String,
+        default: ''
+      },
+      showConfirmButton: {
+        type: Boolean,
+        default: true
+      },
+      showCancelButton: {
+        type: Boolean,
+        default: true
+      },
+      confirmButtonText: {
+        type: String,
+        default: ''
+      },
+      confirmButtonColor: {
+        type: String,
+        default: '#ee0a24'
+      },
+      cancelButtonText: {
+        type: String,
+        default: ''
+      },
+      cancelButtonColor: {
+        type: String,
+        default: 'black'
+      },
+      mask: {
+        type: Boolean,
+        default: true
+      },
+      maskClass: {
+        type: String,
+        default: ''
+      },
+      maskStyle: {
+        type: Object,
+        default: () => {}
+      },
+      closeOnClickMask: {
+        type: Boolean,
+        default: true
+      },
+      closeOnPopstate: {
+        type: Boolean,
+        default: false
+      },
+      lockScroll: {
+        type: Boolean,
+        default: true
+      },
+      allowHtml: {
+        type: Boolean,
+        default: false
+      },
+      beforeClose: {
+        type: Function,
+        default: () => {}
+      },
+      transition: {
+        type: String,
+        default: 'fade'
+      },
+      teleport: {
+        type: String,
+        default: 'body'
+      }
     },
+    emits: ['update:modelValue'],
     setup(props, { emit }) {
       const [initBem] = reactive(init('dialog'))
       const options: any = reactive({
@@ -80,7 +182,6 @@
         // duration: 3000, // 持续时间
         // iconType: '', // 当前的icon类型  scroll/null
         // timer: null, // 存储当前定时器
-        visible: false, // 显示隐藏
         // closed: false, // 隐藏的标识
         // transition: 'fat-fade', // 过渡动画名字
         // teleport: 'body', //挂载位置
@@ -90,30 +191,31 @@
         // closeOnClick: false,
         // closeOnClickMask: false,
         // className: '',
-        onOpened: () => {},
-        onClose: () => {},
-
-        title: '',
-        width: '',
-        message: '',
-        messageAlign: '',
-        theme: '',
-        className: '',
-        showConfirmButton: false,
-        showCancelButton: false,
-        confirmButtonText: '',
-        confirmButtonColor: '#ee0a24',
-        cancelButtonText: '',
-        cancelButtonColor: 'black',
-        mask: true,
-        maskClass: '',
-        maskStyle: {},
-        closeOnPopstate: false,
-        lockScroll: true,
-        allowHtml: false,
-        beforeClose: () => true,
-        transition: 'fade',
-        teleport: 'body'
+        visible: false // 显示隐藏
+        // onOpened: () => {},
+        // onClose: () => {},
+        // title: '',
+        // width: '',
+        // message: '',
+        // messageAlign: '',
+        // theme: '',
+        // className: '',
+        // showConfirmButton: false,
+        // showCancelButton: false,
+        // confirmButtonText: '',
+        // confirmButtonColor: '#ee0a24',
+        // cancelButtonText: '',
+        // cancelButtonColor: 'black',
+        // mask: true,
+        // maskClass: '',
+        // maskStyle: {},
+        // closeOnClickMask: false,
+        // closeOnPopstate: false,
+        // lockScroll: true,
+        // allowHtml: false,
+        // beforeClose: () => true,
+        // transition: 'fade',
+        // teleport: 'body'
       })
       const stringParseFunc = (value: number | string) => stringParse(value)
       /**
@@ -136,7 +238,11 @@
        * @param {*} close
        */
       const close = () => {
-        // options.closed = true
+        if (props.beforeClose) {
+          props.beforeClose(options.close)
+        }
+        options.closed = true
+        // return Promise.reject()
       }
 
       /**
@@ -173,6 +279,9 @@
       }
 
       onMounted(() => {
+        if (props.modelValue) {
+          options.visible = true
+        }
         // options.visible = true
         // startTimer()
       })
@@ -182,6 +291,27 @@
         () => options.closed,
         n => {
           n ? (options.visible = false) : null
+        }
+      )
+
+      watch(
+        () => props.modelValue,
+        n => {
+          console.log('开始监听', n)
+
+          if (n) {
+            options.visible = true
+          }
+        }
+      )
+
+      watch(
+        () => options.visible,
+        n => {
+          if (!n) {
+            emit('update:modelValue', options.visible)
+          }
+          console.log(options.visible)
         }
       )
 

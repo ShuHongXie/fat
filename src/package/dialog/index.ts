@@ -2,10 +2,10 @@
  * @Author: shuhongxie
  * @Date: 2021-01-20 17:06:50
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-09 23:12:26
+ * @LastEditTime: 2021-02-15 23:26:47
  * @FilePath: /fat-ui/src/package/dialog/index.ts
  */
-import { App, createVNode, render, getCurrentInstance } from 'vue'
+import { App, createVNode, render, getCurrentInstance, h, ref } from 'vue'
 import dialog from './index.vue'
 import mountComponent from '@/utils/general/mountComponent.ts'
 
@@ -85,15 +85,17 @@ const initOptions: InitOptions = {
   mask: true,
   maskClass: '',
   maskStyle: {},
+  closeOnClickMask: false,
   closeOnPopstate: false,
   lockScroll: true,
-  allowHtml: false,
+  allowHtml: true,
   beforeClose: () => true,
   transition: 'scale',
   teleport: 'body'
 }
 
 let appInstance: App | null = null // 存储App实例
+let initInstance: any = null
 const dialogType: type = ['alert', 'confirm']
 
 /**
@@ -113,12 +115,24 @@ const parseOption = (option: string | InitOptions) => {
  * @Author: shuhongxie
  * @param {*} any
  */
-const createDialogInstance = (): any => {
-  const { instance, clear } = mountComponent(appInstance, dialog)
-  return {
-    instance,
-    clear
+const createDialogInstance = (ops?: any): any => {
+  const props = dialog.props
+  for (const key in ops) {
+    if (props.hasOwnProperty(key)) {
+      props[key].default = ops[key]
+    }
   }
+
+  return mountComponent(appInstance, {
+    ...dialog,
+    props: {
+      ...props,
+      modelValue: {
+        default: true,
+        type: Boolean
+      }
+    }
+  })
 }
 
 /**
@@ -128,13 +142,17 @@ const createDialogInstance = (): any => {
  */
 function Dialog(ops?: any): any {
   console.log('开始初始化dialog')
-
-  const { instance } = createDialogInstance()
-  console.log(instance)
-
   const options = parseOption(ops)
-  instance?.component?.proxy.initOptions(options)
-  return instance
+  if (initInstance) {
+    initInstance.clear()
+  }
+  initInstance = createDialogInstance(options)
+  // instance?.component?.proxy.initOptions(options)
+  // return instance
+}
+
+Dialog.close = () => {
+  initInstance?.clear()
 }
 
 /**
@@ -178,8 +196,8 @@ dialogType.forEach((type: string) => {
    */
   Dialog[type] = (options: InitOptions) => {
     return Dialog({
-      type,
-      ...options
+      ...options,
+      showCancelButton: type === 'confirm' ? true : false
     })
   }
 })

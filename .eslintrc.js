@@ -1,3 +1,10 @@
+/*
+ * @Author: shuhongxie
+ * @Date: 2020-09-24 15:45:31
+ * @LastEditors: shuhongxie
+ * @LastEditTime: 2021-02-15 21:13:09
+ * @FilePath: /fat-ui/.eslintrc.js
+ */
 module.exports = {
   root: true,
   env: {
@@ -29,6 +36,7 @@ module.exports = {
     'keyword-spacing': [2, { before: true }], // 关键字空格
     'object-property-newline': [2, { allowAllPropertiesOnSameLine: false }], // 对象换行
     'semi': [2, 'never'],
+    'no-prototype-builtins': 'off',
     'quotes': [2, 'single'],
     'prettier/prettier': [
       'error',

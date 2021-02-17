@@ -1,5 +1,11 @@
+/*
+ * @Author: shuhongxie
+ * @Date: 2021-01-05 11:10:45
+ * @LastEditors: shuhongxie
+ * @LastEditTime: 2021-02-15 19:55:56
+ * @FilePath: /fat-ui/vue.config.js
+ */
 const path = require('path')
-const tsImportPluginFactory = require('ts-import-plugin')
 function resolve(dir) {
   // 路径可能与你的项目不同
   return path.join(__dirname, dir)
@@ -78,7 +84,7 @@ module.exports = {
         '@': resolve('src'),
         '*': resolve('./')
       },
-      extensions: ['*', '.js', '.json', '.vue', '.ts']
+      extensions: ['*', '.js', '.json', '.vue', '.ts', '.tsx']
     }
   }
 }
