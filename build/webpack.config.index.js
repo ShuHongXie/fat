@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-17 21:21:41
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 22:16:42
+ * @LastEditTime: 2021-02-17 22:33:23
  * @FilePath: /fat-ui/build/webpack.config.index.js
  */
 /*
@@ -61,7 +61,10 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            outputPath: '../font'
+            //  绝对路径
+            outputPath: '../lib/style/font/',
+            //  url链接相对路径
+            publicPath: '../style/font'
           }
         }
       },
