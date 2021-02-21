@@ -2,15 +2,8 @@
  * @Author: shuhongxie
  * @Date: 2021-02-17 21:21:41
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 22:55:31
+ * @LastEditTime: 2021-02-20 23:33:38
  * @FilePath: /fat-ui/build/webpack.config.index.js
- */
-/*
- * @Author: shuhongxie
- * @Date: 2021-02-08 20:28:45
- * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 17:04:59
- * @FilePath: /fat-ui/build/webpack.config.component.js
  */
 const path = require('path')
 const Components = require('../config/component.json')

@@ -35,9 +35,9 @@ module.exports = {
     'key-spacing': [2, { afterColon: true }], // 对象前空格
     'keyword-spacing': [2, { before: true }], // 关键字空格
     'object-property-newline': [2, { allowAllPropertiesOnSameLine: false }], // 对象换行
-    'semi': [2, 'never'],
+    semi: [2, 'never'],
     'no-prototype-builtins': 'off',
-    'quotes': [2, 'single'],
+    quotes: [2, 'single'],
     'prettier/prettier': [
       'error',
       // 如果插件配置中修改了相关选项，

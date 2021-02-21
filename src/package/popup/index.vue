@@ -54,7 +54,6 @@
     nextTick,
     ref
   } from 'vue'
-  import mask from '../mask/src/index.vue'
   import init from '@/utils/init'
   import config from '@/utils/config'
   import lockFunc from '@/utils/use/useLockScroll'

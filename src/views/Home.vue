@@ -224,8 +224,8 @@
           title: '展示的标题',
           message: '123',
           messageAlign: 'center',
-          width: 200,
-          closeOnClickMask: true
+          width: 200
+          // closeOnClickMask: true
         })
       }
 

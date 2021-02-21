@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-11-24 16:11:03
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 22:59:43
+ * @LastEditTime: 2021-02-19 23:35:10
  * @FilePath: /fat-ui/src/index.ts
  */
 import './style/index.scss'
@@ -15,7 +15,7 @@ import popup from './package/popup/index.ts'
 import row from './package/row/index.ts'
 import col from './package/col/index.ts'
 import icon from './package/icon/index.ts'
-import cell from './package/cell/index.ts'
+// import cell from './package/cell/index.ts'
 import checkbox from './package/checkbox/index.ts'
 import checkboxGroup from './package/checkboxGroup/index.ts'
 import radio from './package/radio/index.ts'
@@ -31,7 +31,7 @@ const components = [
   row,
   col,
   icon,
-  cell,
+  // cell,
   checkbox,
   checkboxGroup,
   radio,

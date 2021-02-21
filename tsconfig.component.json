@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true, // 允许引入没有默认导出的模块
+    "module": "es2015",
+    "allowJs": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "target": "es6",
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "lib": [
+      "dom",
+      "es5",
+      "es2015",
+      "dom.iterable"
+    ]
+  },
+  "include": [
+    "**/*"
+  ],
+  "exclude": ["node_modules"]
+}

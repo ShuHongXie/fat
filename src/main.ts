@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-09-24 15:52:53
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-17 21:35:23
+ * @LastEditTime: 2021-02-20 01:14:45
  * @FilePath: /fat-ui/src/main.ts
  */
 import { createApp } from 'vue'
@@ -26,25 +26,26 @@ import {
 } from 'vant'
 import fat from './index'
 import toast from './package/toast/index.ts'
+import col from './package/col/index.ts'
 import dialog from './package/dialog/index.ts'
 import home from './views/Home.vue'
-// console.log(toast)
+console.log(col)
 // console.log(fat)
 // console.log(Toast)
 
-export const app = createApp(App)
-  // .use(store)
-  .use(router)
-  .use(fat)
-  .use(Checkbox)
-  .use(CheckboxGroup)
-  .use(RadioGroup)
-  .use(Radio)
-  .use(Icon)
-  .use(AddressEdit)
-  .use(Col)
-  .use(Cell)
-  .use(Row)
+const ss = require('../lib/bundle.js').default
+console.log(ss)
+
+export const app = createApp(App).use(store).use(router).use(fat)
+// .use(Checkbox)
+// .use(CheckboxGroup)
+// .use(RadioGroup)
+// .use(Radio)
+// .use(Icon)
+// .use(AddressEdit)
+// .use(Col)
+// .use(Cell)
+// .use(Row)
 // .use(toast as any)
 // .use(Toast)
 app.mount('#app')

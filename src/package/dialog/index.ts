@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-20 17:06:50
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-15 23:26:47
+ * @LastEditTime: 2021-02-18 14:02:41
  * @FilePath: /fat-ui/src/package/dialog/index.ts
  */
 import { App, createVNode, render, getCurrentInstance, h, ref } from 'vue'
@@ -33,7 +33,7 @@ export type InitOptions = {
   maskClass?: string | string[] | object // 自定义遮罩层类名
   maskStyle?: object // 自定义遮罩层样式
   closeOnPopstate?: boolean //	是否在页面回退时自动关闭	true
-  closeOnClickMask?: boolean //	是否在点击遮罩层后关闭弹窗	false
+  closeOnClickMask?: any //	是否在点击遮罩层后关闭弹窗	false
   lockScroll?: boolean // 是否锁定背景滚动	true
   allowHtml?: boolean // 是否允许 message 内容中渲染 HTML	false
   beforeClose?: () => boolean //关闭前的回调函数，返回 false 可阻止关闭，支持返回 Promise	(action) => boolean | Promise	-
