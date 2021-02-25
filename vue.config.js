@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-05 11:10:45
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-15 19:55:56
+ * @LastEditTime: 2021-02-23 21:58:11
  * @FilePath: /fat-ui/vue.config.js
  */
 const path = require('path')
@@ -86,5 +86,14 @@ module.exports = {
       },
       extensions: ['*', '.js', '.json', '.vue', '.ts', '.tsx']
     }
+    // externals: {
+    //   vue: {
+    //     root: 'Vue',
+    //     commonjs: 'vue',
+    //     commonjs2: 'vue',
+    //     amd: 'vue'
+    //   },
+    //   'vue-router': 'VueRouter'
+    // }
   }
 }

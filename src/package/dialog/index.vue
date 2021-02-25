@@ -1,7 +1,7 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-15 23:05:37
+ * @LastEditTime: 2021-02-25 17:52:52
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/package/dialog/index.vue
@@ -75,9 +75,15 @@
   import stringParse from '@/utils/general/stringParse'
   import lockFunc from '@/utils/use/useLockScroll'
   import useLockTouch from '@/utils/use/useLockTouch'
+  import fatPopup from '../popup'
+  import fatButton from '../button'
   // import { InitOptions } from './index'
   export default defineComponent({
     name: `${config.frameworkName}Dialog`,
+    components: {
+      fatPopup,
+      fatButton
+    },
     props: {
       // 源数据
       modelValue: {

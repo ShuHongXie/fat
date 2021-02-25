@@ -2,8 +2,8 @@
  * @Author: shuhongxie
  * @Date: 2021-02-01 21:27:56
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-07 21:47:05
- * @FilePath: /fat-ui/src/views/loading/index.vue
+ * @LastEditTime: 2021-02-25 17:49:26
+ * @FilePath: /fat-ui/src/package/loading/index.vue
 -->
 <template>
   <span
@@ -32,8 +32,12 @@
   import init from '@/utils/init'
   import config from '@/utils/config'
   import stringParse from '@/utils/general/stringParse'
+  import fatIcon from '../icon'
   export default defineComponent({
     name: `${config.frameworkName}Loading`,
+    components: {
+      fatIcon
+    },
     props: {
       // 颜色
       color: {

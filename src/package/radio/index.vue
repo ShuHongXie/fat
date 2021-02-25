@@ -42,8 +42,12 @@
   import config from '@/utils/config'
   import useParent from '@/utils/use/useParent'
   import { COMPONENT_PARENT_NAME } from '@/package/radioGroup/index.vue'
+  import fatIcon from '../icon'
   export default defineComponent({
     name: `${config.frameworkName}Radio`,
+    components: {
+      fatIcon
+    },
     props: {
       // 选中颜色
       checkedColor: {

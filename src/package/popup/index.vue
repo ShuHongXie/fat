@@ -58,8 +58,12 @@
   import config from '@/utils/config'
   import lockFunc from '@/utils/use/useLockScroll'
   import maxZIndex from '@/utils/general/maxZIndex'
+  import fatMask from '../mask'
   export default defineComponent({
     name: `${config.frameworkName}Popup`,
+    components: {
+      fatMask
+    },
     props: {
       // z-index值
       zIndex: {

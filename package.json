@@ -1,12 +1,15 @@
 {
   "name": "fat-ui",
-  "version": "0.1.16",
+  "version": "0.1.17",
+  "author": "shuhongxie",
   "private": false,
   "main": "./dist/fat-ui.common.js",
   "files": [
     "lib/*",
-    "dist/*"
+    "dist/*",
+    "types/*"
   ],
+  "typings": "types/index.d.ts",
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -25,6 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@babel/plugin-proposal-optional-chaining": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.12.17",
     "@babel/preset-env": "^7.12.13",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
@@ -62,11 +66,12 @@
     "typescript": "~3.9.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "uuid": "^8.3.2",
-    "vant": "^3.0.5",
+    "vant": "^3.0.6",
     "vue-loader": "^16.1.2",
     "vuex": "^4.0.0-0",
     "webpack": "^4.41.2",
     "webpack-bundle-analyzer": "^4.3.0",
-    "webpack-cli": "^4.5.0"
+    "webpack-cli": "^4.5.0",
+    "webpack-node-externals": "^2.5.2"
   }
 }

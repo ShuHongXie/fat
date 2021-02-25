@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-20 17:06:50
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-09 14:43:54
+ * @LastEditTime: 2021-02-23 14:39:18
  * @FilePath: /fat-ui/src/package/toast/index.ts
  */
 import { App, createVNode, render, getCurrentInstance } from 'vue'
@@ -15,7 +15,7 @@ toast.install = (app: App) => {
   app.component(toast.name, toast)
 }
 
-export type InitOptions = {
+export type ToastOptions = {
   message?: string // 提示信息
   icon?: string // 当前渲染的图片/图标
   iconPrefix?: string // 图标前缀
@@ -40,7 +40,7 @@ export type InitOptions = {
 
 export type type = string[]
 
-const OPTIONS: InitOptions = {
+const OPTIONS: ToastOptions = {
   message: '',
   icon: '',
   dangerouslyUseHTMLString: true,
@@ -62,7 +62,7 @@ const OPTIONS: InitOptions = {
   onClose: () => {}
 }
 
-const initOptions: InitOptions = {
+const initOptions: ToastOptions = {
   message: '',
   icon: '',
   dangerouslyUseHTMLString: true,
@@ -94,7 +94,7 @@ const toastType: type = ['loading', 'success', 'fail']
  * @Author: shuhongxie
  * @param {string} option
  */
-const parseOption = (option: string | InitOptions) => {
+const parseOption = (option: string | ToastOptions) => {
   if (typeof option === 'string') {
     option = { message: option }
   }
@@ -175,7 +175,7 @@ Toast.clear = (clearAll = false) => {
  * @Author: shuhongxie
  * @param {string} options
  */
-Toast.setDefaultOptions = (options: string | InitOptions) => {
+Toast.setDefaultOptions = (options: string | ToastOptions) => {
   if (typeof options === 'string') {
     initOptions.type = options
   } else {
@@ -188,7 +188,7 @@ Toast.setDefaultOptions = (options: string | InitOptions) => {
 /**
  * @Description: 重置为默认设置
  * @Author: shuhongxie
- * @param {InitOptions} optons
+ * @param {ToastOptions} optons
  */
 Toast.resetDefaultOptions = () => {
   for (const i in OPTIONS) {
@@ -200,9 +200,9 @@ toastType.forEach((type: string) => {
   /**
    * @Description: 设置不同类型的toast实例
    * @Author: shuhongxie
-   * @param {InitOptions} options
+   * @param {ToastOptions} options
    */
-  Toast[type] = (options: InitOptions) => {
+  Toast[type] = (options: ToastOptions) => {
     return Toast({
       type,
       ...options

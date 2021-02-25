@@ -36,7 +36,6 @@
         @close="close"
       /> -->
       <!-- <fat-mask :visible="true" /> -->
-      <van-icon class-prefix="my-icon" name="extra" />
       <fat-icon classPrefix="dsss" name="arrow-up-circle" color="red" dot></fat-icon>
       <fat-icon @click="clickIcon" name="arrow-up-circle" color="red" dot></fat-icon>
       <fat-row :tag="`span`" type="flex" @click="clickRow">
@@ -220,13 +219,13 @@
       }
 
       const dialogTest = () => {
-        curr?.proxy.$dialog.alert({
-          title: '展示的标题',
-          message: '123',
-          messageAlign: 'center',
-          width: 200
-          // closeOnClickMask: true
-        })
+        // curr?.proxy.$dialog.alert({
+        //   title: '展示的标题',
+        //   message: '123',
+        //   messageAlign: 'center',
+        //   width: 200
+        //   // closeOnClickMask: true
+        // })
       }
 
       const routerpush1 = () => {

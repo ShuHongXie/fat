@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-07 20:03:15
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-09 19:51:17
+ * @LastEditTime: 2021-02-25 17:59:24
  * @FilePath: /fat-ui/src/package/button/button.tsx
  */
 import { defineComponent, ref, PropType, reactive } from 'vue'
@@ -11,10 +11,16 @@ import { useRoute, routeProps } from '@/utils/use/useRoute'
 import config from '@/utils/config'
 import stringParse from '@/utils/general/stringParse'
 import './index.scss'
+import fatIcon from '../icon'
+import fatLoading from '../loading'
 
 //  "button": "./src/package/button/index.ts",
 export default defineComponent({
   name: `${config.frameworkName}Button`,
+  components: {
+    fatIcon,
+    fatLoading
+  },
   props: {
     // 按钮根节点的 HTML 标签	string	button
     tag: {

@@ -1,10 +1,10 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-05 17:12:28
+ * @LastEditTime: 2021-02-25 17:48:53
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
- * @FilePath: /fat-ui/src/views/toast/index.vue
+ * @FilePath: /fat-ui/src/package/toast/index.vue
 -->
 <template>
   <teleport :to="options.teleport">
@@ -47,16 +47,24 @@
   import config from '@/utils/config'
   import lockFunc from '@/utils/use/useLockScroll'
   import useLockTouch from '@/utils/use/useLockTouch'
-  import { InitOptions } from './index'
+  import { ToastOptions } from './index'
+  import fatPopup from '../popup'
+  import fatIcon from '../icon'
+  import fatLoading from '../loading'
   export default defineComponent({
     name: `${config.frameworkName}Toast`,
+    components: {
+      fatPopup,
+      fatIcon,
+      fatLoading
+    },
     props: {
       // 源数据
       modelValue: String
     },
     setup(props, { emit }) {
       const [initBem] = reactive(init('toast'))
-      const options: InitOptions = reactive({
+      const options: ToastOptions = reactive({
         message: '', // 提示信息
         icon: '', // 当前渲染的图片
         mask: false,

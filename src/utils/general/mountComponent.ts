@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-25 20:12:29
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-15 20:34:58
+ * @LastEditTime: 2021-02-25 17:12:56
  * @FilePath: /fat-ui/src/utils/general/mountComponent.ts
  */
 import { createApp, App, defineComponent, render, createVNode } from 'vue'
@@ -18,7 +18,10 @@ export default function mountComponent(app: App, container: Component): mountedC
 
   // 创建实例
   const instance = createApp(container)
-  const vm = createVNode(container, {})
+  const vm = createVNode(container)
+  console.log(app)
+  console.log(vm)
+
   vm.appContext = app?._context
 
   // 创建元素

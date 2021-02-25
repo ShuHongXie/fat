@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-09-24 15:45:31
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-07 20:03:03
+ * @LastEditTime: 2021-02-22 11:17:41
  * @FilePath: /fat-ui/babel.config.js
  */
 module.exports = {
@@ -17,6 +17,11 @@ module.exports = {
       },
       'vant'
     ],
-    ['@vue/babel-plugin-jsx']
+    [
+      '@vue/babel-plugin-jsx',
+      {
+        enableObjectSlots: true
+      }
+    ]
   ]
 }

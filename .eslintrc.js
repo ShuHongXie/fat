@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-09-24 15:45:31
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-15 21:13:09
+ * @LastEditTime: 2021-02-23 15:36:52
  * @FilePath: /fat-ui/.eslintrc.js
  */
 module.exports = {
@@ -31,6 +31,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/class-name-casing': 'off',
     'no-empty': 'warn',
     'key-spacing': [2, { afterColon: true }], // 对象前空格
     'keyword-spacing': [2, { before: true }], // 关键字空格
