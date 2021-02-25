@@ -6,7 +6,9 @@ node_modules
 /style
 /lib
 /test
-
+/vue
+/runtime-core
+/runtime-dom
 
 # local env files
 .env.local
