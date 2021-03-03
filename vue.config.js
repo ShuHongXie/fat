@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-05 11:10:45
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-23 21:58:11
+ * @LastEditTime: 2021-03-03 22:28:53
  * @FilePath: /fat-ui/vue.config.js
  */
 const path = require('path')
@@ -82,10 +82,12 @@ module.exports = {
     resolve: {
       alias: {
         '@': resolve('src'),
-        '*': resolve('./')
+        '*': resolve('./'),
+        'fat-ui': resolve('src')
       },
       extensions: ['*', '.js', '.json', '.vue', '.ts', '.tsx']
-    }
+    },
+    externals: [{}]
     // externals: {
     //   vue: {
     //     root: 'Vue',

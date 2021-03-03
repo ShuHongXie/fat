@@ -1,3 +1,10 @@
+<!--
+ * @Author: shuhongxie
+ * @Date: 2021-02-17 21:19:41
+ * @LastEditors: shuhongxie
+ * @LastEditTime: 2021-03-03 22:04:32
+ * @FilePath: /fat-ui/src/package/mask/src/index.vue
+-->
 <template>
   <teleport :to="teleport">
     <transition name="fat-fade">
@@ -17,8 +24,8 @@
 
 <script lang="ts">
   import { defineComponent, reactive, computed, watchEffect, onMounted, inject } from 'vue'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
   export default defineComponent({
     name: `${config.frameworkName}Mask`,
     props: {
@@ -69,7 +76,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

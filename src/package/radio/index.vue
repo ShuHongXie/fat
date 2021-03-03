@@ -38,10 +38,10 @@
     watch,
     onBeforeMount
   } from 'vue'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
-  import useParent from '@/utils/use/useParent'
-  import { COMPONENT_PARENT_NAME } from '@/package/radioGroup/index.vue'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
+  import useParent from 'fat-ui/utils/use/useParent'
+  import { COMPONENT_PARENT_NAME } from 'fat-ui/package/radioGroup/index.vue'
   import fatIcon from '../icon'
   export default defineComponent({
     name: `${config.frameworkName}Radio`,
@@ -147,7 +147,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

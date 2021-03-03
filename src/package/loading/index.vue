@@ -29,9 +29,9 @@
 
 <script lang="ts">
   import { defineComponent, reactive } from 'vue'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
-  import stringParse from '@/utils/general/stringParse'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
+  import stringParse from 'fat-ui/utils/general/stringParse'
   import fatIcon from '../icon'
   export default defineComponent({
     name: `${config.frameworkName}Loading`,
@@ -89,7 +89,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

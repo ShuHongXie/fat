@@ -15,9 +15,12 @@
     "noEmitOnError": true,
     "alwaysStrict": true,
     "baseUrl": ".",
-    "types": ["webpack-env", ],
+    // "types": ["webpack-env"],
+    "declaration": true,
+    "declarationDir": "./types",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "fat-ui/*": ["src/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },

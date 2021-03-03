@@ -31,9 +31,9 @@
     getCurrentInstance,
     onMounted
   } from 'vue'
-  import init from '@/utils/init'
-  import useChildren from '@/utils/use/useChildren'
-  import config from '@/utils/config'
+  import init from 'fat-ui/utils/init'
+  import useChildren from 'fat-ui/utils/use/useChildren'
+  import config from 'fat-ui/utils/config'
   export const COMPONENT_PARENT_NAME = 'radioGroup'
   export default defineComponent({
     name: `${config.frameworkName}RadioGroup`,
@@ -62,7 +62,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

@@ -2,8 +2,8 @@
  * @Author: shuhongxie
  * @Date: 2020-12-01 20:43:46
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-05 10:50:50
- * @FilePath: /fat-ui/src/views/image/index.vue
+ * @LastEditTime: 2021-03-03 22:04:21
+ * @FilePath: /fat-ui/src/package/image/index.vue
 -->
 <template>
   <div
@@ -50,9 +50,9 @@
 
 <script lang="ts">
   import { defineComponent, onMounted, reactive, ref } from 'vue'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
-  import stringParse from '@/utils/general/stringParse'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
+  import stringParse from 'fat-ui/utils/general/stringParse'
   export default defineComponent({
     name: `${config.frameworkName}Image`,
     props: {
@@ -182,7 +182,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

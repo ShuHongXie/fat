@@ -1,10 +1,10 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-08 17:14:49
+ * @LastEditTime: 2021-03-03 22:03:52
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
- * @FilePath: /fat-ui/src/views/checkboxGroup/index.vue
+ * @FilePath: /fat-ui/src/package/checkboxGroup/index.vue
 -->
 <template>
   <div
@@ -31,9 +31,9 @@
     getCurrentInstance,
     onMounted
   } from 'vue'
-  import init from '@/utils/init'
-  import useChildren from '@/utils/use/useChildren'
-  import config from '@/utils/config'
+  import init from 'fat-ui/utils/init'
+  import useChildren from 'fat-ui/utils/use/useChildren'
+  import config from 'fat-ui/utils/config'
   export const COMPONENT_PARENT_NAME = 'checkboxGroup'
   export default defineComponent({
     name: `${config.frameworkName}CheckboxGroup`,
@@ -83,7 +83,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

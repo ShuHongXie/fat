@@ -13,7 +13,7 @@
  * b('text', { disabled }) // 'button__text button__text--disabled'
  * b(['disabled', 'primary']) // 'button button--disabled button--primary'
  */
-import config from '@/utils/config'
+import config from 'fat-ui/utils/config'
 
 // 初始化type
 type bemObj = Array<string> | Record<any, string> | string

@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-04 16:14:11
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-16 14:55:06
+ * @LastEditTime: 2021-03-01 14:30:55
  * @FilePath: /fat-ui/src/utils/directive/index.ts
  */
 import { App, nextTick, DirectiveBinding } from 'vue'
@@ -75,3 +75,5 @@ export default (app: App) => {
     }
   })
 }
+
+let vnodeArgsTransformer: ((args: string, instance: null) => any) | undefined

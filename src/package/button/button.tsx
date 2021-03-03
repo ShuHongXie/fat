@@ -2,21 +2,23 @@
  * @Author: shuhongxie
  * @Date: 2021-02-07 20:03:15
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-25 17:59:24
+ * @LastEditTime: 2021-03-03 23:07:48
  * @FilePath: /fat-ui/src/package/button/button.tsx
  */
-import { defineComponent, ref, PropType, reactive } from 'vue'
-import init from '@/utils/init'
-import { useRoute, routeProps } from '@/utils/use/useRoute'
-import config from '@/utils/config'
-import stringParse from '@/utils/general/stringParse'
-import './index.scss'
-import fatIcon from '../icon'
-import fatLoading from '../loading'
+import { defineComponent, PropType, reactive } from 'vue'
+import init from 'fat-ui/utils/init'
+import { useRoute, routeProps } from 'fat-ui/utils/use/useRoute'
+import config from 'fat-ui/utils/config'
+import fatIcon from 'fat-ui/package/icon'
+import fatLoading from 'fat-ui/package/loading'
 
 //  "button": "./src/package/button/index.ts",
 export default defineComponent({
   name: `${config.frameworkName}Button`,
+  // components: {
+  //   fatIcon: defineAsyncComponent(() => import('fat-ui/package/icon')),
+  //   fatLoading: defineAsyncComponent(() => import('../loading'))
+  // },
   components: {
     fatIcon,
     fatLoading

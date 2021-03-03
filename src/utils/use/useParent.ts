@@ -1,6 +1,6 @@
 import { inject, getCurrentInstance, onUnmounted, computed } from 'vue'
 import type { ComponentInternalInstance } from 'vue'
-// import interface { ProvidePrototype } from '@/utils/use/useParent'
+// import interface { ProvidePrototype } from 'fat-ui/utils/use/useParent'
 
 export declare interface ProvidePrototype {
   addLink(children: ComponentInternalInstance | null): void

@@ -54,10 +54,10 @@
     nextTick,
     ref
   } from 'vue'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
-  import lockFunc from '@/utils/use/useLockScroll'
-  import maxZIndex from '@/utils/general/maxZIndex'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
+  import lockFunc from 'fat-ui/utils/use/useLockScroll'
+  import maxZIndex from 'fat-ui/utils/general/maxZIndex'
   import fatMask from '../mask'
   export default defineComponent({
     name: `${config.frameworkName}Popup`,
@@ -184,7 +184,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

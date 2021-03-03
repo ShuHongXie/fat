@@ -1,7 +1,7 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-25 17:48:53
+ * @LastEditTime: 2021-03-03 22:05:17
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/package/toast/index.vue
@@ -43,10 +43,10 @@
 
 <script lang="ts">
   import { defineComponent, reactive, onMounted, watch } from 'vue'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
-  import lockFunc from '@/utils/use/useLockScroll'
-  import useLockTouch from '@/utils/use/useLockTouch'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
+  import lockFunc from 'fat-ui/utils/use/useLockScroll'
+  import useLockTouch from 'fat-ui/utils/use/useLockTouch'
   import { ToastOptions } from './index'
   import fatPopup from '../popup'
   import fatIcon from '../icon'
@@ -180,27 +180,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>
-<!-- <div
-        :class="[
-          initBem({
-            [options.type === 'text' && options.icon ? '' : options.type]: '',
-            [options.position]: ''
-          }),
-          Array.isArray(options.className) ? options.className.join(' ') : options.className
-        ]"
-        @click="closeIt"
-        v-show="options.visible"
-      >
-        <slot>
-          <fat-loading text="" v-if="options.type === 'loading'" />
-          <fat-icon name="select" v-if="options.type === 'success'" />
-          <fat-icon name="close" v-if="options.type === 'fail'" />
-          <fat-icon :name="options.icon" v-if="options.type === 'text' && options.icon" />
-        </slot>
-        <span :class="initBem('text')">{{ options.message }}</span>
-      </div> -->
-<!-- </transition> -->

@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-17 21:21:41
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-20 23:33:38
+ * @LastEditTime: 2021-03-03 23:55:23
  * @FilePath: /fat-ui/build/webpack.config.index.js
  */
 const path = require('path')
@@ -13,6 +13,13 @@ const VueLoaderPlugin = require('vue-loader/dist/plugin').default
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // 自动清除webpack打包后的文件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// css tree-shaking
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+// glob
+const glob = require('glob')
+const PATHS = {
+  src: path.join(__dirname, 'src')
+}
 
 module.exports = {
   mode: 'production',
@@ -101,6 +108,9 @@ module.exports = {
       // 所有选项都是可选的
       filename: '../lib/style/index.css',
       chunkFilename: '../lib/style/index.css'
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }) // 注意是绝对路径匹配
     })
   ]
 }

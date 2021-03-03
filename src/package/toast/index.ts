@@ -6,9 +6,9 @@
  * @FilePath: /fat-ui/src/package/toast/index.ts
  */
 import { App, createVNode, render, getCurrentInstance } from 'vue'
-import { mountedCompoent } from '@/utils/general/mountComponent'
+import { mountedCompoent } from 'fat-ui/utils/general/mountComponent'
 import toast from './index.vue'
-import mountComponent from '@/utils/general/mountComponent.ts'
+import mountComponent from 'fat-ui/utils/general/mountComponent.ts'
 console.log(toast)
 
 toast.install = (app: App) => {

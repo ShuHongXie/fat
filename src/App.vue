@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-17 21:19:41
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-24 14:34:20
+ * @LastEditTime: 2021-03-01 14:33:39
  * @FilePath: /fat-ui/src/App.vue
 -->
 <template>

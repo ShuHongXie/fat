@@ -114,7 +114,7 @@
 </template>
 
 <script lang="ts">
-  import bem from '@/utils/init/bem'
+  import bem from 'fat-ui/utils/init/bem'
   import Vue from 'vue'
   import {
     getCurrentInstance,
@@ -126,7 +126,7 @@
     inject,
     ref
   } from 'vue'
-  import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+  import HelloWorld from 'fat-ui/components/HelloWorld.vue' // @ is an alias to /src
 
   export interface State {
     count: number
@@ -353,7 +353,7 @@
 </script>
 
 <style lang="scss">
-  @import '~@/style/index.scss';
+  @import '~fat-ui/style/index.scss';
   .home {
     width: 100%;
     height: 100%;

@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/test',
-    component: () => import('@/views/TestTs.vue')
+    component: () => import('fat-ui/views/TestTs.vue')
   }
 ]
 

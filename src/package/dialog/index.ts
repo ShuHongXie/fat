@@ -7,7 +7,7 @@
  */
 import { App, createVNode, render, getCurrentInstance, h, ref } from 'vue'
 import dialog from './index.vue'
-import mountComponent from '@/utils/general/mountComponent.ts'
+import mountComponent from 'fat-ui/utils/general/mountComponent.ts'
 
 dialog.install = (app: App) => {
   app.component(dialog.name, dialog)

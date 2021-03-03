@@ -1,9 +1,4 @@
 @font-face {
   font-family: 'fat';
-  src: url('~@/style/font/iconfont.eot');
-  src: url('~@/style/font/iconfont.eot?#iefix') format('embedded-opentype'),
-    url('~@/style/font/iconfont.woff2') format('woff2'),
-    url('~@/style/font/iconfont.woff') format('woff'),
-    url('~@/style/font/iconfont.ttf') format('truetype'),
-    url('~@/style/font/iconfont.svg#iconfont') format('svg');
+  src: url('~@/style/font/iconfont.woff') format('woff'), url('~@/style/font/iconfont.ttf');
 }

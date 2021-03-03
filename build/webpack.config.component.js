@@ -2,10 +2,11 @@
  * @Author: shuhongxie
  * @Date: 2021-02-08 20:28:45
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-25 17:41:40
+ * @LastEditTime: 2021-03-04 00:01:24
  * @FilePath: /fat-ui/build/webpack.config.component.js
  */
 const path = require('path')
+const config = require('./config')
 // ts类型检查
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 // json配置多入口
@@ -16,10 +17,22 @@ const VueLoaderPlugin = require('vue-loader/dist/plugin').default
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // 自动清除webpack打包后的文件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-// 清楚nodeModule里面的包
+// 清除nodeModule里面的包
 const nodeExternals = require('webpack-node-externals')
+// 插件和loader用时分析
+const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin')
+const smp = new SpeedMeasureWebpackPlugin()
+// js体积压缩
+const TerserPlugin = require('terser-webpack-plugin')
+// css tree-shaking
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+// glob
+const glob = require('glob')
+const PATHS = {
+  src: path.join(__dirname, 'src')
+}
 
-module.exports = {
+module.exports = smp.wrap({
   mode: 'production',
   entry: Components,
   output: {
@@ -27,37 +40,26 @@ module.exports = {
     filename: '[name].js',
     // chunkFilename: '[name].js',
     libraryTarget: 'umd', // 兼容cmd amd commonjs模式
-    libraryExport: 'default',
+    // libraryExport: 'default',
     umdNamedDefine: true,
     globalObject: 'typeof self !== "undefined" ? self : this'
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.json', '.vue'],
-    alias: {
-      '@': path.resolve(__dirname, '../src'),
-      // vue: 'Vue'
-      vue: '@vue/runtime-dom'
-      // vue$: 'vue/dist/vue.esm.js'
-    }
+    alias: config.alias
   },
-  externals: [
-    {
-      vue: 'vue',
-      'vue-router': 'VueRouter'
-    },
-    nodeExternals()
-  ],
+  externals: config.externals,
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-            // options: {
-            //   hmr: process.env.NODE_ENV === 'development'
-            // }
-          },
+          // {
+          //   loader: MiniCssExtractPlugin.loader
+          //   // options: {
+          //   //   hmr: process.env.NODE_ENV === 'development'
+          //   // }
+          // },
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -140,7 +142,12 @@ module.exports = {
     ]
   },
   optimization: {
-    // minimize: true,
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: 4 // 开启 不主动指定的话，默认数值是当前电脑cpu数量的2倍减1
+      })
+    ]
     // usedExports: true,
     //portableRecords: true,
     //runtimeChunk: 'single',
@@ -171,6 +178,7 @@ module.exports = {
     // new ForkTsCheckerWebpackPlugin({
     //   async: false
     // }),
+
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
@@ -179,5 +187,8 @@ module.exports = {
       filename: '../lib/style/[name].css'
       // chunkFilename: '../lib/style/[id].css'
     })
+    // new PurgecssPlugin({
+    //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }) // 注意是绝对路径匹配
+    // })
   ]
-}
+})

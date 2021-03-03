@@ -40,9 +40,9 @@
     nextTick,
     ref
   } from 'vue'
-  import { useRoute, routeProps } from '@/utils/use/useRoute'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
+  import { useRoute, routeProps } from 'fat-ui/utils/use/useRoute'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
   export default defineComponent({
     name: `${config.frameworkName}Cell`,
     props: {

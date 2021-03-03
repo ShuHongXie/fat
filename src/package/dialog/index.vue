@@ -1,7 +1,7 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-02-25 17:52:52
+ * @LastEditTime: 2021-03-04 00:06:40
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/package/dialog/index.vue
@@ -70,13 +70,13 @@
 
 <script lang="ts">
   import { defineComponent, reactive, onMounted, watch } from 'vue'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
-  import stringParse from '@/utils/general/stringParse'
-  import lockFunc from '@/utils/use/useLockScroll'
-  import useLockTouch from '@/utils/use/useLockTouch'
-  import fatPopup from '../popup'
-  import fatButton from '../button'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
+  import stringParse from 'fat-ui/utils/general/stringParse'
+  import lockFunc from 'fat-ui/utils/use/useLockScroll'
+  import useLockTouch from 'fat-ui/utils/use/useLockTouch'
+  import fatPopup from 'fat-ui/package/popup'
+  import fatButton from 'fat-ui/package/button'
   // import { InitOptions } from './index'
   export default defineComponent({
     name: `${config.frameworkName}Dialog`,
@@ -334,7 +334,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

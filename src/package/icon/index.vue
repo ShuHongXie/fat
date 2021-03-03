@@ -28,9 +28,9 @@
 
 <script lang="ts">
   import { defineComponent, onMounted, reactive, ref } from 'vue'
-  import init from '@/utils/init'
-  import config from '@/utils/config'
-  import stringParse from '@/utils/general/stringParse'
+  import init from 'fat-ui/utils/init'
+  import config from 'fat-ui/utils/config'
+  import stringParse from 'fat-ui/utils/general/stringParse'
   export default defineComponent({
     name: `${config.frameworkName}Icon`,
     props: {
@@ -90,7 +90,3 @@
     }
   })
 </script>
-
-<style lang="scss">
-  @import './index';
-</style>

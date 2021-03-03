@@ -1,0 +1,17 @@
+{
+  "mask": "./src/package/mask/index.ts",
+  "popup": "./src/package/popup/index.ts",
+  "row": "./src/package/row/index.ts",
+  "col": "./src/package/col/index.ts",
+  "icon": "./src/package/icon/index.ts",
+  "cell": "./src/package/cell/index.ts",
+  "checkbox": "./src/package/checkbox/index.ts",
+  "checkboxGroup": "./src/package/checkboxGroup/index.ts",
+  "radio": "./src/package/radio/index.ts",
+  "radioGroup": "./src/package/radioGroup/index.ts",
+  "loading": "./src/package/loading/index.ts",
+  "image": "./src/package/image/index.ts",
+  "toast": "./src/package/toast/index.ts",
+  "button": "./src/package/button/index.ts",
+  "dialog": "./src/package/dialog/index.ts"
+}

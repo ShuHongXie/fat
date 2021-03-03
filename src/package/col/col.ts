@@ -1,7 +1,13 @@
+/*
+ * @Author: shuhongxie
+ * @Date: 2021-02-17 21:19:41
+ * @LastEditors: shuhongxie
+ * @LastEditTime: 2021-03-03 22:11:00
+ * @FilePath: /fat-ui/src/package/col/col.ts
+ */
 import { h, reactive, defineComponent, onMounted } from 'vue'
-import init from '@/utils/init'
-import config from '@/utils/config'
-import './index.scss'
+import init from 'fat-ui/utils/init'
+import config from 'fat-ui/utils/config'
 
 export default defineComponent({
   name: `${config.frameworkName}Col`,

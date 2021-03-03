@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts">
-  import bem from '@/utils/init/bem'
+  import bem from 'fat-ui/utils/init/bem'
   import { defineComponent, reactive, computed, watchEffect, onMounted, toRef } from 'vue'
-  // import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+  // import HelloWorld from 'fat-ui/components/HelloWorld.vue' // @ is an alias to /src
 
   export interface State {
     count: number
