@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-01 21:27:56
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-25 17:49:26
+ * @LastEditTime: 2021-03-04 14:04:33
  * @FilePath: /fat-ui/src/package/loading/index.vue
 -->
 <template>
@@ -32,7 +32,7 @@
   import init from 'fat-ui/utils/init'
   import config from 'fat-ui/utils/config'
   import stringParse from 'fat-ui/utils/general/stringParse'
-  import fatIcon from '../icon'
+  import fatIcon from 'fat-ui/package/icon'
   export default defineComponent({
     name: `${config.frameworkName}Loading`,
     components: {

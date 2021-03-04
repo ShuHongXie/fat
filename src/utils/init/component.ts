@@ -4,7 +4,7 @@
  * @Last Modified by: shuhongxie
  * @Last Modified time: 2020-11-24 16:27:18
  */
-import { defineComponent, ComponentOptionsWithObjectProps, App } from 'vue'
+// import { defineComponent, ComponentOptionsWithObjectProps, App } from 'vue'
 import config from 'fat-ui/utils/config'
 
 /**

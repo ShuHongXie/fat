@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-01-25 20:12:29
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-02-25 17:12:56
+ * @LastEditTime: 2021-03-04 22:27:43
  * @FilePath: /fat-ui/src/utils/general/mountComponent.ts
  */
 import { createApp, App, defineComponent, render, createVNode } from 'vue'
@@ -34,7 +34,7 @@ export default function mountComponent(app: App, container: Component): mountedC
   return {
     instance: vm,
     clear: () => {
-      instance.unmount(div)
+      instance.unmount()
       document.body.removeChild(div)
       setTimeout(() => {}, 0)
     }

@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-08 20:28:45
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-03-04 00:01:24
+ * @LastEditTime: 2021-03-04 22:23:56
  * @FilePath: /fat-ui/build/webpack.config.component.js
  */
 const path = require('path')
@@ -40,7 +40,7 @@ module.exports = smp.wrap({
     filename: '[name].js',
     // chunkFilename: '[name].js',
     libraryTarget: 'umd', // 兼容cmd amd commonjs模式
-    // libraryExport: 'default',
+    libraryExport: 'default',
     umdNamedDefine: true,
     globalObject: 'typeof self !== "undefined" ? self : this'
   },
@@ -142,12 +142,12 @@ module.exports = smp.wrap({
     ]
   },
   optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        parallel: 4 // 开启 不主动指定的话，默认数值是当前电脑cpu数量的2倍减1
-      })
-    ]
+    // minimize: true,
+    // minimizer: [
+    //   new TerserPlugin({
+    //     parallel: 4 // 开启 不主动指定的话，默认数值是当前电脑cpu数量的2倍减1
+    //   })
+    // ]
     // usedExports: true,
     //portableRecords: true,
     //runtimeChunk: 'single',
@@ -180,13 +180,13 @@ module.exports = smp.wrap({
     // }),
 
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      // 类似于 webpackOptions.output 中的选项
-      // 所有选项都是可选的
-      filename: '../lib/style/[name].css'
-      // chunkFilename: '../lib/style/[id].css'
-    })
+    new CleanWebpackPlugin()
+    // new MiniCssExtractPlugin({
+    //   // 类似于 webpackOptions.output 中的选项
+    //   // 所有选项都是可选的
+    //   filename: '../lib/style/[name].css'
+    //   // chunkFilename: '../lib/style/[id].css'
+    // })
     // new PurgecssPlugin({
     //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }) // 注意是绝对路径匹配
     // })

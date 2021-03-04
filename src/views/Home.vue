@@ -8,6 +8,7 @@
         plain
         type="primary"
         icon="drag"
+        loading
         color=""
         hairline
         iconPosition="right"

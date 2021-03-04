@@ -41,8 +41,7 @@
   import init from 'fat-ui/utils/init'
   import config from 'fat-ui/utils/config'
   import useParent from 'fat-ui/utils/use/useParent'
-  import { COMPONENT_PARENT_NAME } from 'fat-ui/package/radioGroup/index.vue'
-  import fatIcon from '../icon'
+  import fatIcon from 'fat-ui/package/icon'
   export default defineComponent({
     name: `${config.frameworkName}Radio`,
     components: {
@@ -130,7 +129,7 @@
 
       onBeforeMount(() => {
         // 账号绑定
-        parentObj = useParent(COMPONENT_PARENT_NAME)
+        parentObj = useParent('radioGroup')
         parent = parentObj.parent
       })
 

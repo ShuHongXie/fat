@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-03-03 22:13:38
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-03-03 23:58:27
+ * @LastEditTime: 2021-03-04 22:20:20
  * @FilePath: /fat-ui/build/config.js
  */
 const path = require('path')
@@ -50,9 +50,10 @@ externals = [
   ),
   nodeExternals()
 ]
-console.log(externals)
+// console.log(externals)
 exports.externals = externals
 
 exports.alias = {
-  'fat-ui': path.resolve(__dirname, '../src')
+  'fat-ui': path.resolve(__dirname, '../src'),
+  vue: '@vue/runtime-dom'
 }

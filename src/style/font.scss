@@ -1,4 +1,10 @@
+// @font-face {
+//   font-family: 'fat';
+//   src: url('font/iconfont.woff') format('woff'), url('font/iconfont.ttf');
+// }
+
 @font-face {
   font-family: 'fat';
-  src: url('~@/style/font/iconfont.woff') format('woff'), url('~@/style/font/iconfont.ttf');
+  src: url('~fat-ui/style/font/iconfont.woff') format('woff'),
+    url('~fat-ui/style/font/iconfont.ttf');
 }

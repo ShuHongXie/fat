@@ -58,7 +58,7 @@
   import config from 'fat-ui/utils/config'
   import lockFunc from 'fat-ui/utils/use/useLockScroll'
   import maxZIndex from 'fat-ui/utils/general/maxZIndex'
-  import fatMask from '../mask'
+  import fatMask from 'fat-ui/package/mask'
   export default defineComponent({
     name: `${config.frameworkName}Popup`,
     components: {

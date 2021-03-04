@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2020-12-01 20:43:46
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-03-03 22:04:21
+ * @LastEditTime: 2021-03-04 14:04:21
  * @FilePath: /fat-ui/src/package/image/index.vue
 -->
 <template>
@@ -53,8 +53,12 @@
   import init from 'fat-ui/utils/init'
   import config from 'fat-ui/utils/config'
   import stringParse from 'fat-ui/utils/general/stringParse'
+  import fatIcon from 'fat-ui/package/icon'
   export default defineComponent({
     name: `${config.frameworkName}Image`,
+    components: {
+      fatIcon
+    },
     props: {
       // 图片链接
       src: {

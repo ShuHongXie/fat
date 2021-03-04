@@ -1,7 +1,7 @@
 <!--
  * @Author: shuhongxie
  * @Date: 2021-01-07 20:34:26
- * @LastEditTime: 2021-03-03 22:05:17
+ * @LastEditTime: 2021-03-04 14:06:08
  * @LastEditors: shuhongxie
  * @Description: In User Settings Edit
  * @FilePath: /fat-ui/src/package/toast/index.vue
@@ -48,9 +48,9 @@
   import lockFunc from 'fat-ui/utils/use/useLockScroll'
   import useLockTouch from 'fat-ui/utils/use/useLockTouch'
   import { ToastOptions } from './index'
-  import fatPopup from '../popup'
-  import fatIcon from '../icon'
-  import fatLoading from '../loading'
+  import fatPopup from 'fat-ui/package/popup'
+  import fatIcon from 'fat-ui/package/icon'
+  import fatLoading from 'fat-ui/package/loading'
   export default defineComponent({
     name: `${config.frameworkName}Toast`,
     components: {

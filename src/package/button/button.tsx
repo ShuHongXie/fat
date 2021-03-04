@@ -2,7 +2,7 @@
  * @Author: shuhongxie
  * @Date: 2021-02-07 20:03:15
  * @LastEditors: shuhongxie
- * @LastEditTime: 2021-03-03 23:07:48
+ * @LastEditTime: 2021-03-04 22:46:49
  * @FilePath: /fat-ui/src/package/button/button.tsx
  */
 import { defineComponent, PropType, reactive } from 'vue'
@@ -102,7 +102,7 @@ export default defineComponent({
     // 加载状态提示文字
     loadingText: {
       type: String,
-      default: 'left'
+      default: ''
     },
     // 加载图标类型，可选值为spinner	string	circular
     loadingType: {
